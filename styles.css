@@ -35,30 +35,54 @@ img,video{display:block;max-width:100%}
   display:flex;
   align-items:center;
   background:
-    radial-gradient(circle at 20% 12%, rgba(255,255,255,.06), transparent 30%),
+    radial-gradient(ellipse at 30% 0%, rgba(255,200,120,.08), transparent 55%),
     linear-gradient(180deg,
-      #111111 0%,
-      #131211 10%,
-      #1c1714 22%,
-      #2b211d 38%,
-      #3f2a1a 50%,
-      #5a3820 62%,
-      #7a4b2e 74%,
-      #ab6535 87%,
+      #0d0d0d 0%,
+      #111111 8%,
+      #141210 18%,
+      #1e1810 30%,
+      #2e2118 42%,
+      #472e1c 55%,
+      #6b4026 67%,
+      #9a5a30 80%,
+      #c97535 91%,
       #dd823e 100%
     );
 }
 
 .association-section{
-  background:linear-gradient(180deg, #dd823e 0%, #dd823e 42%, #e49a73 72%, #efc8db 100%);
+  background:linear-gradient(180deg,
+    #dd823e 0%,
+    #d8823d 18%,
+    #d98b55 38%,
+    #e0a478 55%,
+    #e8b99a 70%,
+    #efc5cc 84%,
+    #efc8db 100%
+  );
 }
 
 .lalo-section{
-  background:linear-gradient(180deg, #efc8db 0%, #efc8db 42%, #e7d1e8 72%, #c9def3 100%);
+  background:linear-gradient(180deg,
+    #efc8db 0%,
+    #edc5d8 16%,
+    #e8c3de 32%,
+    #dfc6e8 48%,
+    #d2ceed 62%,
+    #c4d7f1 76%,
+    #c9def3 100%
+  );
 }
 
 .portfolio-section{
-  background:linear-gradient(180deg, #c9def3 0%, #c9def3 42%, #dde8f5 72%, #f4f7fb 100%);
+  background:linear-gradient(180deg,
+    #c9def3 0%,
+    #cfe2f4 20%,
+    #d8e8f5 40%,
+    #e4eff8 60%,
+    #eef4fb 80%,
+    #f4f7fb 100%
+  );
 }
 
 .contact-section{
@@ -69,53 +93,58 @@ img,video{display:block;max-width:100%}
 .hero-layout{
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:18px;
   width:100%;
+  padding-top:24px;
+  padding-bottom:8px;
 }
 
 .hero-brand{
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:12px;
   align-items:flex-start;
 }
 
 .hero-intro{
   margin:0;
-  color:rgba(255,255,255,.72);
-  font-size:14px;
-  line-height:1.7;
+  color:rgba(255,255,255,.65);
+  font-size:13px;
+  line-height:1.6;
   font-weight:500;
+  letter-spacing:.01em;
 }
 
 .brand-logo{
-  width:90px;
-  border-radius:20px;
+  width:160px;
+  border-radius:22px;
   background:#000;
-  padding:10px;
-  box-shadow:0 14px 28px rgba(0,0,0,.25);
+  padding:14px 16px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
 }
 
 .brand-logo img{
   width:100%;
-  height:36px;
+  height:54px;
   object-fit:contain;
 }
 
 .brand-tagline{
   margin:0;
-  max-width:12rem;
-  color:rgba(255,255,255,.78);
+  max-width:14rem;
+  color:rgba(255,255,255,.72);
   font-size:11px;
   line-height:1.35;
   font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
 .hero-video-card{
   border-radius:var(--radius-xl);
   overflow:hidden;
   background:#000;
-  box-shadow:var(--shadow-hero);
+  box-shadow:0 32px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06);
 }
 
 .video-shell{
@@ -134,42 +163,7 @@ img,video{display:block;max-width:100%}
 .video-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.16) 42%, rgba(0,0,0,.72) 100%);
-}
-
-.video-top{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-}
-
-.pill,
-.play-badge{
-  position:absolute;
-  top:16px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:999px;
-  font-weight:800;
-  box-shadow:0 8px 18px rgba(0,0,0,.12);
-}
-
-.pill{
-  left:16px;
-  padding:7px 12px;
-  background:rgba(255,255,255,.92);
-  color:#111;
-  font-size:.72rem;
-}
-
-.play-badge{
-  right:16px;
-  width:40px;
-  height:40px;
-  background:rgba(255,255,255,.92);
-  color:#111;
-  font-size:1rem;
+  background:linear-gradient(180deg, rgba(0,0,0,.04) 0%, rgba(0,0,0,.08) 50%, rgba(0,0,0,.68) 100%);
 }
 
 .video-bottom{
@@ -177,35 +171,27 @@ img,video{display:block;max-width:100%}
   left:0;
   right:0;
   bottom:0;
-  padding:16px;
+  padding:20px 20px 18px;
   color:#fff;
 }
 
 .video-bottom h1{
   margin:0;
   font-family:"Fredoka","Nunito",sans-serif;
-  font-size:1.5rem;
+  font-size:1.6rem;
   line-height:1;
   letter-spacing:-.02em;
-}
-
-.video-bottom p{
-  margin:8px 0 0;
-  max-width:13rem;
-  font-size:11px;
-  line-height:1.45;
-  color:rgba(255,255,255,.74);
 }
 
 .home-nav{
   width:100%;
   border-radius:26px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(0,0,0,.20);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  box-shadow:0 14px 30px rgba(0,0,0,.18);
-  padding:14px 16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.15);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 24px rgba(0,0,0,.14);
+  padding:12px 16px;
 }
 
 .home-nav a{
@@ -215,6 +201,7 @@ img,video{display:block;max-width:100%}
   font-size:1.1rem;
   line-height:1;
   letter-spacing:-.02em;
+  opacity:.88;
 }
 
 .home-nav a + a{
@@ -523,18 +510,18 @@ img,video{display:block;max-width:100%}
 
 .timeline-line{
   position:absolute;
-  left:17px;
+  left:19px;
   top:0;
   bottom:0;
-  width:3px;
-  background:rgba(255,255,255,.45);
+  width:4px;
+  background:rgba(255,255,255,.55);
   border-radius:2px;
 }
 
 .timeline-item{
   position:relative;
-  padding-left:52px;
-  margin-bottom:28px;
+  padding-left:56px;
+  margin-bottom:32px;
 }
 
 .timeline-item:last-child{
@@ -544,8 +531,8 @@ img,video{display:block;max-width:100%}
 .timeline-node{
   position:absolute;
   left:0;
-  top:20px;
-  width:36px;
+  top:18px;
+  width:42px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -553,19 +540,20 @@ img,video{display:block;max-width:100%}
 }
 
 .timeline-dot-marker{
-  width:16px;
-  height:16px;
+  width:22px;
+  height:22px;
   border-radius:50%;
   background:#fff;
   flex-shrink:0;
-  box-shadow:0 0 0 4px rgba(255,255,255,.25),0 0 0 8px rgba(255,255,255,.10);
+  box-shadow:0 0 0 4px rgba(255,255,255,.30), 0 0 0 8px rgba(255,255,255,.12), 0 4px 12px rgba(0,0,0,.20);
 }
 
 .timeline-yr{
-  font-size:10px;
+  font-size:11px;
   font-weight:800;
   letter-spacing:.06em;
   color:#fff;
   text-align:center;
   line-height:1;
+  text-shadow:0 1px 4px rgba(0,0,0,.30);
 }

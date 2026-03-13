@@ -26,37 +26,36 @@
   <main id="top">
     <section class="section hero-section">
       <div class="container hero-layout">
-        <div class="hero-top">
-          <div class="hero-brand">
-            <a class="brand-logo" href="#top" aria-label="Texas Anime Corp">
-              <img src="assets/images/logo.png" alt="Logo Texas Anime Corp" />
-            </a>
-            <p class="brand-tagline">For the Children</p>
-          </div>
-          <p class="hero-intro">Texas Anime Corp crée des livres, des projets d'animation et des actions culturelles pour les enfants et les familles.</p>
+
+        <!-- 1. Logo -->
+        <div class="hero-brand">
+          <a class="brand-logo" href="#top" aria-label="Texas Anime Corp">
+            <img src="assets/images/logo.png" alt="Logo Texas Anime Corp" />
+          </a>
+          <p class="brand-tagline">For the Children</p>
         </div>
 
+        <!-- 2. Short intro sentence -->
+        <p class="hero-intro">Texas Anime Corp crée des livres, des projets d'animation et des actions culturelles pour les enfants et les familles.</p>
+
+        <!-- 3. Lovetown video -->
         <div class="hero-video-card">
-        <div class="video-shell">
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-  >
-    <source src="assets/images/lovetown.mp4" type="video/mp4">
-  </video>
-</div>
-
+          <div class="video-shell">
+            <video
+              class="hero-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+            >
+              <source src="assets/images/lovetown.mp4" type="video/mp4">
+            </video>
             <div class="video-overlay"></div>
-
             <div class="video-top">
               <span class="pill">Lovetown · boucle silencieuse</span>
               <span class="play-badge">▶</span>
             </div>
-
             <div class="video-bottom">
               <h1>Lovetown</h1>
               <p>
@@ -67,12 +66,14 @@
           </div>
         </div>
 
-        <div class="home-nav" id="homeNav">
+        <!-- 4. Navigation below the video -->
+        <nav class="home-nav" id="homeNav" aria-label="Navigation sections">
           <a href="#association">Association</a>
           <a href="#lalo">LALO</a>
           <a href="#portfolio">Portfolio</a>
           <a href="#contact">Contact</a>
-        </div>
+        </nav>
+
       </div>
     </section>
 

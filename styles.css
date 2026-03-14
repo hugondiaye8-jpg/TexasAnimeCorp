@@ -603,7 +603,58 @@ img,video{display:block;max-width:100%}
   color:#fff;
 }
 
-/* ── Interview / reel embeds ── */
+/* ── Interview Video Player ── */
+.interview-player{
+  position:relative;
+  display:block;
+  max-width:900px;
+  margin:0 auto;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.interview-player .tac-video{
+  margin:0;
+  max-width:none;
+  border-radius:0;
+  box-shadow:none;
+}
+
+.interview-play-btn{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:72px;
+  height:72px;
+  background:rgba(0,0,0,.52);
+  border:2px solid rgba(255,255,255,.80);
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  transition:transform .15s ease, background .15s ease;
+}
+
+.interview-play-btn:hover{
+  background:rgba(0,0,0,.74);
+  transform:translate(-50%,-50%) scale(1.08);
+}
+
+.interview-play-btn.hidden{
+  display:none;
+}
+
+.interview-play-btn svg{
+  width:30px;
+  height:30px;
+  display:block;
+  margin-left:4px;
+}
+
 .interview-block{
   padding:0;
 }

@@ -484,7 +484,7 @@ img,video{display:block;max-width:100%}
 .timeline-track{
   position:relative;
   margin-top:28px;
-  padding-top:4px;
+  padding-top:28px;
   padding-bottom:4px;
 }
 
@@ -494,8 +494,39 @@ img,video{display:block;max-width:100%}
   top:0;
   bottom:0;
   width:3px;
-  background:rgba(255,255,255,.50);
+  background:linear-gradient(180deg,
+    #dd823e 0%,
+    #e06fa0 22%,
+    #9b59b6 44%,
+    #3498db 66%,
+    #00bcd4 82%,
+    #2ecc71 100%
+  );
   border-radius:2px;
+  animation:timeline-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes timeline-glow{
+  from{box-shadow:0 0 6px 1px rgba(221,130,62,.55)}
+  to  {box-shadow:0 0 12px 2px rgba(46,204,113,.55)}
+}
+
+/* Scroll-down arrow indicator at top of timeline */
+.timeline-arrow{
+  position:absolute;
+  left:20.5px;
+  top:-22px;
+  width:10px;
+  height:10px;
+  border-right:2px solid rgba(255,255,255,.75);
+  border-bottom:2px solid rgba(255,255,255,.75);
+  transform:translateX(-50%) rotate(45deg);
+  animation:arrow-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce{
+  0%,100%{transform:translateX(-50%) rotate(45deg);opacity:.70}
+  50%    {transform:translateX(-50%) rotate(45deg) translateY(4px);opacity:1}
 }
 
 .timeline-item{

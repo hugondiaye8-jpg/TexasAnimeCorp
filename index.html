@@ -11,17 +11,12 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="floating-nav" id="floatingNav">
-    <a class="floating-logo" href="#top" aria-label="Retour à l'accueil">
+  <!-- Persistent floating TAC logo — visible after hero scrolls away -->
+  <div class="floating-tac" id="floatingNav">
+    <a href="#top" aria-label="Retour à l'accueil">
       <img src="assets/images/logo.png" alt="Logo Texas Anime Corp" />
     </a>
-    <nav class="floating-links" aria-label="Navigation principale">
-      <a href="#association">Association</a>
-      <a href="#lalo">LALO</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  </div>
 
   <main id="top">
     <section class="hero-section">
@@ -49,33 +44,16 @@
           <img src="assets/images/logo.png" alt="Logo Texas Anime Corp" />
         </a>
 
-        <!-- Central stage: framed 16:9 Lovetown video block + section nav -->
-        <div class="hero-stage">
-          <div class="hero-frame">
-            <video
-              class="hero-frame-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="auto"
-              aria-label="Extrait Lovetown"
-            >
-              <source src="assets/images/lovetown.mp4" type="video/mp4">
-            </video>
-          </div>
-          <nav class="hero-nav" aria-label="Navigation principale">
-            <a href="#association">Association</a>
-            <a href="#lalo">LALO</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
+        <!-- Centered floating navigation composition — homepage only -->
+        <nav class="hero-nav" aria-label="Navigation principale">
+          <a href="#association">Association</a>
+          <a href="#lalo">LALO</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-        <!-- Brand label — bottom left -->
-        <div class="hero-foot">
-          <p class="hero-label">For the Children</p>
-        </div>
+        <!-- Brand tagline — bottom left -->
+        <p class="hero-tagline">For the Children</p>
 
       </div>
 

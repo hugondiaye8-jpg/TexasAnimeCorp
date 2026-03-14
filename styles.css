@@ -79,7 +79,7 @@ img,video{display:block;max-width:100%}
 /* Transparent logo — floats top-left, no box */
 .hero-logo{
   display:block;
-  width:260px;
+  width:150px;
   align-self:flex-start;
 }
 

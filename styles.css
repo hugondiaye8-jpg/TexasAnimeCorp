@@ -655,6 +655,24 @@ img,video{display:block;max-width:100%}
   margin-left:4px;
 }
 
+/* Instagram clickable overlay — interview video only */
+.interview-instagram-link{
+  position:absolute;
+  top:16px;
+  left:16px;
+  color:#8EC5FF;
+  font-family:"Fredoka","Nunito",sans-serif;
+  font-weight:600;
+  text-decoration:none;
+  z-index:3;
+  font-size:.82rem;
+}
+
+.interview-instagram-link:hover{
+  color:#A6D4FF;
+  text-shadow:0 0 6px rgba(166,212,255,0.6);
+}
+
 .interview-block{
   padding:0;
 }

@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LALO et le Pays sans Soleil — Texas Anime Corp</title>
-  <meta name="description" content="LALO et le Pays sans Soleil — un livre illustré de Texas Anime Corp" />
+  <title>Lalo et le Pays sans Soleil — Texas Anime Corp</title>
+  <meta name="description" content="Lalo et le Pays sans Soleil — un livre illustré de Texas Anime Corp" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css" />
   <style>
     body{
-      background:linear-gradient(180deg,#e6d8ef 0%,#d8e4f4 100%);
+      background-color:#e6d8ef;
+      background-image:url('../assets/images/Pattern_.png');
+      background-repeat:repeat;
+      background-size:auto;
       min-height:100vh;
     }
     .lalo-subpage{
@@ -53,40 +56,82 @@
       line-height:1.8;
       color:#444;
     }
-    .lalo-gallery-wrap{
+    /* ── Cinematic slideshow ── */
+    .lalo-slideshow{
       position:relative;
+      /* break out of the padded container to full viewport width */
+      left:50%;
+      margin-left:-50vw;
+      width:100vw;
+      height:70vh;
+      min-height:320px;
+      max-height:640px;
       overflow:hidden;
-      margin:0 -16px;
-      padding:0 16px;
+      background:#111;
     }
-    .lalo-gallery{
+    .lalo-slides{
       display:flex;
-      gap:12px;
-      overflow-x:auto;
-      scroll-behavior:smooth;
-      -ms-overflow-style:none;
-      scrollbar-width:none;
-      padding:4px 0 16px;
+      height:100%;
+      transition:transform .65s cubic-bezier(.25,.46,.45,.94);
+      will-change:transform;
     }
-    .lalo-gallery::-webkit-scrollbar{display:none}
-    .lalo-gallery-item{
-      flex:0 0 auto;
-      width:260px;
-      height:260px;
-      border-radius:6px;
+    .lalo-slide{
+      flex:0 0 100%;
+      width:100%;
+      height:100%;
       overflow:hidden;
-      box-shadow:0 8px 24px rgba(0,0,0,.14);
     }
-    .lalo-gallery-item img{
+    .lalo-slide img{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
-      transition:transform .4s ease;
     }
-    .lalo-gallery-item:hover img{
-      transform:scale(1.04);
+    .lalo-slide-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(0,0,0,.38);
+      color:#fff;
+      border:none;
+      cursor:pointer;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      font-size:1.2rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:background .15s;
+      z-index:2;
     }
+    .lalo-slide-btn:hover{background:rgba(0,0,0,.62)}
+    .lalo-slide-prev{left:14px}
+    .lalo-slide-next{right:14px}
+    .lalo-slide-dots{
+      position:absolute;
+      bottom:14px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:8px;
+      z-index:2;
+    }
+    .lalo-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      border:none;
+      cursor:pointer;
+      background:rgba(255,255,255,.5);
+      padding:0;
+      transition:background .2s, transform .2s;
+    }
+    .lalo-dot.is-active{
+      background:#fff;
+      transform:scale(1.3);
+    }
+    /* ── Story / Buy sections ── */
     .lalo-story{
       background:rgba(255,255,255,.78);
       border-radius:8px;
@@ -117,18 +162,11 @@
       box-shadow:0 10px 32px rgba(0,0,0,.07);
     }
     .lalo-buy h3{
-      margin:0 0 8px;
+      margin:0 0 20px;
       font-family:"Fredoka","Nunito",sans-serif;
       font-size:1.4rem;
       letter-spacing:-.02em;
       color:#111;
-    }
-    .lalo-buy .price{
-      display:inline-block;
-      font-size:2rem;
-      font-weight:800;
-      color:#111;
-      margin-bottom:20px;
     }
     .paypal-button{
       display:inline-flex;
@@ -156,12 +194,6 @@
       font-size:12px;
       color:#777;
     }
-    @media (min-width:768px){
-      .lalo-gallery-item{
-        width:300px;
-        height:300px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -171,79 +203,68 @@
 
     <div class="lalo-hero">
       <span class="eyebrow">LALO · Livre</span>
-      <h1>LALO et le Pays sans Soleil</h1>
+      <h1>Lalo et le Pays sans Soleil</h1>
       <p class="synopsis">
-        Dans ce deuxième album, LALO part à la recherche d'une lumière perdue dans un pays où le soleil ne se lève plus jamais.
-        Un voyage initiatique entre ombre et espoir, qui apprend aux enfants que la lumière vient aussi de l'intérieur.
+        Une nouvelle aventure qui entraîne Lalo dans un territoire étrange où la lumière semble avoir disparu.
       </p>
     </div>
 
-    <div class="lalo-gallery-wrap">
-      <div class="lalo-gallery" id="laloGallery">
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 1" />
+    <!-- Cinematic full-width slideshow -->
+    <div class="lalo-slideshow" id="laloSlideshow">
+      <div class="lalo-slides" id="laloSlides">
+        <div class="lalo-slide">
+          <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1400&q=80" alt="Lalo arrivant dans un pays plongé dans l'obscurité — image 1" />
         </div>
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 2" />
+        <div class="lalo-slide">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80" alt="Les habitants du Pays sans Soleil ayant oublié la lumière — image 2" />
         </div>
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 3" />
+        <div class="lalo-slide">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1400&q=80" alt="Lalo partant à la recherche du soleil disparu — image 3" />
         </div>
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 4" />
+        <div class="lalo-slide">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80" alt="Paysage nocturne du Pays sans Soleil — image 4" />
         </div>
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 5" />
+        <div class="lalo-slide">
+          <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1400&q=80" alt="Lalo rencontrant des créatures étonnantes — image 5" />
         </div>
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 6" />
-        </div>
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 7" />
-        </div>
-        <div class="lalo-gallery-item">
-          <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 8" />
+        <div class="lalo-slide">
+          <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=1400&q=80" alt="L'espoir renaissant dans les endroits les plus sombres — image 6" />
         </div>
       </div>
+      <button class="lalo-slide-btn lalo-slide-prev" id="laloPrev" aria-label="Image précédente">&#8592;</button>
+      <button class="lalo-slide-btn lalo-slide-next" id="laloNext" aria-label="Image suivante">&#8594;</button>
+      <div class="lalo-slide-dots" id="laloDots"></div>
     </div>
 
     <div class="lalo-story">
       <h2>L'histoire</h2>
       <p>
-        LALO se réveille un matin dans un monde sans couleurs. Le soleil a disparu du Pays sans Soleil,
-        et avec lui, toute la chaleur et la joie des habitants.
+        Lors de son voyage, Lalo arrive dans un pays plongé dans une obscurité permanente.
+        Les habitants y vivent sans soleil depuis longtemps et ont oublié ce qu'est la lumière.
       </p>
       <p>
-        Guidé par une mystérieuse luciole nommée Lumina, LALO traverse des paysages sombres et silencieux,
-        rencontrant des personnages qui ont oublié comment rire, jouer ou espérer.
-      </p>
-      <p>
-        Pour ramener la lumière, LALO devra affronter ses propres peurs et comprendre que le soleil le plus puissant
-        est celui qui brille en chacun de nous.
-      </p>
-      <p>
-        <em>LALO et le Pays sans Soleil</em> est un album illustré pour les enfants de 5 à 10 ans,
-        qui aborde avec douceur les thèmes de la tristesse, de l'espoir et de la résilience.
+        Guidé par sa curiosité et son courage, Lalo part à la recherche de ce qui a fait disparaître le soleil.
+        Sur son chemin, il rencontre des créatures étonnantes, découvre des secrets enfouis et comprend
+        que même dans les endroits les plus sombres, l'espoir peut toujours renaître.
       </p>
     </div>
 
     <div class="lalo-buy">
       <h3>Commander le livre</h3>
-      <span class="price">20 €</span><br />
       <!-- Replace the href with your live PayPal.me or hosted-button link -->
       <a
         class="paypal-button"
         href="https://www.paypal.com/paypalme/texasanimecorp/20EUR"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Commander LALO et le Pays sans Soleil pour 20 euros via PayPal"
+        aria-label="Acheter Lalo et le Pays sans Soleil pour 20 euros via PayPal"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M20 7H4C2.9 7 2 7.9 2 9v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" stroke="white" stroke-width="1.8"/>
           <path d="M16 3H8L6 7h12l-2-4z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
           <circle cx="12" cy="14" r="2" stroke="white" stroke-width="1.8"/>
         </svg>
-        Payer avec PayPal
+        Acheter le livre — 20€
       </a>
       <span class="paypal-note">Paiement sécurisé via PayPal · Livraison en France métropolitaine</span>
     </div>
@@ -252,20 +273,54 @@
 
   <script>
     (function(){
-      var gallery = document.getElementById('laloGallery');
-      if(!gallery) return;
-      var firstItem = gallery.querySelector('.lalo-gallery-item');
-      if(!firstItem) return;
-      var gap = parseFloat(getComputedStyle(gallery).gap) || 12;
-      var itemWidth = firstItem.offsetWidth + gap;
-      setInterval(function(){
-        var maxScroll = gallery.scrollWidth - gallery.clientWidth;
-        if(gallery.scrollLeft >= maxScroll - 4){
-          gallery.scrollTo({left:0, behavior:'smooth'});
-        } else {
-          gallery.scrollBy({left: itemWidth, behavior:'smooth'});
-        }
-      }, 5000);
+      var slides = document.getElementById('laloSlides');
+      var dotsContainer = document.getElementById('laloDots');
+      var prevBtn = document.getElementById('laloPrev');
+      var nextBtn = document.getElementById('laloNext');
+      if(!slides) return;
+
+      var items = slides.querySelectorAll('.lalo-slide');
+      var total = items.length;
+      var current = 0;
+      var autoTimer = null;
+
+      /* Build dots */
+      for(var i = 0; i < total; i++){
+        var d = document.createElement('button');
+        d.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        (function(idx){ d.addEventListener('click', function(){ goTo(idx); resetTimer(); }); })(i);
+        dotsContainer.appendChild(d);
+      }
+
+      function goTo(n){
+        current = (n + total) % total;
+        slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+        var dots = dotsContainer.querySelectorAll('.lalo-dot');
+        for(var j = 0; j < dots.length; j++) dots[j].classList.toggle('is-active', j === current);
+      }
+
+      function next(){ goTo(current + 1); }
+      function prev(){ goTo(current - 1); }
+
+      function resetTimer(){
+        clearInterval(autoTimer);
+        autoTimer = setInterval(next, 5000);
+      }
+
+      prevBtn.addEventListener('click', function(){ prev(); resetTimer(); });
+      nextBtn.addEventListener('click', function(){ next(); resetTimer(); });
+
+      /* Touch / swipe */
+      var touchStartX = 0;
+      var slideshow = document.getElementById('laloSlideshow');
+      slideshow.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+      slideshow.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if(Math.abs(dx) > 40){ dx < 0 ? next() : prev(); resetTimer(); }
+      }, {passive:true});
+
+      resetTimer();
     })();
   </script>
 </body>

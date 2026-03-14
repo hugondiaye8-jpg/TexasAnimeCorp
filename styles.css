@@ -444,12 +444,12 @@ img,video{display:block;max-width:100%}
 
 .button.primary{
   background:var(--tac-blue);
-  color:#fff;
 }
 
 .button.secondary{
   background:var(--tac-yellow);
   color:#111;
+  box-shadow:0 2px 8px rgba(252,195,66,.35);
 }
 
 /* Affiches card variant — text-only book card with full-height copy area */

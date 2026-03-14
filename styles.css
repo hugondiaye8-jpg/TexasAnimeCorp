@@ -78,7 +78,7 @@ img,video{display:block;max-width:100%}
 /* Transparent logo — floats top-left, no box */
 .hero-logo{
   display:block;
-  width:140px;
+  width:180px;
   align-self:flex-start;
 }
 
@@ -87,6 +87,31 @@ img,video{display:block;max-width:100%}
   height:auto;
   display:block;
   filter:drop-shadow(0 2px 14px rgba(0,0,0,.55));
+}
+
+/* Middle stage: groups mobile video frame + nav, centered */
+.hero-stage{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+/* Mobile-only centered landscape 16:9 video frame */
+.hero-video-frame{
+  width:min(90%, 420px);
+  aspect-ratio:16/9;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.18);
+}
+
+.hero-video-frame video{
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  display:block;
 }
 
 /* Centered floating navigation composition — homepage hero only */
@@ -123,7 +148,7 @@ img,video{display:block;max-width:100%}
   box-shadow:0 8px 20px rgba(0,0,0,.20);
 }
 
-.hero-nav a:nth-child(1){background:#f7e8d1}
+.hero-nav a:nth-child(1){background:var(--orange);color:#fff}
 .hero-nav a:nth-child(2){background:#f1d0e1}
 .hero-nav a:nth-child(3){background:#d6e6f7}
 .hero-nav a:nth-child(4){background:#fff}
@@ -413,6 +438,10 @@ img,video{display:block;max-width:100%}
     padding:56px 24px;
   }
 
+  .hero-video-frame{
+    display:none;
+  }
+
   .hero-content{
     padding:64px 48px 52px;
     align-items:center;
@@ -455,7 +484,7 @@ img,video{display:block;max-width:100%}
 .timeline-track{
   position:relative;
   margin-top:28px;
-  padding-top:4px;
+  padding-top:28px;
   padding-bottom:4px;
 }
 
@@ -465,8 +494,39 @@ img,video{display:block;max-width:100%}
   top:0;
   bottom:0;
   width:3px;
-  background:rgba(255,255,255,.50);
+  background:linear-gradient(180deg,
+    #dd823e 0%,
+    #e06fa0 22%,
+    #9b59b6 44%,
+    #3498db 66%,
+    #00bcd4 82%,
+    #2ecc71 100%
+  );
   border-radius:2px;
+  animation:timeline-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes timeline-glow{
+  from{box-shadow:0 0 6px 1px rgba(221,130,62,.55)}
+  to  {box-shadow:0 0 12px 2px rgba(46,204,113,.55)}
+}
+
+/* Scroll-down arrow indicator at top of timeline */
+.timeline-arrow{
+  position:absolute;
+  left:20.5px;
+  top:-22px;
+  width:10px;
+  height:10px;
+  border-right:2px solid rgba(255,255,255,.75);
+  border-bottom:2px solid rgba(255,255,255,.75);
+  transform:translateX(-50%) rotate(45deg);
+  animation:arrow-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce{
+  0%,100%{transform:translateX(-50%) rotate(45deg);opacity:.70}
+  50%    {transform:translateX(-50%) rotate(45deg) translateY(4px);opacity:1}
 }
 
 .timeline-item{

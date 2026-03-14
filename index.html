@@ -44,13 +44,22 @@
           <img src="assets/images/logo.png" alt="Logo Texas Anime Corp" />
         </a>
 
-        <!-- Centered floating navigation composition — homepage only -->
-        <nav class="hero-nav" aria-label="Navigation principale">
+        <!-- Mobile-only centered landscape video frame -->
+        <div class="hero-stage">
+          <div class="hero-video-frame">
+            <video autoplay muted loop playsinline preload="auto" aria-label="Lovetown promotional video">
+              <source src="assets/images/lovetown.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- Centered floating navigation composition — homepage only -->
+          <nav class="hero-nav" aria-label="Navigation principale">
           <a href="#association">Association</a>
           <a href="#lalo">LALO</a>
           <a href="#portfolio">Portfolio</a>
           <a href="#contact">Contact</a>
         </nav>
+        </div>
 
         <!-- Brand tagline — bottom left -->
         <p class="hero-tagline">For the Children</p>
@@ -72,6 +81,7 @@
           </div>
 
           <div class="timeline-track">
+            <span class="timeline-arrow"></span>
             <div class="timeline-line"></div>
 
             <div class="timeline-item">

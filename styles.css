@@ -544,6 +544,38 @@ img,video{display:block;max-width:100%}
   box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
+/* Clickable video card wrapper */
+.video-card{
+  position:relative;
+  display:block;
+  max-width:900px;
+  margin:0 auto;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.video-card > .tac-video{
+  margin:0;
+  max-width:none;
+  border-radius:0;
+  box-shadow:none;
+}
+
+/* @texasanimecorpp label overlay */
+.insta-handle{
+  position:absolute;
+  bottom:16px;
+  left:16px;
+  color:#fff;
+  font-family:"Fredoka","Nunito",sans-serif;
+  font-weight:700;
+  font-size:.82rem;
+  pointer-events:none;
+  text-shadow:0 1px 6px rgba(0,0,0,.65);
+}
+
 .insta-link{
   display:block;
   text-align:center;

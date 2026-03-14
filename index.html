@@ -74,18 +74,22 @@
           <div class="interview-block">
             <div class="reel-container">
               <h2 class="interview-title">QUI SOMMES NOUS&nbsp;?</h2>
-              <a class="video-card" href="https://www.instagram.com/reel/DUqssRHgHrv/" target="_blank" rel="noopener noreferrer">
+              <div class="interview-player">
                 <video
                   class="tac-video"
                   src="assets/images/interview.mp4"
-                  autoplay
-                  muted
-                  loop
+                  controls
                   playsinline
+                  preload="metadata"
                   title="QUI SOMMES NOUS ?">
                 </video>
+                <button class="interview-play-btn" aria-label="Lire la vidéo">
+                  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <polygon points="22,14 54,32 22,50" fill="white"/>
+                  </svg>
+                </button>
                 <span class="insta-handle">@texasanimecorpp</span>
-              </a>
+              </div>
             </div>
           </div>
 

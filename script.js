@@ -19,7 +19,31 @@ if (heroVideo) {
   });
 }
 
-// Respect reduced-motion preference: pause autoplaying videos
+// Interview video player — sound enabled, manual play
+const interviewPlayer = document.querySelector('.interview-player');
+if (interviewPlayer) {
+  const interviewVideo = interviewPlayer.querySelector('video');
+  const playBtn = interviewPlayer.querySelector('.interview-play-btn');
+
+  if (playBtn && interviewVideo) {
+    playBtn.addEventListener('click', () => {
+      interviewVideo.play();
+    });
+
+    interviewVideo.addEventListener('play', () => {
+      playBtn.classList.add('hidden');
+    });
+
+    interviewVideo.addEventListener('pause', () => {
+      playBtn.classList.remove('hidden');
+    });
+
+    interviewVideo.addEventListener('ended', () => {
+      playBtn.classList.remove('hidden');
+    });
+  }
+}
+
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('video[autoplay]').forEach(v => {
     v.pause();

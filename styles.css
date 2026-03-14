@@ -532,6 +532,17 @@ img,video{display:block;max-width:100%}
     justify-content:center;
     padding:24px 28px;
   }
+
+  /* Desktop portfolio: 3 reels side by side */
+  .portfolio-reels-list{
+    flex-direction:row;
+    align-items:flex-start;
+  }
+
+  .portfolio-reels-list .reel-container{
+    flex:1;
+    min-width:0;
+  }
 }
 
 /* ── Local video player ── */

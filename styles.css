@@ -31,33 +31,108 @@ img,video{display:block;max-width:100%}
 }
 
 .hero-section{
-  min-height:100vh;
-  display:flex;
-  align-items:flex-start;
+  position:relative;
+  height:100vh;
+  height:100svh;
+  overflow:hidden;
+}
+
+/* Video fills the full hero area */
+.hero-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  background:#000;
+}
+
+/* Cinematic overlay: darker top and bottom, clear window in the middle */
+.hero-overlay{
+  position:absolute;
+  inset:0;
   background:
-    radial-gradient(ellipse at 30% 0%, rgba(255,200,120,.08), transparent 55%),
-    linear-gradient(180deg,
-      #0d0d0d 0%,
-      #111111 8%,
-      #141210 18%,
-      #1e1810 30%,
-      #2e2118 42%,
-      #472e1c 55%,
-      #6b4026 67%,
-      #9a5a30 80%,
-      #c97535 91%,
-      #dd823e 100%
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.72) 0%,
+      rgba(0,0,0,.30) 28%,
+      rgba(0,0,0,.08) 52%,
+      rgba(0,0,0,.45) 76%,
+      rgba(0,0,0,.82) 100%
     );
+}
+
+/* Content floats above the video, fills the hero */
+.hero-content{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:44px 22px 36px;
+}
+
+/* Transparent logo — floats top-left, no box */
+.hero-logo{
+  display:block;
+  width:160px;
+}
+
+.hero-logo img{
+  width:100%;
+  height:auto;
+  display:block;
+  filter:drop-shadow(0 2px 14px rgba(0,0,0,.55));
+}
+
+/* Editorial footer text */
+.hero-foot{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.hero-label{
+  margin:0;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.60);
+}
+
+.hero-tagline{
+  margin:0;
+  font-size:14px;
+  font-weight:500;
+  line-height:1.4;
+  color:rgba(255,255,255,.78);
+}
+
+.hero-title{
+  margin:6px 0 0;
+  font-family:"Fredoka","Nunito",sans-serif;
+  font-size:2.8rem;
+  line-height:.95;
+  letter-spacing:-.03em;
+  color:#fff;
+  text-shadow:0 2px 24px rgba(0,0,0,.45);
 }
 
 .association-section{
   background:linear-gradient(180deg,
-    #dd823e 0%,
-    #d8823d 18%,
-    #d98b55 38%,
-    #e0a478 55%,
-    #e8b99a 70%,
-    #efc5cc 84%,
+    #060606 0%,
+    #120a04 7%,
+    #2a1508 15%,
+    #4f2710 24%,
+    #7e4018 34%,
+    #a85c24 46%,
+    #cc7432 58%,
+    #dd823e 70%,
+    #d8873f 80%,
+    #e0a478 90%,
     #efc8db 100%
   );
 }
@@ -90,119 +165,6 @@ img,video{display:block;max-width:100%}
   padding-bottom:56px;
 }
 
-.hero-layout{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  width:100%;
-  padding-top:52px;
-  padding-bottom:48px;
-}
-
-.hero-brand{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  align-items:flex-start;
-}
-
-.hero-intro{
-  margin:0;
-  color:rgba(255,255,255,.65);
-  font-size:13px;
-  line-height:1.6;
-  font-weight:500;
-  letter-spacing:.01em;
-}
-
-.brand-logo{
-  width:220px;
-  display:block;
-}
-
-.brand-logo img{
-  width:100%;
-  height:72px;
-  object-fit:contain;
-  filter:drop-shadow(0 4px 16px rgba(0,0,0,.40));
-}
-
-.brand-tagline{
-  margin:0;
-  max-width:14rem;
-  color:rgba(255,255,255,.72);
-  font-size:11px;
-  line-height:1.35;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-.hero-video-card{
-  border-radius:20px;
-  overflow:hidden;
-  background:#000;
-  box-shadow:0 24px 64px rgba(0,0,0,.55);
-}
-
-.video-shell{
-  position:relative;
-  aspect-ratio:16/9;
-  overflow:hidden;
-}
-
-.hero-video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  background:#000;
-}
-
-.video-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,.06) 45%, rgba(0,0,0,.72) 100%);
-}
-
-.video-bottom{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  padding:22px 20px 18px;
-  color:#fff;
-}
-
-.video-bottom h1{
-  margin:0;
-  font-family:"Fredoka","Nunito",sans-serif;
-  font-size:1.9rem;
-  line-height:1;
-  letter-spacing:-.02em;
-}
-
-.home-nav{
-  width:100%;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
-}
-
-.home-nav a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 8px;
-  border-radius:14px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.10);
-  color:#fff;
-  font-family:"Fredoka","Nunito",sans-serif;
-  font-size:1rem;
-  line-height:1;
-  letter-spacing:-.01em;
-  font-weight:600;
-}
 
 .floating-nav{
   position:fixed;
@@ -237,16 +199,13 @@ img,video{display:block;max-width:100%}
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:56px;
-  background:#000;
-  border-radius:18px;
-  padding:8px;
 }
 
 .floating-logo img{
-  width:100%;
-  height:40px;
+  width:52px;
+  height:38px;
   object-fit:contain;
+  filter:drop-shadow(0 1px 6px rgba(0,0,0,.35));
 }
 
 .floating-links{
@@ -471,27 +430,16 @@ img,video{display:block;max-width:100%}
     padding:56px 24px;
   }
 
-  .hero-layout{
-    padding-top:80px;
-    gap:20px;
+  .hero-content{
+    padding:56px 40px 48px;
   }
 
-  .brand-logo{
-    width:260px;
+  .hero-logo{
+    width:200px;
   }
 
-  .brand-logo img{
-    height:86px;
-  }
-
-  .home-nav{
-    width:auto;
-    max-width:480px;
-    grid-template-columns:repeat(4,minmax(0,1fr));
-  }
-
-  .home-nav a{
-    font-size:1.1rem;
+  .hero-title{
+    font-size:4rem;
   }
 
   .floating-nav{

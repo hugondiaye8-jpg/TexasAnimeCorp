@@ -24,49 +24,40 @@
   </header>
 
   <main id="top">
-    <section class="section hero-section">
-      <div class="container hero-layout">
+    <section class="hero-section">
 
-        <!-- 1. Logo -->
-        <div class="hero-brand">
-          <a class="brand-logo" href="#top" aria-label="Texas Anime Corp">
-            <img src="assets/images/logo.png" alt="Logo Texas Anime Corp" />
-          </a>
-          <p class="brand-tagline">For the Children</p>
+      <!-- Full-screen cinematic video background -->
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="assets/images/lovetown.mp4" type="video/mp4">
+      </video>
+
+      <!-- Cinematic overlay: dark top + dark bottom, transparent middle -->
+      <div class="hero-overlay"></div>
+
+      <!-- Floating content over video -->
+      <div class="hero-content">
+
+        <!-- TAC logo — top left, transparent PNG -->
+        <a class="hero-logo" href="#top" aria-label="Texas Anime Corp">
+          <img src="assets/images/logo.png" alt="Logo Texas Anime Corp" />
+        </a>
+
+        <!-- Editorial text + title — bottom left -->
+        <div class="hero-foot">
+          <p class="hero-label">For the Children</p>
+          <p class="hero-tagline">Livres, animation et culture.</p>
+          <h1 class="hero-title">Lovetown</h1>
         </div>
-
-        <!-- 2. Short intro sentence -->
-        <p class="hero-intro">Livres, animation et culture — pour les enfants.</p>
-
-        <!-- 3. Lovetown video -->
-        <div class="hero-video-card">
-          <div class="video-shell">
-            <video
-              class="hero-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="auto"
-            >
-              <source src="assets/images/lovetown.mp4" type="video/mp4">
-            </video>
-            <div class="video-overlay"></div>
-            <div class="video-bottom">
-              <h1>Lovetown</h1>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Navigation below the video -->
-        <nav class="home-nav" id="homeNav" aria-label="Navigation sections">
-          <a href="#association">Association</a>
-          <a href="#lalo">LALO</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#contact">Contact</a>
-        </nav>
 
       </div>
+
     </section>
 
     <section class="section association-section" id="association">

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affiches — Texas Anime Corp</title>
+  <meta name="description" content="Affiches — Texas Anime Corp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body{
+      background-color:#fdf3e3;
+      background-image:url('../assets/images/Pattern_.png');
+      background-repeat:repeat;
+      background-size:auto;
+      min-height:100vh;
+    }
+    .affiches-subpage{
+      max-width:1100px;
+      margin:0 auto;
+      padding:32px 16px 64px;
+    }
+    .affiches-back{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+      font-weight:700;
+      color:#555;
+      text-decoration:none;
+      margin-bottom:32px;
+      transition:color .15s;
+    }
+    .affiches-back:hover{color:#111}
+    .affiches-hero{
+      text-align:center;
+      margin-bottom:48px;
+    }
+    .affiches-hero .eyebrow{
+      margin-bottom:12px;
+    }
+    .affiches-hero h1{
+      margin:0 0 16px;
+      font-family:"Fredoka","Nunito",sans-serif;
+      font-size:clamp(2rem,5vw,3.4rem);
+      line-height:1;
+      letter-spacing:-.03em;
+      color:#111;
+    }
+    .affiches-hero .synopsis{
+      max-width:620px;
+      margin:0 auto;
+      font-size:1rem;
+      line-height:1.8;
+      color:#444;
+    }
+    /* ── Poster gallery ── */
+    .affiches-gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:24px;
+      margin-bottom:48px;
+    }
+    .affiche-card{
+      background:rgba(255,255,255,.80);
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(0,0,0,.07);
+      display:flex;
+      flex-direction:column;
+    }
+    .affiche-card-img{
+      width:100%;
+      aspect-ratio:2/3;
+      object-fit:cover;
+      display:block;
+      background:#ddd;
+    }
+    .affiche-card-placeholder{
+      width:100%;
+      aspect-ratio:2/3;
+      background:rgba(0,0,0,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#aaa;
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.04em;
+    }
+    .affiche-card-copy{
+      padding:20px 18px;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .affiche-card-copy h3{
+      margin:0;
+      font-family:"Fredoka","Nunito",sans-serif;
+      font-size:1.1rem;
+      letter-spacing:-.02em;
+      color:#111;
+    }
+    .affiche-card-copy p{
+      margin:0;
+      font-size:14px;
+      color:#666;
+      line-height:1.6;
+    }
+    .affiche-card-copy .affiche-price{
+      font-weight:700;
+      color:#111;
+      font-size:15px;
+    }
+    .affiche-card-copy .button{
+      margin-top:auto;
+      align-self:flex-start;
+    }
+    /* ── Info block ── */
+    .affiches-info{
+      background:rgba(255,255,255,.78);
+      border-radius:8px;
+      padding:32px 28px;
+      box-shadow:0 10px 32px rgba(0,0,0,.07);
+    }
+    .affiches-info h2{
+      margin:0 0 12px;
+      font-family:"Fredoka","Nunito",sans-serif;
+      font-size:1.4rem;
+      letter-spacing:-.02em;
+      color:#111;
+    }
+    .affiches-info p{
+      margin:0;
+      font-size:15px;
+      line-height:1.8;
+      color:#555;
+    }
+  </style>
+</head>
+<body>
+  <main class="affiches-subpage">
+
+    <a href="../index.html" class="affiches-back">← Retour à l'accueil</a>
+
+    <div class="affiches-hero">
+      <span class="eyebrow">Texas Anime Corp · Boutique</span>
+      <h1>Affiches</h1>
+      <p class="synopsis">
+        Une sélection d'affiches issues des projets Texas Anime Corp.
+        Formats et visuels à venir.
+      </p>
+    </div>
+
+    <!-- Poster gallery — to be expanded with real products -->
+    <div class="affiches-gallery">
+
+      <div class="affiche-card">
+        <div class="affiche-card-placeholder">À venir</div>
+        <div class="affiche-card-copy">
+          <h3>Affiche — À venir</h3>
+          <p>Visuel à définir.</p>
+        </div>
+      </div>
+
+      <div class="affiche-card">
+        <div class="affiche-card-placeholder">À venir</div>
+        <div class="affiche-card-copy">
+          <h3>Affiche — À venir</h3>
+          <p>Visuel à définir.</p>
+        </div>
+      </div>
+
+      <div class="affiche-card">
+        <div class="affiche-card-placeholder">À venir</div>
+        <div class="affiche-card-copy">
+          <h3>Affiche — À venir</h3>
+          <p>Visuel à définir.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="affiches-info">
+      <h2>Informations</h2>
+      <p>
+        Les affiches seront disponibles à la commande prochainement.
+        Pour toute question, contactez-nous via la page d'accueil.
+      </p>
+    </div>
+
+  </main>
+</body>
+</html>

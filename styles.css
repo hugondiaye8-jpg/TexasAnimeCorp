@@ -80,8 +80,6 @@ img,video{display:block;max-width:100%}
 .hero-logo{
   display:block;
   width:260px;
-  aspect-ratio:1.86;
-  overflow:hidden;
   align-self:flex-start;
 }
 
@@ -138,9 +136,9 @@ img,video{display:block;max-width:100%}
   text-align:center;
   padding:12px 20px;
   border-radius:999px;
-  font-family:"Nunito",system-ui,sans-serif;
-  font-size:.88rem;
-  font-weight:800;
+  font-family:"Fredoka","Nunito",system-ui,sans-serif;
+  font-size:.96rem;
+  font-weight:600;
   color:#111;
   box-shadow:0 4px 14px rgba(0,0,0,.12);
   transition:transform .15s ease, box-shadow .15s ease;
@@ -232,8 +230,6 @@ img,video{display:block;max-width:100%}
 
 .floating-tac a{
   display:block;
-  aspect-ratio:1.86;
-  overflow:hidden;
   width:110px;
 }
 
@@ -459,8 +455,6 @@ img,video{display:block;max-width:100%}
   .hero-logo{
     width:320px;
     align-self:flex-start;
-    aspect-ratio:1.86;
-    overflow:hidden;
   }
 
   .hero-stage{
@@ -476,7 +470,7 @@ img,video{display:block;max-width:100%}
   .hero-nav a{
     width:auto;
     min-width:140px;
-    font-size:.94rem;
+    font-size:1.05rem;
     padding:14px 28px;
   }
 
@@ -531,12 +525,12 @@ img,video{display:block;max-width:100%}
 .timeline-arrow{
   position:absolute;
   left:19px;
-  top:-50px;
+  top:-52px;
   transform:translateX(-50%);
   display:block;
-  width:52px;
-  height:44px;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='44' viewBox='-6 -6 52 44'%3E%3Cpolygon points='20,0 0,32 40,32' fill='%23dd823e' stroke='%23000' stroke-width='12' stroke-linejoin='round' paint-order='stroke fill'/%3E%3C/svg%3E");
+  width:28px;
+  height:48px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48' viewBox='0 0 28 48'%3E%3Cpath d='M14,2 L0,22 H10 V46 H18 V22 H28 Z' fill='%23dd823e' stroke='%23000' stroke-width='3.5' stroke-linejoin='round' paint-order='stroke fill'/%3E%3C/svg%3E");
   background-size:contain;
   background-repeat:no-repeat;
   background-position:center;

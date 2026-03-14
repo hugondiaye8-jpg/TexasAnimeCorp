@@ -245,7 +245,7 @@ img,video{display:block;max-width:100%}
   box-shadow:var(--shadow-soft);
 }
 
-.association-card{background:var(--orange)}
+.association-card{background:linear-gradient(180deg,#dd823e 0%,#c8712e 40%,#b35e22 100%)}
 .lalo-card{background:var(--pink)}
 .portfolio-card{background:var(--blue)}
 .contact-card{background:#fff}

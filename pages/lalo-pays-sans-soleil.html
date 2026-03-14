@@ -4,19 +4,269 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LALO et le Pays sans Soleil — Texas Anime Corp</title>
+  <meta name="description" content="LALO et le Pays sans Soleil — un livre illustré de Texas Anime Corp" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body{
+      background:linear-gradient(180deg,#e6d8ef 0%,#d8e4f4 100%);
+      min-height:100vh;
+    }
+    .lalo-subpage{
+      max-width:1100px;
+      margin:0 auto;
+      padding:32px 16px 64px;
+    }
+    .lalo-back{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+      font-weight:700;
+      color:#555;
+      text-decoration:none;
+      margin-bottom:32px;
+      transition:color .15s;
+    }
+    .lalo-back:hover{color:#111}
+    .lalo-hero{
+      text-align:center;
+      margin-bottom:48px;
+    }
+    .lalo-hero .eyebrow{
+      margin-bottom:12px;
+    }
+    .lalo-hero h1{
+      margin:0 0 16px;
+      font-family:"Fredoka","Nunito",sans-serif;
+      font-size:clamp(2rem,5vw,3.4rem);
+      line-height:1;
+      letter-spacing:-.03em;
+      color:#111;
+    }
+    .lalo-hero .synopsis{
+      max-width:620px;
+      margin:0 auto;
+      font-size:1rem;
+      line-height:1.8;
+      color:#444;
+    }
+    .lalo-gallery-wrap{
+      position:relative;
+      overflow:hidden;
+      margin:0 -16px;
+      padding:0 16px;
+    }
+    .lalo-gallery{
+      display:flex;
+      gap:12px;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      -ms-overflow-style:none;
+      scrollbar-width:none;
+      padding:4px 0 16px;
+    }
+    .lalo-gallery::-webkit-scrollbar{display:none}
+    .lalo-gallery-item{
+      flex:0 0 auto;
+      width:260px;
+      height:260px;
+      border-radius:6px;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(0,0,0,.14);
+    }
+    .lalo-gallery-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .4s ease;
+    }
+    .lalo-gallery-item:hover img{
+      transform:scale(1.04);
+    }
+    .lalo-story{
+      background:rgba(255,255,255,.78);
+      border-radius:8px;
+      padding:32px 28px;
+      margin-top:48px;
+      box-shadow:0 10px 32px rgba(0,0,0,.07);
+    }
+    .lalo-story h2{
+      margin:0 0 16px;
+      font-family:"Fredoka","Nunito",sans-serif;
+      font-size:1.5rem;
+      letter-spacing:-.02em;
+      color:#111;
+    }
+    .lalo-story p{
+      margin:0 0 14px;
+      font-size:15px;
+      line-height:1.8;
+      color:#444;
+    }
+    .lalo-story p:last-child{margin-bottom:0}
+    .lalo-buy{
+      text-align:center;
+      margin-top:56px;
+      padding:36px 20px;
+      background:rgba(255,255,255,.65);
+      border-radius:8px;
+      box-shadow:0 10px 32px rgba(0,0,0,.07);
+    }
+    .lalo-buy h3{
+      margin:0 0 8px;
+      font-family:"Fredoka","Nunito",sans-serif;
+      font-size:1.4rem;
+      letter-spacing:-.02em;
+      color:#111;
+    }
+    .lalo-buy .price{
+      display:inline-block;
+      font-size:2rem;
+      font-weight:800;
+      color:#111;
+      margin-bottom:20px;
+    }
+    .paypal-button{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:#0070ba;
+      color:#fff;
+      font-size:15px;
+      font-weight:800;
+      padding:14px 28px;
+      border-radius:6px;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      box-shadow:0 6px 18px rgba(0,112,186,.30);
+      transition:background .15s ease, transform .15s ease;
+    }
+    .paypal-button:hover{
+      background:#005ea6;
+      transform:translateY(-2px);
+    }
+    .paypal-note{
+      display:block;
+      margin-top:10px;
+      font-size:12px;
+      color:#777;
+    }
+    @media (min-width:768px){
+      .lalo-gallery-item{
+        width:300px;
+        height:300px;
+      }
+    }
+  </style>
 </head>
-<body style="background:#e6d8ef;">
-  <main class="container" style="padding:32px 16px 48px;">
-    <a href="../index.html#lalo" class="button secondary" style="margin-top:0;">Retour à LALO</a>
-    <section class="section-card" style="background:white; margin-top:16px;">
-      <p class="subline">Livre</p>
-      <h2 style="margin:0; font-family:'Fredoka','Nunito',sans-serif;">LALO et le Pays sans Soleil</h2>
-      <p style="line-height:1.75; color:#555;">Ici tu pourras mettre le résumé long, des illustrations du livre et un lien d’achat.</p>
-    </section>
+<body>
+  <main class="lalo-subpage">
+
+    <a href="../index.html#lalo" class="lalo-back">← Retour à LALO</a>
+
+    <div class="lalo-hero">
+      <span class="eyebrow">LALO · Livre</span>
+      <h1>LALO et le Pays sans Soleil</h1>
+      <p class="synopsis">
+        Dans ce deuxième album, LALO part à la recherche d'une lumière perdue dans un pays où le soleil ne se lève plus jamais.
+        Un voyage initiatique entre ombre et espoir, qui apprend aux enfants que la lumière vient aussi de l'intérieur.
+      </p>
+    </div>
+
+    <div class="lalo-gallery-wrap">
+      <div class="lalo-gallery" id="laloGallery">
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 1" />
+        </div>
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 2" />
+        </div>
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 3" />
+        </div>
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 4" />
+        </div>
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 5" />
+        </div>
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 6" />
+        </div>
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 7" />
+        </div>
+        <div class="lalo-gallery-item">
+          <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=600&q=80" alt="Illustration LALO 8" />
+        </div>
+      </div>
+    </div>
+
+    <div class="lalo-story">
+      <h2>L'histoire</h2>
+      <p>
+        LALO se réveille un matin dans un monde sans couleurs. Le soleil a disparu du Pays sans Soleil,
+        et avec lui, toute la chaleur et la joie des habitants.
+      </p>
+      <p>
+        Guidé par une mystérieuse luciole nommée Lumina, LALO traverse des paysages sombres et silencieux,
+        rencontrant des personnages qui ont oublié comment rire, jouer ou espérer.
+      </p>
+      <p>
+        Pour ramener la lumière, LALO devra affronter ses propres peurs et comprendre que le soleil le plus puissant
+        est celui qui brille en chacun de nous.
+      </p>
+      <p>
+        <em>LALO et le Pays sans Soleil</em> est un album illustré pour les enfants de 5 à 10 ans,
+        qui aborde avec douceur les thèmes de la tristesse, de l'espoir et de la résilience.
+      </p>
+    </div>
+
+    <div class="lalo-buy">
+      <h3>Commander le livre</h3>
+      <span class="price">20 €</span><br />
+      <!-- Replace the href with your live PayPal.me or hosted-button link -->
+      <a
+        class="paypal-button"
+        href="https://www.paypal.com/paypalme/texasanimecorp/20EUR"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Commander LALO et le Pays sans Soleil pour 20 euros via PayPal"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20 7H4C2.9 7 2 7.9 2 9v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z" stroke="white" stroke-width="1.8"/>
+          <path d="M16 3H8L6 7h12l-2-4z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="12" cy="14" r="2" stroke="white" stroke-width="1.8"/>
+        </svg>
+        Payer avec PayPal
+      </a>
+      <span class="paypal-note">Paiement sécurisé via PayPal · Livraison en France métropolitaine</span>
+    </div>
+
   </main>
+
+  <script>
+    (function(){
+      var gallery = document.getElementById('laloGallery');
+      if(!gallery) return;
+      var firstItem = gallery.querySelector('.lalo-gallery-item');
+      if(!firstItem) return;
+      var gap = parseFloat(getComputedStyle(gallery).gap) || 12;
+      var itemWidth = firstItem.offsetWidth + gap;
+      setInterval(function(){
+        var maxScroll = gallery.scrollWidth - gallery.clientWidth;
+        if(gallery.scrollLeft >= maxScroll - 4){
+          gallery.scrollTo({left:0, behavior:'smooth'});
+        } else {
+          gallery.scrollBy({left: itemWidth, behavior:'smooth'});
+        }
+      }, 5000);
+    })();
+  </script>
 </body>
 </html>

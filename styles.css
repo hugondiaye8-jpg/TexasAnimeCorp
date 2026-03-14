@@ -1,9 +1,12 @@
 
 :root{
-  --ink:#191919;
-  --orange:#dd823e;
-  --pink:#efc8db;
-  --blue:#c9def3;
+  --ink:#111111;
+  --tac-blue:#4374FF;
+  --tac-yellow:#FCC342;
+  --tac-pink:#F471E2;
+  --tac-purple:#B066E8;
+  --tac-red:#FB4447;
+  --tac-green:#49D65A;
   --radius-xl:5px;
   --radius-lg:3px;
   --shadow-soft:0 18px 50px rgba(0,0,0,.12);
@@ -14,7 +17,8 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:"Nunito",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:"Aileron",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:400;
   color:var(--ink);
   background:#111;
 }
@@ -136,9 +140,9 @@ img,video{display:block;max-width:100%}
   text-align:center;
   padding:12px 20px;
   border-radius:5px;
-  font-family:"Fredoka","Nunito",system-ui,sans-serif;
+  font-family:"Aileron",system-ui,sans-serif;
   font-size:.96rem;
-  font-weight:600;
+  font-weight:700;
   color:#111;
   box-shadow:0 4px 14px rgba(0,0,0,.12);
   transition:transform .15s ease, box-shadow .15s ease;
@@ -149,10 +153,10 @@ img,video{display:block;max-width:100%}
   box-shadow:0 8px 20px rgba(0,0,0,.20);
 }
 
-.hero-nav a:nth-child(1){background:var(--orange);color:#111}
-.hero-nav a:nth-child(2){background:#f1d0e1}
-.hero-nav a:nth-child(3){background:#d6e6f7}
-.hero-nav a:nth-child(4){background:#fff}
+.hero-nav a:nth-child(1){background:var(--tac-blue);color:#fff}
+.hero-nav a:nth-child(2){background:var(--tac-yellow);color:#111}
+.hero-nav a:nth-child(3){background:var(--tac-pink);color:#111}
+.hero-nav a:nth-child(4){background:#fff;color:#111}
 
 /* Brand tagline — bottom left */
 .hero-tagline{
@@ -160,53 +164,33 @@ img,video{display:block;max-width:100%}
   margin:0;
   margin-top:auto;
   font-size:10px;
-  font-weight:800;
+  font-weight:700;
   letter-spacing:.20em;
   text-transform:uppercase;
   color:rgba(255,255,255,.60);
 }
 
+.hero-tagline::before{
+  content:"★ ";
+  color:var(--tac-yellow);
+  font-size:.85em;
+  vertical-align:middle;
+}
+
 .association-section{
-  background:linear-gradient(180deg,
-    #060606 0%,
-    #120a04 7%,
-    #2a1508 15%,
-    #4f2710 24%,
-    #7e4018 34%,
-    #a85c24 46%,
-    #cc7432 58%,
-    #dd823e 70%,
-    #d8873f 80%,
-    #e0a478 90%,
-    #efc8db 100%
-  );
+  background:#0a0a0a;
 }
 
 .lalo-section{
-  background:linear-gradient(180deg,
-    #efc8db 0%,
-    #edc5d8 16%,
-    #e8c3de 32%,
-    #dfc6e8 48%,
-    #d2ceed 62%,
-    #c4d7f1 76%,
-    #c9def3 100%
-  );
+  background:#f5f3ee;
 }
 
 .portfolio-section{
-  background:linear-gradient(180deg,
-    #c9def3 0%,
-    #cfe2f4 20%,
-    #d8e8f5 40%,
-    #e4eff8 60%,
-    #eef4fb 80%,
-    #f4f7fb 100%
-  );
+  background:#f5f5f5;
 }
 
 .contact-section{
-  background:#f4f7fb;
+  background:#0a0a0a;
   padding-bottom:56px;
 }
 
@@ -245,10 +229,10 @@ img,video{display:block;max-width:100%}
   box-shadow:var(--shadow-soft);
 }
 
-.association-card{background:linear-gradient(180deg,#dd823e 0%,#c8712e 40%,#b35e22 100%)}
-.lalo-card{background:var(--pink)}
-.portfolio-card{background:var(--blue)}
-.contact-card{background:#fff}
+.association-card{background:#111;color:#fff}
+.lalo-card{background:#fff}
+.portfolio-card{background:#fff}
+.contact-card{background:#111;color:#fff}
 
 .section-head{
   display:flex;
@@ -260,6 +244,14 @@ img,video{display:block;max-width:100%}
   color:#fff;
 }
 
+/* Star accent on contact "For the Children" tagline */
+.contact-card > p::before{
+  content:"★ ";
+  color:var(--tac-yellow);
+  font-size:.8em;
+  vertical-align:middle;
+}
+
 .eyebrow,
 .eyebrow-dark{
   display:inline-flex;
@@ -269,26 +261,43 @@ img,video{display:block;max-width:100%}
   font-size:10px;
   letter-spacing:.22em;
   text-transform:uppercase;
-  font-weight:800;
+  font-weight:700;
   box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
 .eyebrow{
   background:rgba(255,255,255,.85);
+  color:#111;
 }
 
 .eyebrow-dark{
-  background:#111;
+  background:var(--tac-yellow);
+  color:#111;
+}
+
+/* Section-specific eyebrow colors */
+.lalo-card .eyebrow{
+  background:var(--tac-yellow);
+  color:#111;
+}
+
+.portfolio-card .eyebrow{
+  background:var(--tac-blue);
   color:#fff;
 }
 
 .section-head h2,
 .contact-card h2{
   margin:0;
-  font-family:"Fredoka","Nunito",sans-serif;
+  font-family:"Aileron",system-ui,sans-serif;
   font-size:2rem;
+  font-weight:700;
   line-height:.98;
   letter-spacing:-.03em;
+}
+
+.contact-card h2{
+  color:#fff;
 }
 
 .section-head p,
@@ -296,6 +305,10 @@ img,video{display:block;max-width:100%}
   margin:0;
   font-size:14px;
   line-height:1.75;
+}
+
+.contact-card p{
+  color:rgba(255,255,255,.72);
 }
 
 .section-head-dark p{
@@ -399,8 +412,9 @@ img,video{display:block;max-width:100%}
 .book-copy h3,
 .portfolio-item h3{
   margin:0;
-  font-family:"Fredoka","Nunito",sans-serif;
+  font-family:"Aileron",system-ui,sans-serif;
   font-size:1.28rem;
+  font-weight:700;
   line-height:1.1;
   letter-spacing:-.02em;
 }
@@ -422,18 +436,20 @@ img,video{display:block;max-width:100%}
   border-radius:4px;
   padding:12px 18px;
   font-size:14px;
-  font-weight:800;
-}
-
-.button.primary{
+  font-weight:700;
+  font-family:"Aileron",system-ui,sans-serif;
   background:#111;
   color:#fff;
 }
 
+.button.primary{
+  background:var(--tac-blue);
+  color:#fff;
+}
+
 .button.secondary{
-  background:#fff;
+  background:var(--tac-yellow);
   color:#111;
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);
 }
 
 /* Affiches card variant — text-only book card with full-height copy area */
@@ -444,6 +460,7 @@ img,video{display:block;max-width:100%}
   gap:12px;
   background:rgba(255,255,255,.6);
   border-radius:8px;
+  border-left:3px solid var(--tac-yellow);
   height:100%;
   box-sizing:border-box;
 }
@@ -580,7 +597,7 @@ img,video{display:block;max-width:100%}
   bottom:16px;
   left:16px;
   color:#fff;
-  font-family:"Fredoka","Nunito",sans-serif;
+  font-family:"Aileron",system-ui,sans-serif;
   font-weight:700;
   font-size:.82rem;
   pointer-events:none;
@@ -660,8 +677,8 @@ img,video{display:block;max-width:100%}
   position:absolute;
   top:16px;
   left:16px;
-  color:#8EC5FF;
-  font-family:"Fredoka","Nunito",sans-serif;
+  color:var(--tac-blue);
+  font-family:"Aileron",system-ui,sans-serif;
   font-weight:600;
   text-decoration:none;
   z-index:3;
@@ -669,8 +686,8 @@ img,video{display:block;max-width:100%}
 }
 
 .interview-instagram-link:hover{
-  color:#A6D4FF;
-  text-shadow:0 0 6px rgba(166,212,255,0.6);
+  color:#6b96ff;
+  text-shadow:0 0 6px rgba(67,116,255,0.5);
 }
 
 .interview-block{
@@ -688,9 +705,9 @@ img,video{display:block;max-width:100%}
 
 .interview-title{
   margin:0;
-  font-family:"Fredoka","Nunito",sans-serif;
+  font-family:"Aileron",system-ui,sans-serif;
   font-size:2.2rem;
-  font-weight:600;
+  font-weight:700;
   line-height:1;
   letter-spacing:-.03em;
   color:#fff;
@@ -719,12 +736,12 @@ img,video{display:block;max-width:100%}
   bottom:0;
   width:3px;
   background:linear-gradient(180deg,
-    #dd823e 0%,
-    #e06fa0 22%,
-    #9b59b6 44%,
-    #3498db 66%,
-    #00bcd4 82%,
-    #2ecc71 100%
+    var(--tac-blue) 0%,
+    var(--tac-purple) 22%,
+    var(--tac-pink) 44%,
+    var(--tac-yellow) 66%,
+    var(--tac-green) 82%,
+    var(--tac-red) 100%
   );
   border-radius:2px;
 }

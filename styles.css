@@ -414,30 +414,31 @@ img,video{display:block;max-width:100%}
   }
 
   .hero-content{
-    padding:56px 40px 48px;
-    align-items:flex-start;
+    padding:64px 48px 52px;
+    align-items:center;
   }
 
   .hero-logo{
     width:200px;
+    align-self:flex-start;
   }
 
   .hero-nav{
     flex-direction:row;
-    gap:12px;
-    padding:18px 28px;
+    gap:18px;
+    padding:26px 48px;
     border-radius:999px;
-    align-self:center;
   }
 
   .hero-nav a{
     width:auto;
-    min-width:110px;
-    font-size:.90rem;
-    padding:12px 18px;
+    min-width:140px;
+    font-size:.94rem;
+    padding:14px 28px;
   }
 
   .hero-tagline{
+    align-self:flex-start;
     font-size:12px;
     letter-spacing:.26em;
   }

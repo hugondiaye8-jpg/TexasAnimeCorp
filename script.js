@@ -18,3 +18,11 @@ if (heroVideo) {
     heroVideo.setAttribute('poster', 'assets/images/logo.png');
   });
 }
+
+// Respect reduced-motion preference: pause autoplaying videos
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('video[autoplay]').forEach(v => {
+    v.pause();
+    v.removeAttribute('autoplay');
+  });
+}

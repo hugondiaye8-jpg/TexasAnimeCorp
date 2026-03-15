@@ -24,6 +24,7 @@ const interviewPlayer = document.querySelector('.interview-player');
 if (interviewPlayer) {
   const interviewVideo = interviewPlayer.querySelector('video');
   const playBtn = interviewPlayer.querySelector('.interview-play-btn');
+  const overlayTitle = interviewPlayer.querySelector('.interview-overlay-title');
 
   if (playBtn && interviewVideo) {
     playBtn.addEventListener('click', () => {
@@ -32,14 +33,17 @@ if (interviewPlayer) {
 
     interviewVideo.addEventListener('play', () => {
       playBtn.classList.add('hidden');
+      if (overlayTitle) overlayTitle.classList.add('hidden');
     });
 
     interviewVideo.addEventListener('pause', () => {
       playBtn.classList.remove('hidden');
+      if (overlayTitle) overlayTitle.classList.remove('hidden');
     });
 
     interviewVideo.addEventListener('ended', () => {
       playBtn.classList.remove('hidden');
+      if (overlayTitle) overlayTitle.classList.remove('hidden');
     });
   }
 }

@@ -687,16 +687,36 @@ img,video{display:block;max-width:100%}
   margin-left:4px;
 }
 
-/* Instagram clickable overlay — interview video only */
-.interview-instagram-link{
+/* Title + Instagram overlay — interview video only */
+.interview-header-overlay{
   position:absolute;
   top:16px;
   left:16px;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.interview-overlay-title{
+  font-family:"Aileron",system-ui,sans-serif;
+  font-weight:700;
+  font-size:1.5rem;
+  line-height:1;
+  letter-spacing:-.02em;
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,0.85);
+}
+
+.interview-overlay-title.hidden{
+  display:none;
+}
+
+.interview-instagram-link{
   color:var(--tac-blue);
   font-family:"Aileron",system-ui,sans-serif;
   font-weight:600;
   text-decoration:none;
-  z-index:3;
   font-size:.82rem;
 }
 

@@ -59,11 +59,11 @@
       line-height:1.8;
       color:#444;
     }
-    /* ── PDF single-page viewer ── */
+    /* ── Single-page viewer ── */
     .lalo-pdf-viewer{
       position:relative;
       width:100%;
-      border:1px solid black;
+      border:1px solid #000;
       border-radius:10px;
       background:#fff;
       overflow:hidden;
@@ -79,8 +79,11 @@
       justify-content:center;
       align-items:flex-start;
     }
-    .lalo-page-wrap canvas{
+    .lalo-page-wrap img{
       display:block;
+      width:100%;
+      height:auto;
+      object-fit:contain;
     }
     .lalo-pdf-nav{
       display:flex;
@@ -208,12 +211,12 @@
       </p>
     </div>
 
-    <!-- PDF single-page viewer -->
+    <!-- Single-page image viewer -->
     <div class="lalo-pdf-viewer" id="laloPdfViewer">
-      <div class="lalo-pdf-loading" id="laloPdfLoading">Chargement du document…</div>
+      <div class="lalo-pdf-loading" id="laloPdfLoading">Chargement…</div>
       <div id="laloPdfPageWrap" style="display:none">
         <div class="lalo-page-wrap" id="laloPageWrap">
-          <canvas id="laloCanvas"></canvas>
+          <img id="laloPageImg" alt="Page du livre" />
         </div>
       </div>
       <div class="lalo-pdf-nav" id="laloPdfNav" style="display:none">
@@ -256,103 +259,73 @@
 
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     (function(){
-      var WORKER_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-      var PDF_URL = '../assets/images/Lalo%20.pdf';
+      var PAGES_JSON = '../assets/images/lalo-pays-sans-soleil/pages.json';
+      var IMG_BASE   = '../assets/images/lalo-pays-sans-soleil/';
 
-      var pdfjsLib = window['pdfjs-dist/build/pdf'];
-      if(!pdfjsLib){ return; }
-      pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER_SRC;
-
-      var viewer     = document.getElementById('laloPdfViewer');
-      var pageWrap   = document.getElementById('laloPdfPageWrap');
       var loading    = document.getElementById('laloPdfLoading');
+      var pageWrap   = document.getElementById('laloPdfPageWrap');
       var nav        = document.getElementById('laloPdfNav');
-      var canvas     = document.getElementById('laloCanvas');
+      var img        = document.getElementById('laloPageImg');
       var prevBtn    = document.getElementById('laloPrev');
       var nextBtn    = document.getElementById('laloNext');
       var dotsContainer = document.getElementById('laloDots');
 
-      var pdfDoc      = null;
-      var currentPage = 1;
+      var pages       = [];
       var totalPages  = 0;
-      var rendering   = false;
+      var currentPage = 0;
 
-      pdfjsLib.getDocument(PDF_URL).promise.then(function(pdf){
-        pdfDoc     = pdf;
-        totalPages = pdf.numPages;
+      fetch(PAGES_JSON)
+        .then(function(r){
+          if(!r.ok) throw new Error('pages.json not found');
+          return r.json();
+        })
+        .then(function(manifest){
+          pages      = manifest.pages;
+          totalPages = pages.length;
 
-        /* Build dots */
-        for(var i = 0; i < totalPages; i++){
-          var dot = document.createElement('button');
-          dot.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
-          dot.setAttribute('aria-label', 'Page ' + (i + 1));
-          (function(idx){
-            dot.addEventListener('click', function(){ goTo(idx + 1); });
-          })(i);
-          dotsContainer.appendChild(dot);
-        }
+          for(var i = 0; i < totalPages; i++){
+            var dot = document.createElement('button');
+            dot.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
+            dot.setAttribute('aria-label', 'Page ' + (i + 1));
+            (function(idx){
+              dot.addEventListener('click', function(){ goTo(idx); });
+            })(i);
+            dotsContainer.appendChild(dot);
+          }
 
-        loading.style.display  = 'none';
-        pageWrap.style.display = '';
-        nav.style.display      = '';
-        renderPage(1);
-      }).catch(function(err){
-        loading.textContent = 'Impossible de charger le document.';
-        console.error('PDF load error:', err);
-      });
-
-      function renderPage(pageNum){
-        if(rendering) return;
-        rendering = true;
-
-        pdfDoc.getPage(pageNum).then(function(page){
-          var nat    = page.getViewport({scale: 1});
-          var dpr    = window.devicePixelRatio || 1;
-          var avail  = viewer.clientWidth;
-          var scale  = avail / nat.width;
-          var vp     = page.getViewport({scale: scale * dpr});
-
-          canvas.width        = vp.width;
-          canvas.height       = vp.height;
-          canvas.style.width  = avail + 'px';
-          canvas.style.height = Math.round(scale * nat.height) + 'px';
-
-          page.render({canvasContext: canvas.getContext('2d'), viewport: vp}).promise.then(function(){
-            rendering = false;
-          });
+          loading.style.display  = 'none';
+          pageWrap.style.display = '';
+          nav.style.display      = '';
+          renderPage(0);
+        })
+        .catch(function(){
+          loading.textContent = 'Les pages ne sont pas encore disponibles.';
         });
 
-        updateDots(pageNum - 1);
-        prevBtn.disabled = (pageNum === 1);
-        nextBtn.disabled = (pageNum === totalPages);
+      function renderPage(idx){
+        currentPage  = idx;
+        img.src      = IMG_BASE + pages[idx];
+
+        updateDots(idx);
+        prevBtn.disabled = (idx === 0);
+        nextBtn.disabled = (idx === totalPages - 1);
       }
 
       function goTo(n){
-        currentPage = Math.max(1, Math.min(n, totalPages));
-        renderPage(currentPage);
+        renderPage(Math.max(0, Math.min(n, totalPages - 1)));
       }
 
-      function updateDots(dotIndex){
+      function updateDots(idx){
         var dots = dotsContainer.querySelectorAll('.lalo-dot');
         for(var j = 0; j < dots.length; j++){
-          dots[j].classList.toggle('is-active', j === dotIndex);
+          dots[j].classList.toggle('is-active', j === idx);
         }
       }
 
       prevBtn.addEventListener('click', function(){ goTo(currentPage - 1); });
       nextBtn.addEventListener('click', function(){ goTo(currentPage + 1); });
-
-      /* Re-render on resize */
-      var resizeTimer;
-      window.addEventListener('resize', function(){
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function(){
-          if(pdfDoc) renderPage(currentPage);
-        }, 200);
-      });
     })();
   </script>
 </body>

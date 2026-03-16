@@ -1,0 +1,14 @@
+{
+  "name": "texasanimecorp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Texas Anime Corp static site – PDF to page-image conversion scripts",
+  "scripts": {
+    "convert-pdfs": "node scripts/convert-pdfs.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "pdfjs-dist": "3.11.174",
+    "canvas": "^2.11.2"
+  }
+}

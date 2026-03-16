@@ -59,64 +59,60 @@
       line-height:1.8;
       color:#444;
     }
-    /* ── Contained slideshow ── */
-    .lalo-slideshow{
+    /* ── PDF single-page viewer ── */
+    .lalo-pdf-viewer{
       position:relative;
       width:100%;
-      height:55vh;
-      min-height:260px;
-      max-height:520px;
-      overflow:hidden;
-      background:#111;
+      border:1px solid black;
       border-radius:10px;
-    }
-    .lalo-slides{
-      display:flex;
-      height:100%;
-      transition:transform .65s cubic-bezier(.25,.46,.45,.94);
-      will-change:transform;
-    }
-    .lalo-slide{
-      flex:0 0 100%;
-      width:100%;
-      height:100%;
+      background:#fff;
       overflow:hidden;
     }
-    .lalo-slide img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+    .lalo-pdf-loading{
+      padding:48px 24px;
+      text-align:center;
+      color:#555;
+      font-size:15px;
+    }
+    .lalo-page-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .lalo-page-wrap canvas{
       display:block;
     }
+    .lalo-pdf-nav{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+      padding:12px 16px;
+      background:#f9f9f9;
+      border-top:1px solid #eee;
+    }
     .lalo-slide-btn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
       background:rgba(0,0,0,.38);
       color:#fff;
       border:none;
       cursor:pointer;
-      width:44px;
-      height:44px;
+      width:40px;
+      height:40px;
       border-radius:50%;
-      font-size:1.2rem;
+      font-size:1.1rem;
       display:flex;
       align-items:center;
       justify-content:center;
       transition:background .15s;
-      z-index:2;
+      flex-shrink:0;
     }
     .lalo-slide-btn:hover{background:rgba(0,0,0,.62)}
-    .lalo-slide-prev{left:14px}
-    .lalo-slide-next{right:14px}
+    .lalo-slide-btn:disabled{opacity:.35;cursor:default}
     .lalo-slide-dots{
-      position:absolute;
-      bottom:14px;
-      left:50%;
-      transform:translateX(-50%);
       display:flex;
       gap:8px;
-      z-index:2;
+      flex-wrap:wrap;
+      justify-content:center;
     }
     .lalo-dot{
       width:8px;
@@ -124,12 +120,12 @@
       border-radius:50%;
       border:none;
       cursor:pointer;
-      background:rgba(255,255,255,.5);
+      background:rgba(0,0,0,.25);
       padding:0;
       transition:background .2s, transform .2s;
     }
     .lalo-dot.is-active{
-      background:#fff;
+      background:#111;
       transform:scale(1.3);
     }
     /* ── Story / Buy sections ── */
@@ -212,31 +208,19 @@
       </p>
     </div>
 
-    <!-- Cinematic full-width slideshow -->
-    <div class="lalo-slideshow" id="laloSlideshow">
-      <div class="lalo-slides" id="laloSlides">
-        <div class="lalo-slide">
-          <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1400&q=80" alt="Lalo arrivant dans un pays plongé dans l'obscurité — image 1" />
-        </div>
-        <div class="lalo-slide">
-          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80" alt="Les habitants du Pays sans Soleil ayant oublié la lumière — image 2" />
-        </div>
-        <div class="lalo-slide">
-          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1400&q=80" alt="Lalo partant à la recherche du soleil disparu — image 3" />
-        </div>
-        <div class="lalo-slide">
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80" alt="Paysage nocturne du Pays sans Soleil — image 4" />
-        </div>
-        <div class="lalo-slide">
-          <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1400&q=80" alt="Lalo rencontrant des créatures étonnantes — image 5" />
-        </div>
-        <div class="lalo-slide">
-          <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=1400&q=80" alt="L'espoir renaissant dans les endroits les plus sombres — image 6" />
+    <!-- PDF single-page viewer -->
+    <div class="lalo-pdf-viewer" id="laloPdfViewer">
+      <div class="lalo-pdf-loading" id="laloPdfLoading">Chargement du document…</div>
+      <div id="laloPdfPageWrap" style="display:none">
+        <div class="lalo-page-wrap" id="laloPageWrap">
+          <canvas id="laloCanvas"></canvas>
         </div>
       </div>
-      <button class="lalo-slide-btn lalo-slide-prev" id="laloPrev" aria-label="Image précédente">&#8592;</button>
-      <button class="lalo-slide-btn lalo-slide-next" id="laloNext" aria-label="Image suivante">&#8594;</button>
-      <div class="lalo-slide-dots" id="laloDots"></div>
+      <div class="lalo-pdf-nav" id="laloPdfNav" style="display:none">
+        <button class="lalo-slide-btn" id="laloPrev" aria-label="Page précédente" disabled>&#8592;</button>
+        <div class="lalo-slide-dots" id="laloDots"></div>
+        <button class="lalo-slide-btn" id="laloNext" aria-label="Page suivante">&#8594;</button>
+      </div>
     </div>
 
     <div class="lalo-story">
@@ -272,56 +256,103 @@
 
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     (function(){
-      var slides = document.getElementById('laloSlides');
+      var WORKER_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      var PDF_URL = '../assets/images/Lalo%20.pdf';
+
+      var pdfjsLib = window['pdfjs-dist/build/pdf'];
+      if(!pdfjsLib){ return; }
+      pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER_SRC;
+
+      var viewer     = document.getElementById('laloPdfViewer');
+      var pageWrap   = document.getElementById('laloPdfPageWrap');
+      var loading    = document.getElementById('laloPdfLoading');
+      var nav        = document.getElementById('laloPdfNav');
+      var canvas     = document.getElementById('laloCanvas');
+      var prevBtn    = document.getElementById('laloPrev');
+      var nextBtn    = document.getElementById('laloNext');
       var dotsContainer = document.getElementById('laloDots');
-      var prevBtn = document.getElementById('laloPrev');
-      var nextBtn = document.getElementById('laloNext');
-      if(!slides) return;
 
-      var items = slides.querySelectorAll('.lalo-slide');
-      var total = items.length;
-      var current = 0;
-      var autoTimer = null;
+      var pdfDoc      = null;
+      var currentPage = 1;
+      var totalPages  = 0;
+      var rendering   = false;
 
-      /* Build dots */
-      for(var i = 0; i < total; i++){
-        var d = document.createElement('button');
-        d.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
-        d.setAttribute('aria-label', 'Slide ' + (i + 1));
-        (function(idx){ d.addEventListener('click', function(){ goTo(idx); resetTimer(); }); })(i);
-        dotsContainer.appendChild(d);
+      pdfjsLib.getDocument(PDF_URL).promise.then(function(pdf){
+        pdfDoc     = pdf;
+        totalPages = pdf.numPages;
+
+        /* Build dots */
+        for(var i = 0; i < totalPages; i++){
+          var dot = document.createElement('button');
+          dot.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
+          dot.setAttribute('aria-label', 'Page ' + (i + 1));
+          (function(idx){
+            dot.addEventListener('click', function(){ goTo(idx + 1); });
+          })(i);
+          dotsContainer.appendChild(dot);
+        }
+
+        loading.style.display  = 'none';
+        pageWrap.style.display = '';
+        nav.style.display      = '';
+        renderPage(1);
+      }).catch(function(err){
+        loading.textContent = 'Impossible de charger le document.';
+        console.error('PDF load error:', err);
+      });
+
+      function renderPage(pageNum){
+        if(rendering) return;
+        rendering = true;
+
+        pdfDoc.getPage(pageNum).then(function(page){
+          var nat    = page.getViewport({scale: 1});
+          var dpr    = window.devicePixelRatio || 1;
+          var avail  = viewer.clientWidth;
+          var scale  = avail / nat.width;
+          var vp     = page.getViewport({scale: scale * dpr});
+
+          canvas.width        = vp.width;
+          canvas.height       = vp.height;
+          canvas.style.width  = avail + 'px';
+          canvas.style.height = Math.round(scale * nat.height) + 'px';
+
+          page.render({canvasContext: canvas.getContext('2d'), viewport: vp}).promise.then(function(){
+            rendering = false;
+          });
+        });
+
+        updateDots(pageNum - 1);
+        prevBtn.disabled = (pageNum === 1);
+        nextBtn.disabled = (pageNum === totalPages);
       }
 
       function goTo(n){
-        current = (n + total) % total;
-        slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+        currentPage = Math.max(1, Math.min(n, totalPages));
+        renderPage(currentPage);
+      }
+
+      function updateDots(dotIndex){
         var dots = dotsContainer.querySelectorAll('.lalo-dot');
-        for(var j = 0; j < dots.length; j++) dots[j].classList.toggle('is-active', j === current);
+        for(var j = 0; j < dots.length; j++){
+          dots[j].classList.toggle('is-active', j === dotIndex);
+        }
       }
 
-      function next(){ goTo(current + 1); }
-      function prev(){ goTo(current - 1); }
+      prevBtn.addEventListener('click', function(){ goTo(currentPage - 1); });
+      nextBtn.addEventListener('click', function(){ goTo(currentPage + 1); });
 
-      function resetTimer(){
-        clearInterval(autoTimer);
-        autoTimer = setInterval(next, 5000);
-      }
-
-      prevBtn.addEventListener('click', function(){ prev(); resetTimer(); });
-      nextBtn.addEventListener('click', function(){ next(); resetTimer(); });
-
-      /* Touch / swipe */
-      var touchStartX = 0;
-      var slideshow = document.getElementById('laloSlideshow');
-      slideshow.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
-      slideshow.addEventListener('touchend', function(e){
-        var dx = e.changedTouches[0].clientX - touchStartX;
-        if(Math.abs(dx) > 40){ dx < 0 ? next() : prev(); resetTimer(); }
-      }, {passive:true});
-
-      resetTimer();
+      /* Re-render on resize */
+      var resizeTimer;
+      window.addEventListener('resize', function(){
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function(){
+          if(pdfDoc) renderPage(currentPage);
+        }, 200);
+      });
     })();
   </script>
 </body>

@@ -8,7 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "pdfjs-dist": "3.11.174",
+    "pdfjs-dist": "4.2.67",
     "canvas": "^2.11.2"
   }
 }

@@ -24,14 +24,11 @@ const path   = require('path');
 const fs     = require('fs');
 const { createCanvas } = require('canvas');
 
-// pdfjs-dist v3 Node entry point
-const pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js');
-
-// Disable the web worker in Node context
-pdfjsLib.GlobalWorkerOptions.workerSrc = null;
+// pdfjs-dist v4 ships ESM only – use dynamic import inside the async entry point.
+// No workerSrc override is needed for Node.js; the library handles it automatically.
 
 const ROOT    = path.resolve(__dirname, '..');
-const SCALE   = 2; // render at 2× for crisp images (≈150 DPI for A4)
+const SCALE   = 2; // render at 2× for crisp images (≈144 DPI for A4 at 72 DPI base)
 
 /** Map from PDF source path to output directory */
 const BOOKS = [
@@ -45,7 +42,7 @@ const BOOKS = [
   },
 ];
 
-async function convertBook({ pdf, outDir }) {
+async function convertBook({ pdf, outDir }, pdfjsLib) {
   if (!fs.existsSync(pdf)) {
     console.warn(`[SKIP] PDF not found: ${pdf}`);
     return;
@@ -69,7 +66,7 @@ async function convertBook({ pdf, outDir }) {
     await page.render({
       canvasContext: ctx,
       viewport,
-      // pdfjs v3 needs a factory that creates a canvas for its own internals
+      // pdfjs v4 needs a factory that creates a canvas for its own internals
       canvasFactory: {
         create(w, h)    { return { canvas: createCanvas(w, h), context: null }; },
         reset(obj, w, h){ obj.canvas.width = w; obj.canvas.height = h; },
@@ -77,8 +74,8 @@ async function convertBook({ pdf, outDir }) {
       },
     }).promise;
 
-    const num     = String(i).padStart(3, '0');
-    const name    = `page-${num}.png`;
+    const paddedNum = String(i).padStart(3, '0');
+    const name    = `page-${paddedNum}.png`;
     const outPath = path.join(outDir, name);
 
     fs.writeFileSync(outPath, canvas.toBuffer('image/png'));
@@ -97,8 +94,11 @@ async function convertBook({ pdf, outDir }) {
 }
 
 (async () => {
+  // pdfjs-dist v4 ships ESM only; use dynamic import from within the async context.
+  const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
+
   for (const book of BOOKS) {
-    await convertBook(book);
+    await convertBook(book, pdfjsLib);
   }
   console.log('Done.');
 })().catch(err => {

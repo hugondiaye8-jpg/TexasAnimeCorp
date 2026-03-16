@@ -330,6 +330,7 @@
         var left  = idx * 2;
         var right = idx * 2 + 1;
 
+        if(left >= pages.length) return;
         img1.src = IMG_BASE + pages[left];
         img1.classList.remove('lalo-single');
 

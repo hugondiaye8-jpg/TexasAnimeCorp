@@ -306,6 +306,7 @@
 
       function renderPage(idx){
         currentPage  = idx;
+        if(idx < 0 || idx >= pages.length) return;
         img.src      = IMG_BASE + pages[idx];
 
         updateDots(idx);

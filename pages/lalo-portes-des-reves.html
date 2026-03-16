@@ -140,6 +140,40 @@
         pointer-events:auto;
       }
     }
+    /* ── Desktop: StPageFlip real book page-turn (min-width:768px) ── */
+    @media(min-width:768px){
+      .lalo-flipbook-outer{
+        position:relative;
+      }
+      .lalo-flipbook-stage{
+        position:relative;
+        display:block;
+      }
+      #laloFlipbook{
+        position:absolute;
+        inset:0;
+        display:block;
+        width:100%;
+        height:100%;
+      }
+      #laloFlipbook .stf__wrapper{
+        min-width:0 !important;
+      }
+      /* StPageFlip active: pages managed by the library */
+      #laloFlipbook.stpf-active .lalo-flip-page{
+        display:block;
+        background:#fdf9f4;
+        overflow:hidden;
+        width:100%;
+        height:100%;
+      }
+      #laloFlipbook.stpf-active .lalo-flip-page img{
+        pointer-events:none;
+        display:block;
+        max-width:none;
+        max-height:none;
+      }
+    }
     .lalo-flipbook-nav{
       display:flex;
       align-items:center;
@@ -301,24 +335,84 @@
 
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js" integrity="sha384-L4eWrYFdqQ+LoGA0MMuqLqzV13x7SKkQaqacy4MED8e815dS37tTKlO/6xBEUpZW" crossorigin="anonymous"></script>
   <script>
     (function(){
-      var pages      = document.querySelectorAll('.lalo-flip-page');
+      var flipbookEl = document.getElementById('laloFlipbook');
       var prevBtn    = document.getElementById('laloPrev');
       var nextBtn    = document.getElementById('laloNext');
       var pageInfoEl = document.getElementById('laloPageInfo');
       var stage      = document.getElementById('laloFlipbookStage');
+      var pages      = document.querySelectorAll('.lalo-flip-page');
       var total      = pages.length;
-      var current    = 0;
-      var animating  = false;
-
-      pages[current].classList.add('active');
 
       function isMobile(){
         return window.matchMedia('(max-width:767px)').matches;
       }
 
-      function updateNav(){
+      /* ── DESKTOP: StPageFlip real book page-turn ── */
+      if(!isMobile()){
+        if(typeof St !== 'undefined' && typeof St.PageFlip === 'function'){
+          flipbookEl.classList.add('stpf-active');
+          var pageFlip = new St.PageFlip(flipbookEl, {
+            width: 1413,
+            height: 1000,
+            size: 'stretch',
+            minWidth: 540,
+            maxWidth: 1100,
+            minHeight: 200,
+            maxHeight: 800,
+            usePortrait: true,
+            showCover: false,
+            drawShadow: true,
+            flippingTime: 700,
+            useMouseEvents: true,
+            mobileScrollSupport: true,
+            swipeDistance: 30
+          });
+
+          pageFlip.loadFromHTML(pages);
+
+          function updateDesktopNav(cur){
+            if(cur === undefined) cur = pageFlip.getCurrentPageIndex();
+            prevBtn.disabled = (cur <= 0);
+            nextBtn.disabled = (cur >= total - 1);
+            pageInfoEl.textContent = (cur + 1) + ' / ' + total;
+          }
+
+          pageFlip.on('flip', function(e){ updateDesktopNav(e.data); });
+          prevBtn.addEventListener('click', function(){ pageFlip.flipPrev('top'); });
+          nextBtn.addEventListener('click', function(){ pageFlip.flipNext('top'); });
+
+          updateDesktopNav(0);
+          return;
+        }
+
+        /* Desktop fallback (library unavailable): simple instant switch */
+        var current = 0;
+        pages[current].classList.add('active');
+        function updateDesktopFallbackNav(){
+          prevBtn.disabled = (current <= 0);
+          nextBtn.disabled = (current >= total - 1);
+          pageInfoEl.textContent = (current + 1) + ' / ' + total;
+        }
+        prevBtn.addEventListener('click', function(){
+          if(current > 0){ pages[current].classList.remove('active'); current--; pages[current].classList.add('active'); updateDesktopFallbackNav(); }
+        });
+        nextBtn.addEventListener('click', function(){
+          if(current < total - 1){ pages[current].classList.remove('active'); current++; pages[current].classList.add('active'); updateDesktopFallbackNav(); }
+        });
+        updateDesktopFallbackNav();
+        return;
+      }
+
+      /* ── MOBILE: animated slide viewer ── */
+      var current   = 0;
+      var animating = false;
+
+      pages[current].classList.add('active');
+
+      function updateMobileNav(){
         prevBtn.disabled = (current <= 0);
         nextBtn.disabled = (current >= total - 1);
         pageInfoEl.textContent = (current + 1) + ' / ' + total;
@@ -326,17 +420,6 @@
 
       function goTo(next, direction){
         if(next < 0 || next >= total || next === current) return;
-
-        if(!isMobile()){
-          /* Desktop: instant switch, unchanged */
-          pages[current].classList.remove('active');
-          current = next;
-          pages[current].classList.add('active');
-          updateNav();
-          return;
-        }
-
-        /* Mobile: animated page-turn */
         if(animating) return;
         animating = true;
 
@@ -370,7 +453,7 @@
           outgoing.style.transform = '';
           outgoing.style.opacity   = '';
           current = next;
-          updateNav();
+          updateMobileNav();
           animating = false;
         }
 
@@ -385,7 +468,7 @@
         if(current < total - 1) goTo(current + 1, 'next');
       });
 
-      /* ── Touch / swipe / tap support (mobile) ── */
+      /* ── Touch / swipe / tap support ── */
       var touchStartX = 0;
       var touchStartY = 0;
 
@@ -395,7 +478,6 @@
       }, {passive: true});
 
       stage.addEventListener('touchend', function(e){
-        if(!isMobile()) return;
         var dx    = e.changedTouches[0].clientX - touchStartX;
         var dy    = e.changedTouches[0].clientY - touchStartY;
         var absDx = Math.abs(dx);
@@ -420,7 +502,7 @@
         }
       }, {passive: true});
 
-      updateNav();
+      updateMobileNav();
     })();
   </script>
 </body>

@@ -55,6 +55,7 @@ img,video{display:block;max-width:100%}
   height:100vh;
   height:100svh;
   overflow:hidden;
+  background:#000;
 }
 
 /* Video fills the full hero area */
@@ -131,7 +132,9 @@ img,video{display:block;max-width:100%}
   aspect-ratio:16/9;
   border-radius:5px;
   overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.18);
+  background:#000;
+  border:3px solid #000;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
 }
 
 .hero-video-frame video{

@@ -935,8 +935,8 @@ img,video{display:block;max-width:100%}
 .partners-track{
   display:flex;
   width:max-content;
-  gap:24px;
-  animation:partners-scroll 28s linear infinite;
+  white-space:nowrap;
+  animation:partners-scroll 30s linear infinite;
   will-change:transform;
 }
 
@@ -945,6 +945,7 @@ img,video{display:block;max-width:100%}
   align-items:center;
   gap:24px;
   flex-shrink:0;
+  padding-right:24px;
 }
 
 .partner-logo-tile{
@@ -966,8 +967,8 @@ img,video{display:block;max-width:100%}
 }
 
 @keyframes partners-scroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
 }
 
 .partners-strip:hover .partners-track{
@@ -987,9 +988,7 @@ img,video{display:block;max-width:100%}
   }
   .partners-group{
     gap:16px;
-  }
-  .partners-track{
-    gap:16px;
+    padding-right:16px;
   }
   .partners-strip{
     margin:0;

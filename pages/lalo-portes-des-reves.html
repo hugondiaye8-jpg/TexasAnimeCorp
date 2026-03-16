@@ -59,11 +59,11 @@
       line-height:1.8;
       color:#444;
     }
-    /* ── PDF two-page spread viewer ── */
+    /* ── Two-page spread viewer ── */
     .lalo-pdf-viewer{
       position:relative;
       width:100%;
-      border:1px solid black;
+      border:1px solid #000;
       border-radius:10px;
       background:#fff;
       overflow:hidden;
@@ -79,14 +79,23 @@
       justify-content:center;
       align-items:flex-start;
     }
-    .lalo-spread canvas{
+    .lalo-spread img{
       display:block;
-      flex-shrink:0;
+      flex:1 1 0;
+      width:50%;
+      height:auto;
+      object-fit:contain;
+    }
+    .lalo-spread img.lalo-single{
+      width:100%;
     }
     @media(max-width:640px){
       .lalo-spread{
         flex-direction:column;
-        align-items:center;
+        align-items:stretch;
+      }
+      .lalo-spread img{
+        width:100%;
       }
     }
     .lalo-pdf-nav{
@@ -221,13 +230,13 @@
       </p>
     </div>
 
-    <!-- PDF two-page spread viewer -->
+    <!-- Two-page spread image viewer -->
     <div class="lalo-pdf-viewer" id="laloPdfViewer">
-      <div class="lalo-pdf-loading" id="laloPdfLoading">Chargement du document…</div>
+      <div class="lalo-pdf-loading" id="laloPdfLoading">Chargement…</div>
       <div id="laloPdfSpreadWrap" style="display:none">
         <div class="lalo-spread" id="laloSpread">
-          <canvas id="laloCanvas1"></canvas>
-          <canvas id="laloCanvas2"></canvas>
+          <img id="laloImg1" alt="Page gauche" />
+          <img id="laloImg2" alt="Page droite" />
         </div>
       </div>
       <div class="lalo-pdf-nav" id="laloPdfNav" style="display:none">
@@ -269,125 +278,89 @@
 
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     (function(){
-      var WORKER_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-      var PDF_URL = '../assets/images/LALODRAFTu%20OUVRAGE%20SANS%20BLEED.pdf';
+      var PAGES_JSON = '../assets/images/lalo-portes-des-reves/pages.json';
+      var IMG_BASE   = '../assets/images/lalo-portes-des-reves/';
 
-      var pdfjsLib = window['pdfjs-dist/build/pdf'];
-      if(!pdfjsLib){ return; }
-      pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER_SRC;
-
-      var viewer      = document.getElementById('laloPdfViewer');
-      var spreadWrap  = document.getElementById('laloPdfSpreadWrap');
-      var spread      = document.getElementById('laloSpread');
-      var loading     = document.getElementById('laloPdfLoading');
-      var nav         = document.getElementById('laloPdfNav');
-      var canvas1     = document.getElementById('laloCanvas1');
-      var canvas2     = document.getElementById('laloCanvas2');
-      var prevBtn     = document.getElementById('laloPrev');
-      var nextBtn     = document.getElementById('laloNext');
+      var loading    = document.getElementById('laloPdfLoading');
+      var spreadWrap = document.getElementById('laloPdfSpreadWrap');
+      var spread     = document.getElementById('laloSpread');
+      var nav        = document.getElementById('laloPdfNav');
+      var img1       = document.getElementById('laloImg1');
+      var img2       = document.getElementById('laloImg2');
+      var prevBtn    = document.getElementById('laloPrev');
+      var nextBtn    = document.getElementById('laloNext');
       var dotsContainer = document.getElementById('laloDots');
 
-      var pdfDoc       = null;
-      var currentSpread = 0;
-      var totalSpreads  = 0;
-      var rendering     = false;
+      var pages          = [];
+      var totalSpreads   = 0;
+      var currentSpread  = 0;
 
-      pdfjsLib.getDocument(PDF_URL).promise.then(function(pdf){
-        pdfDoc = pdf;
-        var totalPages = pdf.numPages;
-        totalSpreads   = Math.ceil(totalPages / 2);
+      fetch(PAGES_JSON)
+        .then(function(r){
+          if(!r.ok) throw new Error('pages.json not found');
+          return r.json();
+        })
+        .then(function(manifest){
+          pages        = manifest.pages;
+          totalSpreads = Math.ceil(pages.length / 2);
 
-        /* Build dots */
-        for(var i = 0; i < totalSpreads; i++){
-          var dot = document.createElement('button');
-          dot.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
-          dot.setAttribute('aria-label', 'Spread ' + (i + 1));
-          (function(idx){
-            dot.addEventListener('click', function(){ goTo(idx); });
-          })(i);
-          dotsContainer.appendChild(dot);
-        }
-
-        loading.style.display   = 'none';
-        spreadWrap.style.display = '';
-        nav.style.display        = '';
-        renderSpread(0);
-      }).catch(function(err){
-        loading.textContent = 'Impossible de charger le document.';
-        console.error('PDF load error:', err);
-      });
-
-      function renderSpread(spreadIndex){
-        if(rendering) return;
-        rendering = true;
-
-        var isMobile       = window.innerWidth <= 640;
-        var viewerWidth    = viewer.clientWidth;
-        var pageLeft       = spreadIndex * 2 + 1; /* 1-based */
-        var pageRight      = spreadIndex * 2 + 2;
-
-        pdfDoc.getPage(pageLeft).then(function(page){
-          var nat   = page.getViewport({scale: 1});
-          var avail = isMobile ? viewerWidth : Math.floor(viewerWidth / 2);
-          renderPageToCanvas(page, canvas1, avail);
-
-          if(pageRight <= pdfDoc.numPages){
-            canvas2.style.display = '';
-            pdfDoc.getPage(pageRight).then(function(page2){
-              renderPageToCanvas(page2, canvas2, avail);
-              rendering = false;
-            });
-          } else {
-            canvas2.style.display = 'none';
-            rendering = false;
+          for(var i = 0; i < totalSpreads; i++){
+            var dot = document.createElement('button');
+            dot.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
+            dot.setAttribute('aria-label', 'Planche ' + (i + 1));
+            (function(idx){
+              dot.addEventListener('click', function(){ goTo(idx); });
+            })(i);
+            dotsContainer.appendChild(dot);
           }
+
+          loading.style.display    = 'none';
+          spreadWrap.style.display = '';
+          nav.style.display        = '';
+          renderSpread(0);
+        })
+        .catch(function(){
+          loading.textContent = 'Les pages ne sont pas encore disponibles.';
         });
 
-        updateDots(spreadIndex);
-        prevBtn.disabled = (spreadIndex === 0);
-        nextBtn.disabled = (spreadIndex === totalSpreads - 1);
-      }
+      function renderSpread(idx){
+        currentSpread = idx;
+        var left  = idx * 2;
+        var right = idx * 2 + 1;
 
-      function renderPageToCanvas(page, canvas, availableWidth){
-        var nat        = page.getViewport({scale: 1});
-        var dpr        = window.devicePixelRatio || 1;
-        var scale      = availableWidth / nat.width;
-        var vp         = page.getViewport({scale: scale * dpr});
+        if(left >= pages.length) return;
+        img1.src = IMG_BASE + pages[left];
+        img1.classList.remove('lalo-single');
 
-        canvas.width        = vp.width;
-        canvas.height       = vp.height;
-        canvas.style.width  = availableWidth + 'px';
-        canvas.style.height = Math.round(scale * nat.height) + 'px';
+        if(right < pages.length){
+          img2.src   = IMG_BASE + pages[right];
+          img2.style.display = '';
+        } else {
+          img2.src   = '';
+          img2.style.display = 'none';
+          img1.classList.add('lalo-single');
+        }
 
-        page.render({canvasContext: canvas.getContext('2d'), viewport: vp});
+        updateDots(idx);
+        prevBtn.disabled = (idx === 0);
+        nextBtn.disabled = (idx === totalSpreads - 1);
       }
 
       function goTo(n){
-        currentSpread = Math.max(0, Math.min(n, totalSpreads - 1));
-        renderSpread(currentSpread);
+        renderSpread(Math.max(0, Math.min(n, totalSpreads - 1)));
       }
 
-      function updateDots(spreadIndex){
+      function updateDots(idx){
         var dots = dotsContainer.querySelectorAll('.lalo-dot');
         for(var j = 0; j < dots.length; j++){
-          dots[j].classList.toggle('is-active', j === spreadIndex);
+          dots[j].classList.toggle('is-active', j === idx);
         }
       }
 
       prevBtn.addEventListener('click', function(){ goTo(currentSpread - 1); });
       nextBtn.addEventListener('click', function(){ goTo(currentSpread + 1); });
-
-      /* Re-render on resize */
-      var resizeTimer;
-      window.addEventListener('resize', function(){
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function(){
-          if(pdfDoc) renderSpread(currentSpread);
-        }, 200);
-      });
     })();
   </script>
 </body>

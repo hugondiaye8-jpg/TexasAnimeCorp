@@ -50,7 +50,7 @@ function computePageGradient() {
   var stops = [
     ['#000000', 0],                              // page top — pure black
     ['#030510', aTop * 0.30],                    // deep dark through hero
-    ['#0A1535', aTop * 0.65],                    // dark navy entering association
+    ['#000000', aTop],                           // association start — pure black
     ['#1B2B65', aTop + aH * 0.18],               // deep blue early in association
     ['#3457C8', aTop + aH * 0.35],               // blue building up
     ['#4D73FF', bluePeak],                       // TAC blue peak — mid association

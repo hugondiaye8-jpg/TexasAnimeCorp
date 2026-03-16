@@ -305,7 +305,6 @@ img,video{display:block;max-width:100%}
 .eyebrow-dark{
   background:var(--tac-yellow);
   color:#111;
-  border:2px solid #000;
 }
 
 /* Section-specific eyebrow colors */
@@ -317,7 +316,6 @@ img,video{display:block;max-width:100%}
   padding:10px 20px;
   border-radius:8px;
   text-transform:none;
-  border:2px solid #000;
 }
 
 .lalo-card .eyebrow{
@@ -865,7 +863,6 @@ img,video{display:block;max-width:100%}
   text-transform:uppercase;
   color:#fff;
   text-shadow:none;
-  border:2px solid #000;
 }
 
 .interview-overlay-title.hidden{
@@ -939,7 +936,6 @@ img,video{display:block;max-width:100%}
   letter-spacing:.20em;
   text-transform:uppercase;
   color:#fff;
-  border:2px solid #000;
 }
 
 .partners-strip{

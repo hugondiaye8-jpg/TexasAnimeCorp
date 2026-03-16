@@ -308,6 +308,16 @@ img,video{display:block;max-width:100%}
 }
 
 /* Section-specific eyebrow colors */
+.lalo-card .eyebrow,
+.portfolio-card .eyebrow,
+.association-card .eyebrow{
+  font-size:2rem;
+  letter-spacing:-.02em;
+  padding:10px 20px;
+  border-radius:8px;
+  text-transform:none;
+}
+
 .lalo-card .eyebrow{
   background:var(--tac-yellow);
   color:#111;

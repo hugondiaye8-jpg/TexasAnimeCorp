@@ -365,6 +365,10 @@ img,video{display:block;max-width:100%}
   position:relative;
 }
 
+.project-media > a{
+  display:block;
+}
+
 .project-media img,
 .book-card img,
 .portfolio-media img{
@@ -408,6 +412,7 @@ img,video{display:block;max-width:100%}
   color:#111;
   padding:7px 12px;
   font-size:12px;
+  text-decoration:none;
 }
 
 .icon-badge{

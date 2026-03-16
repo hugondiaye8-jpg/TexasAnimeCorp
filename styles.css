@@ -320,12 +320,12 @@ img,video{display:block;max-width:100%}
 
 .lalo-card .eyebrow{
   background:var(--tac-yellow);
-  color:#111;
+  color:#fff;
 }
 
 .portfolio-card .eyebrow{
   background:var(--tac-pink);
-  color:#111;
+  color:#fff;
 }
 
 .association-card .eyebrow{

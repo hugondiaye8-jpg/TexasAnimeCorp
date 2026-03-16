@@ -133,7 +133,7 @@ img,video{display:block;max-width:100%}
   border-radius:5px;
   overflow:hidden;
   background:#000;
-  border:3px solid #000;
+  border:2px solid #000;
   box-shadow:0 24px 60px rgba(0,0,0,.55);
 }
 
@@ -711,6 +711,10 @@ img,video{display:block;max-width:100%}
     flex:1;
     min-width:0;
   }
+
+  .contact-card__logo{
+    height:110px;
+  }
 }
 
 /* ── Local video player ── */
@@ -900,7 +904,7 @@ img,video{display:block;max-width:100%}
 .team-photo{
   display:block;
   width:100%;
-  border:1px solid #000;
+  border:2px solid #000;
 }
 
 /* ── Partners logo strip ── */
@@ -927,7 +931,7 @@ img,video{display:block;max-width:100%}
 .partners-strip{
   overflow:hidden;
   margin:0;
-  border:1px solid #000;
+  border:2px solid #000;
   padding:12px 0;
   background:#fff;
 }

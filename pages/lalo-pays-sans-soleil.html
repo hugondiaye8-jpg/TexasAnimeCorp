@@ -112,6 +112,34 @@
         border-radius:6px;
       }
     }
+    /* ── Mobile: premium animated book viewer (max-width:767px only) ── */
+    @media(max-width:767px){
+      /* Positioning context for animated pages */
+      .lalo-flipbook-stage{
+        position:relative;
+        overflow:hidden;
+      }
+      #laloFlipbook{
+        position:relative;
+        overflow:hidden;
+      }
+      /* All pages rendered but transparent; active page is visible */
+      .lalo-flip-page{
+        display:flex;
+        position:absolute;
+        top:0;left:0;
+        width:100%;height:100%;
+        opacity:0;
+        pointer-events:none;
+        will-change:transform,opacity;
+        transition:transform .36s cubic-bezier(.4,0,.2,1),
+                   opacity   .36s cubic-bezier(.4,0,.2,1);
+      }
+      .lalo-flip-page.active{
+        opacity:1;
+        pointer-events:auto;
+      }
+    }
     .lalo-flipbook-nav{
       display:flex;
       align-items:center;
@@ -281,10 +309,16 @@
       var prevBtn    = document.getElementById('laloPrev');
       var nextBtn    = document.getElementById('laloNext');
       var pageInfoEl = document.getElementById('laloPageInfo');
+      var stage      = document.getElementById('laloFlipbookStage');
       var total      = pages.length;
       var current    = 0;
+      var animating  = false;
 
       pages[current].classList.add('active');
+
+      function isMobile(){
+        return window.matchMedia('(max-width:767px)').matches;
+      }
 
       function updateNav(){
         prevBtn.disabled = (current <= 0);
@@ -292,22 +326,101 @@
         pageInfoEl.textContent = (current + 1) + ' / ' + total;
       }
 
-      prevBtn.addEventListener('click', function(){
-        if(current > 0){
+      function goTo(next, direction){
+        if(next < 0 || next >= total || next === current) return;
+
+        if(!isMobile()){
+          /* Desktop: instant switch, unchanged */
           pages[current].classList.remove('active');
-          current--;
+          current = next;
           pages[current].classList.add('active');
           updateNav();
+          return;
         }
+
+        /* Mobile: animated page-turn */
+        if(animating) return;
+        animating = true;
+
+        var outgoing = pages[current];
+        var incoming = pages[next];
+        var dir = direction === 'next' ? 1 : -1;
+
+        /* Position incoming off-screen (no transition) */
+        incoming.style.transition = 'none';
+        incoming.style.transform  = 'translate3d(' + (dir * 45) + '%,0,0)';
+        incoming.style.opacity    = '0';
+        incoming.classList.add('active');
+
+        /* Force reflow so the next style changes trigger the transition */
+        void incoming.offsetHeight;
+
+        /* Animate incoming to its natural (centered) position */
+        incoming.style.transition = '';
+        incoming.style.transform  = '';
+        incoming.style.opacity    = '';
+
+        /* Animate outgoing off-screen in the opposite direction */
+        outgoing.style.transform = 'translate3d(' + (-dir * 45) + '%,0,0)';
+        outgoing.style.opacity   = '0';
+
+        var done = false;
+        function cleanup(){
+          if(done) return;
+          done = true;
+          outgoing.classList.remove('active');
+          outgoing.style.transform = '';
+          outgoing.style.opacity   = '';
+          current = next;
+          updateNav();
+          animating = false;
+        }
+
+        incoming.addEventListener('transitionend', cleanup, {once: true});
+        setTimeout(cleanup, 500); /* safety fallback */
+      }
+
+      prevBtn.addEventListener('click', function(){
+        if(current > 0) goTo(current - 1, 'prev');
       });
       nextBtn.addEventListener('click', function(){
-        if(current < total - 1){
-          pages[current].classList.remove('active');
-          current++;
-          pages[current].classList.add('active');
-          updateNav();
-        }
+        if(current < total - 1) goTo(current + 1, 'next');
       });
+
+      /* ── Touch / swipe / tap support (mobile) ── */
+      var touchStartX = 0;
+      var touchStartY = 0;
+
+      stage.addEventListener('touchstart', function(e){
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+      }, {passive: true});
+
+      stage.addEventListener('touchend', function(e){
+        if(!isMobile()) return;
+        var dx    = e.changedTouches[0].clientX - touchStartX;
+        var dy    = e.changedTouches[0].clientY - touchStartY;
+        var absDx = Math.abs(dx);
+        var absDy = Math.abs(dy);
+
+        if(absDx < 12 && absDy < 12){
+          /* Tap: left half = prev, right half = next */
+          var rect = stage.getBoundingClientRect();
+          var tapX = e.changedTouches[0].clientX - rect.left;
+          if(tapX < rect.width / 2){
+            if(current > 0) goTo(current - 1, 'prev');
+          } else {
+            if(current < total - 1) goTo(current + 1, 'next');
+          }
+        } else if(absDx > absDy && absDx > 32){
+          /* Horizontal swipe */
+          if(dx < 0){
+            if(current < total - 1) goTo(current + 1, 'next');
+          } else {
+            if(current > 0) goTo(current - 1, 'prev');
+          }
+        }
+      }, {passive: true});
 
       updateNav();
     })();

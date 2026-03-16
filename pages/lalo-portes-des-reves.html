@@ -59,13 +59,13 @@
       line-height:1.8;
       color:#444;
     }
-    /* ── Two-page spread viewer ── */
+    /* ── Spread viewer ── */
     .lalo-pdf-viewer{
       position:relative;
       width:100%;
       border:1px solid #000;
       border-radius:10px;
-      background:#fff;
+      background:#f4f1ec;
       overflow:hidden;
     }
     .lalo-pdf-loading{
@@ -74,28 +74,22 @@
       color:#555;
       font-size:15px;
     }
-    .lalo-spread{
+    .lalo-spread-slide{
       display:flex;
       justify-content:center;
-      align-items:flex-start;
+      align-items:center;
+      padding:24px 20px;
     }
-    .lalo-spread img{
+    .lalo-spread-slide img{
       display:block;
-      flex:1 1 0;
-      width:50%;
+      width:100%;
       height:auto;
       object-fit:contain;
-    }
-    .lalo-spread img.lalo-single{
-      width:100%;
+      box-shadow:0 6px 32px rgba(0,0,0,.18),0 1px 6px rgba(0,0,0,.10);
     }
     @media(max-width:640px){
-      .lalo-spread{
-        flex-direction:column;
-        align-items:stretch;
-      }
-      .lalo-spread img{
-        width:100%;
+      .lalo-spread-slide{
+        padding:12px 8px;
       }
     }
     .lalo-pdf-nav{
@@ -230,19 +224,15 @@
       </p>
     </div>
 
-    <!-- Two-page spread image viewer -->
+    <!-- Spread image viewer -->
     <div class="lalo-pdf-viewer" id="laloPdfViewer">
-      <div class="lalo-pdf-loading" id="laloPdfLoading">Chargement…</div>
-      <div id="laloPdfSpreadWrap" style="display:none">
-        <div class="lalo-spread" id="laloSpread">
-          <img id="laloImg1" alt="Page gauche" />
-          <img id="laloImg2" alt="Page droite" />
-        </div>
+      <div class="lalo-spread-slide" id="laloSpreadSlide">
+        <img id="laloSpreadImg" alt="Double page du livre" />
       </div>
-      <div class="lalo-pdf-nav" id="laloPdfNav" style="display:none">
-        <button class="lalo-slide-btn" id="laloPrev" aria-label="Pages précédentes" disabled>&#8592;</button>
+      <div class="lalo-pdf-nav">
+        <button class="lalo-slide-btn" id="laloPrev" aria-label="Planche précédente" disabled>&#8592;</button>
         <div class="lalo-slide-dots" id="laloDots"></div>
-        <button class="lalo-slide-btn" id="laloNext" aria-label="Pages suivantes">&#8594;</button>
+        <button class="lalo-slide-btn" id="laloNext" aria-label="Planche suivante">&#8594;</button>
       </div>
     </div>
 
@@ -280,87 +270,48 @@
 
   <script>
     (function(){
-      var PAGES_JSON = '../assets/images/lalo-portes-des-reves/pages.json';
-      var IMG_BASE   = '../assets/images/lalo-portes-des-reves/';
+      /* Image filenames use NFD Unicode (e + combining circumflex = Re%CC%82ves) */
+      var BASE = '../assets/images/lalo-portes-des-reves/';
+      var SPREADS = [
+        BASE + 'Lalo-Porte-Des-Re%CC%82ves1.png',
+        BASE + 'Lalo-Porte-Des-Re%CC%82ves2.png',
+        BASE + 'Lalo-Porte-Des-Re%CC%82ves3.png',
+        BASE + 'Lalo-Porte-Des-Re%CC%82ves4.png'
+      ];
 
-      var loading    = document.getElementById('laloPdfLoading');
-      var spreadWrap = document.getElementById('laloPdfSpreadWrap');
-      var spread     = document.getElementById('laloSpread');
-      var nav        = document.getElementById('laloPdfNav');
-      var img1       = document.getElementById('laloImg1');
-      var img2       = document.getElementById('laloImg2');
-      var prevBtn    = document.getElementById('laloPrev');
-      var nextBtn    = document.getElementById('laloNext');
+      var img       = document.getElementById('laloSpreadImg');
+      var prevBtn   = document.getElementById('laloPrev');
+      var nextBtn   = document.getElementById('laloNext');
       var dotsContainer = document.getElementById('laloDots');
+      var total     = SPREADS.length;
+      var current   = 0;
 
-      var pages          = [];
-      var totalSpreads   = 0;
-      var currentSpread  = 0;
-
-      fetch(PAGES_JSON)
-        .then(function(r){
-          if(!r.ok) throw new Error('pages.json not found');
-          return r.json();
-        })
-        .then(function(manifest){
-          pages        = manifest.pages;
-          totalSpreads = Math.ceil(pages.length / 2);
-
-          for(var i = 0; i < totalSpreads; i++){
-            var dot = document.createElement('button');
-            dot.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
-            dot.setAttribute('aria-label', 'Planche ' + (i + 1));
-            (function(idx){
-              dot.addEventListener('click', function(){ goTo(idx); });
-            })(i);
-            dotsContainer.appendChild(dot);
-          }
-
-          loading.style.display    = 'none';
-          spreadWrap.style.display = '';
-          nav.style.display        = '';
-          renderSpread(0);
-        })
-        .catch(function(){
-          loading.textContent = 'Les pages ne sont pas encore disponibles.';
-        });
-
-      function renderSpread(idx){
-        currentSpread = idx;
-        var left  = idx * 2;
-        var right = idx * 2 + 1;
-
-        if(left >= pages.length) return;
-        img1.src = IMG_BASE + pages[left];
-        img1.classList.remove('lalo-single');
-
-        if(right < pages.length){
-          img2.src   = IMG_BASE + pages[right];
-          img2.style.display = '';
-        } else {
-          img2.src   = '';
-          img2.style.display = 'none';
-          img1.classList.add('lalo-single');
-        }
-
-        updateDots(idx);
-        prevBtn.disabled = (idx === 0);
-        nextBtn.disabled = (idx === totalSpreads - 1);
+      for(var i = 0; i < total; i++){
+        var dot = document.createElement('button');
+        dot.className = 'lalo-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Planche ' + (i + 1));
+        (function(idx){
+          dot.addEventListener('click', function(){ goTo(idx); });
+        })(i);
+        dotsContainer.appendChild(dot);
       }
+
+      goTo(0);
 
       function goTo(n){
-        renderSpread(Math.max(0, Math.min(n, totalSpreads - 1)));
-      }
-
-      function updateDots(idx){
+        current = Math.max(0, Math.min(n, total - 1));
+        img.src = SPREADS[current];
+        img.alt = 'Double page ' + (current + 1) + ' sur ' + total;
+        prevBtn.disabled = (current === 0);
+        nextBtn.disabled = (current === total - 1);
         var dots = dotsContainer.querySelectorAll('.lalo-dot');
         for(var j = 0; j < dots.length; j++){
-          dots[j].classList.toggle('is-active', j === idx);
+          dots[j].classList.toggle('is-active', j === current);
         }
       }
 
-      prevBtn.addEventListener('click', function(){ goTo(currentSpread - 1); });
-      nextBtn.addEventListener('click', function(){ goTo(currentSpread + 1); });
+      prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+      nextBtn.addEventListener('click', function(){ goTo(current + 1); });
     })();
   </script>
 </body>

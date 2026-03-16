@@ -59,44 +59,53 @@
       line-height:1.8;
       color:#444;
     }
-    /* ── Flipbook viewer ── */
+    /* ── Book viewer ── */
     .lalo-flipbook-outer{
-      position:relative;
       width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      overflow:hidden;
     }
     .lalo-flipbook-stage{
       width:100%;
+      max-width:100%;
       aspect-ratio:1413/1000;
-      position:relative;
       border-radius:10px;
       overflow:hidden;
       background:#fdf9f4;
       box-shadow:0 12px 56px rgba(0,0,0,.22),0 2px 12px rgba(0,0,0,.12);
+      border:1px solid #000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
     #laloFlipbook{
-      position:absolute;
-      inset:0;
       width:100%;
       height:100%;
-    }
-    /* Override StPageFlip's min-width to prevent horizontal overflow on mobile */
-    #laloFlipbook .stf__wrapper {
-      min-width: 0 !important;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
     .lalo-flip-page{
-      background:#fdf9f4;
-      overflow:hidden;
+      display:none;
       width:100%;
       height:100%;
+      justify-content:center;
+      align-items:center;
+    }
+    .lalo-flip-page.active{
+      display:flex;
     }
     .lalo-flip-page img{
       display:block;
+      max-width:100%;
+      max-height:100%;
       width:100%;
       height:100%;
       object-fit:contain;
       user-select:none;
       -webkit-user-drag:none;
-      pointer-events:none;
     }
     @media(max-width:640px){
       .lalo-flipbook-stage{
@@ -266,47 +275,41 @@
 
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js" integrity="sha384-L4eWrYFdqQ+LoGA0MMuqLqzV13x7SKkQaqacy4MED8e815dS37tTKlO/6xBEUpZW" crossorigin="anonymous"></script>
   <script>
     (function(){
-      var flipbookEl = document.getElementById('laloFlipbook');
+      var pages      = document.querySelectorAll('.lalo-flip-page');
       var prevBtn    = document.getElementById('laloPrev');
       var nextBtn    = document.getElementById('laloNext');
       var pageInfoEl = document.getElementById('laloPageInfo');
-      var total      = 5;
+      var total      = pages.length;
+      var current    = 0;
 
-      var pageFlip = new St.PageFlip(flipbookEl, {
-        width: 1413,
-        height: 1000,
-        size: 'stretch',
-        minWidth: 540,
-        maxWidth: 1100,
-        minHeight: 200,
-        maxHeight: 800,
-        usePortrait: true,
-        showCover: false,
-        drawShadow: true,
-        flippingTime: 700,
-        useMouseEvents: true,
-        mobileScrollSupport: true,
-        swipeDistance: 30
-      });
+      pages[current].classList.add('active');
 
-      pageFlip.loadFromHTML(document.querySelectorAll('.lalo-flip-page'));
-
-      function updateNav(cur) {
-        if (cur === undefined) cur = pageFlip.getCurrentPageIndex();
-        prevBtn.disabled = (cur <= 0);
-        nextBtn.disabled = (cur >= total - 1);
-        pageInfoEl.textContent = (cur + 1) + ' / ' + total;
+      function updateNav(){
+        prevBtn.disabled = (current <= 0);
+        nextBtn.disabled = (current >= total - 1);
+        pageInfoEl.textContent = (current + 1) + ' / ' + total;
       }
 
-      pageFlip.on('flip', function(e){ updateNav(e.data); });
+      prevBtn.addEventListener('click', function(){
+        if(current > 0){
+          pages[current].classList.remove('active');
+          current--;
+          pages[current].classList.add('active');
+          updateNav();
+        }
+      });
+      nextBtn.addEventListener('click', function(){
+        if(current < total - 1){
+          pages[current].classList.remove('active');
+          current++;
+          pages[current].classList.add('active');
+          updateNav();
+        }
+      });
 
-      prevBtn.addEventListener('click', function(){ pageFlip.flipPrev('top'); });
-      nextBtn.addEventListener('click', function(){ pageFlip.flipNext('top'); });
-
-      updateNav(0);
+      updateNav();
     })();
   </script>
 </body>

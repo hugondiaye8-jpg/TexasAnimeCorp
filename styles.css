@@ -265,7 +265,18 @@ img,video{display:block;max-width:100%}
   color:#fff;
 }
 
-/* Star accent on contact "For the Children" tagline */
+.contact-card__top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.contact-card__logo{
+  height:26px;
+  width:auto;
+}
+
+
 .contact-card > p::before{
   content:"★ ";
   color:var(--tac-yellow);

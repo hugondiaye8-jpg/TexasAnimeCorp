@@ -790,6 +790,18 @@ img,video{display:block;max-width:100%}
   margin-top:18px;
 }
 
+/* ── Team photo ── */
+.team-photo-block{
+  max-width:900px;
+  margin:20px auto 0;
+}
+
+.team-photo{
+  display:block;
+  width:100%;
+  border:1px solid #000;
+}
+
 /* ── Partners logo strip ── */
 .partners-section-head{
   margin-top:20px;

@@ -189,3 +189,79 @@ body.book-page .paypal-note { color:#516176; }
   body.book-page .lalo-story,body.book-page .lalo-buy {padding:25px 18px}
   body.book-page .lalo-flipbook-nav {gap:16px}
 }
+
+
+/* ──────────────────────────────────────────────────────────────────
+   TAC 2027 · Nettoyage des derniers cartouches de l'ancienne DA
+   Les intitulés de section ne sont plus des badges bleus.
+   Frise, photos, vidéos et flipbooks : fonctionnement inchangé.
+   ────────────────────────────────────────────────────────────────── */
+
+/* "QUI SOMMES-NOUS ?" doit rester lisible sur la vidéo, sans ancien cartouche. */
+body.pole-page--social .interview-overlay-title {
+  display:inline-block;
+  width:max-content;
+  max-width:min(90%, 440px);
+  padding:4px 0 4px 12px;
+  margin:0;
+  background:transparent;
+  border:0;
+  border-left:3px solid var(--yellow);
+  border-radius:0;
+  box-shadow:none;
+  font-family:var(--sans);
+  color:#fff;
+  font-size:clamp(12px,1.15vw,15px);
+  font-weight:800;
+  line-height:1.25;
+  letter-spacing:.09em;
+  text-shadow:0 1px 5px rgba(0,0,0,.8);
+}
+/* Preserve the player's original ability to hide its overlay on playback. */
+body.pole-page--social .interview-overlay-title.hidden { display:none; }
+
+/* Heading style shared by Nos partenaires and Frise chronologique.
+   Saigon is used on headings only; all descriptive text remains Aileron. */
+body.pole-page--social .association-card .partners-heading {
+  display:inline-block;
+  width:fit-content;
+  padding:0 0 9px;
+  margin:0;
+  background:transparent;
+  border:0;
+  border-bottom:3px solid var(--blue);
+  border-radius:0;
+  box-shadow:none;
+  font-family:"Saigon Melon",var(--sans);
+  font-size:clamp(22px,2.8vw,30px);
+  font-weight:700;
+  line-height:1.18;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--tac-dark-blue);
+}
+body.pole-page--social .partners-section-head {
+  margin-top:clamp(25px,4vw,42px);
+  margin-bottom:15px;
+}
+
+/* The old LALO · Livre blue chip becomes a discreet Éditions overline.
+   Identical treatment on both existing book detail pages. */
+body.book-page .lalo-hero .eyebrow {
+  display:inline-block;
+  width:fit-content;
+  padding:0 0 10px;
+  margin-bottom:18px;
+  background:transparent;
+  border:0;
+  border-bottom:2px solid var(--blue);
+  border-radius:0;
+  box-shadow:none;
+  color:var(--tac-dark-blue);
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:800;
+  line-height:1.35;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}

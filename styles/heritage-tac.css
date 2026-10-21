@@ -1,0 +1,191 @@
+/* TAC — harmonisation légère des contenus hérités avec le brandboard 2027.
+   Fichier volontairement isolé : ne touche pas au fonctionnement des lecteurs LALO
+   ni à la structure / aux liens de la frise Social originale. */
+
+/* TYPOGRAPHIE : Saigon Melon réservée aux titres, Aileron pour les textes. */
+body.pole-page--social,
+body.book-page { font-family:var(--sans); }
+body.pole-page--social .association-card p,
+body.pole-page--social .association-card .timeline-yr,
+body.pole-page--social .association-card .partners-heading,
+body.pole-page--social .association-card .insta-pill,
+body.book-page p,
+body.book-page .lalo-back,
+body.book-page .lalo-page-info,
+body.book-page .lalo-flip-btn,
+body.book-page .paypal-note { font-family:var(--sans); }
+
+/* SOCIAL — garder intégralement la frise verticale, l'interview et le carrousel. */
+body.pole-page--social .association-section {
+  background:transparent;
+  padding:clamp(28px,5vw,56px) clamp(14px,3vw,24px) clamp(40px,7vw,84px);
+}
+body.pole-page--social .association-card {
+  background:#fff;
+  color:var(--tac-dark-blue);
+  border:1.5px solid rgba(64,143,220,.55);
+  border-radius:8px;
+  box-shadow:0 12px 40px rgba(12,49,92,.10);
+  padding:clamp(16px,3vw,28px);
+}
+body.pole-page--social .association-card > .eyebrow {
+  background:var(--yellow);
+  color:var(--tac-dark-blue);
+  font-family:"Saigon Melon",var(--sans);
+  font-size:clamp(1.8rem,4vw,2.65rem);
+  font-weight:700;
+  letter-spacing:0;
+  line-height:1.15;
+  border-radius:5px;
+  padding:12px 18px;
+  box-shadow:none;
+}
+body.pole-page--social .partners-heading {
+  background:var(--blue);
+  color:#fff;
+  letter-spacing:.10em;
+}
+body.pole-page--social .partners-strip,
+body.pole-page--social .team-photo,
+body.pole-page--social .interview-player {
+  border:1.5px solid rgba(64,143,220,.65);
+  border-radius:4px;
+}
+body.pole-page--social .timeline-line {
+  /* Changement de couleur uniquement : la frise reste verticale et intacte. */
+  background:var(--blue);
+  left:19px;
+}
+body.pole-page--social .timeline-dot-marker {
+  background:var(--yellow);
+  border:3px solid var(--blue);
+  box-shadow:0 0 0 4px rgba(64,143,220,.15);
+}
+body.pole-page--social .timeline-yr { color:var(--tac-dark-blue);font-weight:800; }
+body.pole-page--social .timeline-item .project-card {
+  background:#fff;
+  border:1.5px solid rgba(64,143,220,.4);
+  border-radius:5px;
+  box-shadow:0 8px 24px rgba(12,49,92,.09);
+}
+body.pole-page--social .project-copy h3 {
+  font-family:"Saigon Melon",var(--sans);
+  color:var(--tac-dark-blue);
+  font-size:clamp(1.22rem,2.3vw,1.62rem);
+  font-weight:700;
+  letter-spacing:0;
+  line-height:1.22;
+}
+body.pole-page--social .project-copy .subline {
+  color:#377bbd;
+  letter-spacing:.1em;
+  font-weight:850;
+}
+body.pole-page--social .project-copy p:last-child {
+  color:#3e4e60;
+  font-family:var(--sans);
+}
+body.pole-page--social .insta-pill {
+  background:#fff;
+  color:var(--tac-dark-blue);
+}
+body.pole-page--social .interview-overlay-title { background:var(--blue); }
+
+/* ÉDITIONS — les fiches LALO sont conservées à leur URL existante.
+   Unifier leur habillage (blanc et bleu), sans toucher au flipbook. */
+body.book-page {
+  background:#f5f7f6;
+  background-image:radial-gradient(circle at 50% 0%, rgba(64,143,220,.11), transparent 38%);
+  background-repeat:no-repeat;
+  background-size:100% 560px;
+  min-height:100vh;
+  color:var(--tac-dark-blue);
+}
+body.book-page .site-header,
+body.book-page .site-footer { background:var(--paper);color:var(--tac-dark-blue); }
+body.book-page .site-footer { border-top:1px solid rgba(64,143,220,.28); }
+body.book-page .lalo-subpage {
+  max-width:1100px;
+  padding:clamp(28px,5vw,62px) 16px clamp(56px,8vw,95px);
+}
+body.book-page .lalo-back {
+  display:inline-flex;
+  color:var(--tac-dark-blue);
+  border:1px solid rgba(64,143,220,.40);
+  border-radius:3px;
+  background:#fff;
+  padding:9px 13px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:clamp(24px,4vw,44px);
+}
+body.book-page .lalo-back:hover,
+body.book-page .lalo-back:focus-visible { background:#e6f3ff;color:var(--tac-dark-blue); }
+body.book-page .lalo-hero { margin-bottom:clamp(28px,5vw,54px); }
+body.book-page .lalo-hero .eyebrow {
+  background:var(--blue);
+  color:#fff;
+  font-family:var(--sans);
+  font-weight:800;
+  font-size:11px;
+  letter-spacing:.12em;
+  border-radius:3px;
+}
+body.book-page .lalo-hero h1 {
+  font-family:"Saigon Melon",var(--sans);
+  color:var(--tac-dark-blue);
+  font-size:clamp(2.05rem,5vw,4rem);
+  font-weight:700;
+  line-height:1.14;
+  letter-spacing:0;
+  max-width:900px;
+  margin:0 auto 18px;
+}
+body.book-page .lalo-hero .synopsis {
+  color:#40516a;
+  font-family:var(--sans);
+  line-height:1.65;
+}
+body.book-page .lalo-flipbook-stage {
+  background:#fff;
+  border:1.5px solid rgba(64,143,220,.60);
+  box-shadow:0 12px 37px rgba(12,49,92,.13);
+}
+body.book-page .lalo-flip-btn {
+  background:var(--blue);
+  color:#fff;
+}
+body.book-page .lalo-flip-btn:hover:not(:disabled) { background:#226cb2; }
+body.book-page .lalo-page-info { color:var(--tac-dark-blue); }
+body.book-page .lalo-story,
+body.book-page .lalo-buy {
+  background:#fff;
+  border:1px solid rgba(64,143,220,.28);
+  border-radius:5px;
+  box-shadow:0 6px 22px rgba(12,49,92,.06);
+}
+body.book-page .lalo-story h2,
+body.book-page .lalo-buy h3 {
+  font-family:"Saigon Melon",var(--sans);
+  font-size:clamp(1.65rem,2.8vw,2rem);
+  color:var(--tac-dark-blue);
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:0;
+}
+body.book-page .lalo-story p { color:#3e4e60; }
+body.book-page .paypal-button {
+  /* Existing PayPal destination and checkout remain unchanged. */
+  background:var(--blue);
+  color:#fff;
+  border-radius:3px;
+  box-shadow:0 5px 14px rgba(12,49,92,.13);
+}
+body.book-page .paypal-button:hover { background:#226cb2; }
+body.book-page .paypal-note { color:#516176; }
+@media(max-width:640px) {
+  body.pole-page--social .association-card { padding:16px; }
+  body.pole-page--social .timeline-item {padding-left:54px}
+  body.book-page .lalo-story,body.book-page .lalo-buy {padding:25px 18px}
+  body.book-page .lalo-flipbook-nav {gap:16px}
+}

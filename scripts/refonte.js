@@ -24,3 +24,49 @@
     });
   }
 })();
+
+/* Send the Studio forms to TAC's Gmail through FormSubmit's AJAX endpoint.
+   Native HTML POST action remains a functioning fallback without JavaScript.
+   Only report success when the service explicitly confirms success; a 200
+   HTTP response alone may also mean that the form needs activation. */
+(function () {
+  document.querySelectorAll('form[data-tac-contact]').forEach(function (form) {
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      var button = form.querySelector('[type="submit"]');
+      var feedback = form.querySelector('.form-feedback');
+      var originalLabel = button.textContent;
+      feedback.textContent = 'Envoi en cours…';
+      feedback.dataset.state = 'pending';
+      button.disabled = true;
+      button.textContent = 'Envoi…';
+      try {
+        var endpoint = form.action.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
+        var response = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        var result = await response.json();
+        var confirmed = response.ok && (result.success === true || result.success === 'true');
+        if (!confirmed) {
+          var details = typeof result.message === 'string' ? result.message : '';
+          if (/activat/i.test(details)) {
+            throw new Error('Le formulaire nécessite encore une activation depuis la boîte Gmail de TAC.');
+          }
+          throw new Error('Le service n’a pas confirmé la réception. Merci de réessayer plus tard.');
+        }
+        feedback.textContent = 'Votre message a bien été transmis. Merci pour votre proposition !';
+        feedback.dataset.state = 'success';
+        form.reset();
+      } catch (error) {
+        feedback.dataset.state = 'error';
+        feedback.textContent = (error && error.message) || 'L’envoi a échoué. Merci de réessayer plus tard.';
+      } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    });
+  });
+})();

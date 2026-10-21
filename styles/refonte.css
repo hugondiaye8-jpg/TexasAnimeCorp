@@ -139,3 +139,119 @@ a:not(.brand):not(.primary-nav a):not(.side-dock a):not(.pole-card):not(.work-ti
 }
 
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TAC brandboard 2027 — precise colours sampled from supplied Pantone
+   279 C / Magenta Lacquer / 101 U / Bright White reference swatches.
+   Titles: supplied Saigon Melon web font; running text: Aileron.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@font-face {
+  font-family: "Saigon Melon";
+  src: url("../assets/fonts/saigon-melon-web.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+:root {
+  --blue: #408FDC;       /* Shared TAC blue — Pantone 279 C approximation */
+  --violet: #8D0C66;     /* Studio — Magenta Lacquer */
+  --yellow: #FDF065;     /* Association — Pantone 101 U */
+  --paper: #F5F7F6;      /* Éditions — Bright White */
+  --ink: #15233D;
+  --muted: #42526B;
+  --tac-dark-blue: #0C315C;
+}
+body, p, label, input, select, textarea, button, .primary-nav, .studio-rail,
+.overline, .section-note, .pill-link, .pole-card p, .site-footer,
+.pole-card__end, .video-caption { font-family: var(--sans); }
+h1, h2, h3, .huge-title, .section-heading, .pole-card strong, .team-name,
+.product-card h3, .brand {
+  font-family: "Saigon Melon", var(--sans);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -.015em;
+}
+.brand { line-height: 1.15; letter-spacing: 0; font-size: clamp(16px, 1.8vw, 22px); }
+.brand span { font-family: var(--sans); letter-spacing:.1em; }
+.huge-title { line-height: 1.07; letter-spacing: 0; }
+.section-heading { line-height: 1.08; letter-spacing: 0; }
+
+/* All homepage sections use the SAME light brand blue. The three pole
+   cards are deliberate brand accents, not sectional backgrounds. */
+.home, .home .home-poles, .home .home-intro, .home .home-end,
+.home .site-footer { background: var(--blue); color: var(--tac-dark-blue); }
+.home .site-header { background: var(--blue); color: var(--tac-dark-blue); border-color: rgba(12,49,92,.3); }
+.home .home-hero { color: var(--tac-dark-blue); }
+.home .home-hero .lead { color: var(--tac-dark-blue); }
+.home .home-hero__actions .pill-link:first-child {
+  background: var(--tac-dark-blue); color: #fff; border-color: var(--tac-dark-blue);
+}
+.home .home-intro, .home .home-end, .home .site-footer { border-color: rgba(12,49,92,.32); }
+.home .site-footer { border-top: 1px solid rgba(12,49,92,.32); }
+.home .home-hero__video { border-color: var(--tac-dark-blue); }
+.home .home-hero__video .video-caption { color:#fff; }
+.home .pole-card--studio { background:var(--violet);color:#fff; }
+.home .pole-card--editions { background:var(--paper);color:var(--tac-dark-blue);border:1px solid var(--tac-dark-blue); }
+.home .pole-card--social { background:var(--yellow);color:var(--tac-dark-blue); }
+.home .pole-card p { color: inherit; }
+.home .pole-card strong {font-size:clamp(34px,3.65vw,65px)}
+.home .pole-grid {gap:20px}
+
+/* Each identity is primarily expressed through its brandboard main colour
+   and the common blue secondary. */
+.pole-page--studio {background:var(--violet);color:#fff}
+.pole-page--studio .site-header {background:var(--violet);color:#fff;border-color:rgba(255,255,255,.3)}
+.pole-page--studio .muted {color:#f5ddeb}
+.pole-page--studio .pole-panel--studio {background:var(--blue);color:var(--tac-dark-blue)}
+.pole-page--studio .studio-rail {border-color:rgba(255,255,255,.45)}
+.pole-page--studio .site-footer {background:var(--violet);color:#fff;border-top:1px solid rgba(255,255,255,.4)}
+.pole-page--studio .pill-link {border-color:#fff}
+.pole-page--social {background:var(--yellow);color:var(--tac-dark-blue)}
+.pole-page--social .site-header {background:var(--yellow);color:var(--tac-dark-blue)}
+.pole-page--social .site-footer {background:var(--blue);color:var(--tac-dark-blue)}
+.pole-page--social .pole-panel--light {background:var(--blue);color:var(--tac-dark-blue)}
+.pole-page--editions {background:var(--paper);color:var(--tac-dark-blue)}
+.pole-page--editions .site-header {background:var(--paper);color:var(--tac-dark-blue)}
+.pole-page--editions .site-footer {background:var(--blue);color:var(--tac-dark-blue)}
+.pole-page--editions .product-card {background:#fff;color:var(--tac-dark-blue);border:1px solid rgba(64,143,220,.35)}
+.pole-page--team {background:var(--blue);color:var(--tac-dark-blue)}
+.pole-page--team .site-header {background:var(--blue);color:var(--tac-dark-blue)}
+.pole-page--team .site-footer {background:var(--blue);color:var(--tac-dark-blue)}
+.side-dock a:nth-child(1){border-color:var(--violet)}
+.side-dock a:nth-child(2){border-color:var(--paper)}
+.side-dock a:nth-child(3){border-color:var(--yellow)}
+.side-dock a:nth-child(4){border-color:var(--blue)}
+
+/* Studio's two real submission forms (FormSubmit POST; AJAX if JS enabled). */
+.studio-form {background:var(--paper);color:var(--ink);padding:clamp(20px,3vw,42px);max-width:870px;margin-top:30px;border-radius:4px}
+.studio-form .form-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 21px}
+.studio-form .form-field {display:flex;flex-direction:column;gap:8px;min-width:0}
+.studio-form .form-field--full {grid-column:1 / -1}
+.studio-form label {font-size:13px;font-weight:750}
+.studio-form input:not([type="checkbox"]), .studio-form select, .studio-form textarea {
+  display:block;width:100%;background:#fff;color:var(--ink);border:1.5px solid #8a95a5;
+  border-radius:2px;padding:13px 14px;min-height:48px;font-size:15px;font-weight:400
+}
+.studio-form textarea {min-height:140px;resize:vertical;line-height:1.55}
+.studio-form input:focus-visible, .studio-form select:focus-visible, .studio-form textarea:focus-visible {
+  outline:3px solid var(--blue);outline-offset:2px
+}
+.studio-form .form-consent {display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.6}
+.studio-form .form-consent input {width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--violet)}
+.studio-form .form-footer {display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px}
+.studio-form button[type="submit"] {
+  border:0;background:var(--violet);color:#fff;min-height:50px;padding:14px 23px;
+  border-radius:2px;cursor:pointer;font-weight:850;font-size:14px
+}
+.studio-form button[type="submit"]:disabled {opacity:.65;cursor:wait}
+.studio-form .form-feedback {margin-top:14px;min-height:25px;font-size:14px;font-weight:700}
+.studio-form .form-feedback[data-state="success"] {color:#12613c}
+.studio-form .form-feedback[data-state="error"] {color:#a0213e}
+.studio-form .form-honeypot {position:absolute;left:-99999px;width:1px;height:1px;overflow:hidden}
+.studio-form .form-note {font-size:12px;color:#4c596b;line-height:1.6;margin:0}
+.studio-form .form-required {color:#a0213e}
+@media(max-width:700px){
+  .studio-form .form-grid {grid-template-columns:1fr}
+  .studio-form .form-field--full {grid-column:auto}
+  .home .pole-card strong {font-size:46px}
+}

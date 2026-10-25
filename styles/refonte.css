@@ -332,16 +332,14 @@ ul.team-names > li.team-name {list-style:none}
 @media(max-width:380px){.footer-baseline{font-size:14px}}
 
 
-/* TAC 2026 official pole marks.
-   The source PNGs are preserved unchanged, including their white canvas.
-   A consistent white backing maintains contrast over blue, violet and yellow. */
+/* Official TAC logos — transparent PNGs, without rectangular backgrounds. */
 .site-header .header-identity .brand--logo,
 .site-footer .footer-brand {
-  background:#fff;
-  border:1px solid rgba(12,49,92,.13);
-  border-radius:6px;
-  padding:5px 7px;
-  box-shadow:0 2px 9px rgba(12,49,92,.08);
+  background:transparent;
+  border:none;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
 }
 .site-header .header-identity .brand--logo img,
 .site-footer .footer-brand img {
@@ -349,6 +347,8 @@ ul.team-names > li.team-name {list-style:none}
   object-fit:contain;
   max-width:100%;
   height:auto;
+  /* Small contour contrast only: blue/yellow/violet logos sit on same-tone backgrounds. */
+  filter:drop-shadow(0 1px 1px rgba(12,49,92,.78));
 }
 .pole-card__head {
   display:flex;
@@ -366,13 +366,13 @@ ul.team-names > li.team-name {list-style:none}
   height:74px;
   flex:none;
   object-fit:contain;
-  background:#fff;
-  border:1px solid rgba(12,49,92,.12);
-  border-radius:5px;
-  padding:7px;
+  background:transparent;
+  border:none;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
+  filter:drop-shadow(0 1px 1px rgba(12,49,92,.78));
 }
 @media(max-width:700px){
-  .site-header .header-identity .brand--logo { padding:4px 5px; }
-  .site-footer .footer-brand {padding:5px;}
-  .pole-card__logo {width:94px;height:65px;padding:5px;}
+  .pole-card__logo {width:94px;height:65px;}
 }

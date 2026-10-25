@@ -265,3 +265,35 @@ body.book-page .lalo-hero .eyebrow {
   letter-spacing:.16em;
   text-transform:uppercase;
 }
+
+
+/* Éditions — matching treatment on legacy poster/merchandising listing. */
+body.poster-page {
+  background:var(--paper);
+  color:var(--tac-dark-blue);
+  font-family:var(--sans);
+}
+body.poster-page .affiches-back {
+  display:inline-flex;padding:9px 13px;border:1px solid rgba(64,143,220,.4);
+  background:#fff;border-radius:3px;color:var(--tac-dark-blue);
+}
+body.poster-page .affiches-hero .eyebrow {
+  display:inline-block;width:fit-content;padding:0 0 10px;
+  background:transparent;border:0;border-bottom:2px solid var(--blue);
+  border-radius:0;box-shadow:none;color:var(--tac-dark-blue);
+  font-family:var(--sans);font-size:12px;font-weight:850;letter-spacing:.16em;
+}
+body.poster-page .affiches-hero h1,
+body.poster-page .affiche-card-copy h3,
+body.poster-page .affiches-info h2 {
+  color:var(--tac-dark-blue);
+  font-family:"Saigon Melon",var(--sans);
+  font-weight:700;letter-spacing:0;line-height:1.2;
+}
+body.poster-page .affiche-card,
+body.poster-page .affiches-info {
+  background:#fff;border:1px solid rgba(64,143,220,.28);
+  box-shadow:0 6px 22px rgba(12,49,92,.06);border-radius:5px;
+}
+body.poster-page .paypal-button {background:var(--blue);border-radius:3px}
+body.poster-page .paypal-button:hover {background:#226cb2}

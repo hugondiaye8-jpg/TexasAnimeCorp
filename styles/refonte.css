@@ -302,3 +302,9 @@ h1, h2, h3, .huge-title, .section-heading, .pole-card strong, .team-name,
 }
 /* Headings and landmarks stay visible when reached via in-page links. */
 #work,#our-space,#submit,#contact,#boutique,#interview-lalo,#explorer {scroll-margin-top:clamp(95px,12vw,145px)}
+
+/* Team is now a semantic list, with the exact same visual grid. */
+ul.team-names {list-style:none;margin:0;padding:0}
+ul.team-names > li.team-name {list-style:none}
+/* Branded footer links should not draw a line through the logo image. */
+.site-footer a.footer-brand {text-decoration:none}

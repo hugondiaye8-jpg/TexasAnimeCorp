@@ -264,13 +264,13 @@ h1, h2, h3, .huge-title, .section-heading, .pole-card strong, .team-name,
 .header-identity {display:flex;align-items:center;gap:clamp(10px,2vw,22px);min-width:0;flex-shrink:0}
 .header-identity .brand--logo {display:flex;align-items:center;justify-content:center;flex:none;width:clamp(94px,10vw,132px);border:0;text-decoration:none}
 .header-identity .brand--logo img {display:block;width:100%;height:auto;max-height:87px;object-fit:contain}
-.brand-baseline {display:flex;flex-direction:column;gap:3px;margin:0;color:inherit;font-family:var(--sans);font-size:clamp(10px,1vw,13px);font-weight:850;line-height:1.28;letter-spacing:0;text-transform:none;max-width:200px}
+.brand-baseline {display:flex;flex-direction:column;gap:4px;margin:0;color:inherit;font-family:"Saigon Melon",var(--sans);font-size:clamp(13px,1.55vw,20px);font-weight:700;line-height:1.22;letter-spacing:0;text-transform:none;max-width:310px}
 .brand-baseline span {display:block;white-space:nowrap}
-.brand-baseline[data-studio-signature] {font-size:clamp(13px,1.55vw,20px);font-weight:900;letter-spacing:.01em}
+.brand-baseline[data-studio-signature] {font-size:clamp(18px,2vw,27px);font-weight:700;letter-spacing:0}
 .site-footer .footer-identity {display:flex;align-items:center;gap:14px}
 .site-footer .footer-brand {display:block;flex:none;width:95px}
 .site-footer .footer-brand img {width:100%;height:auto;max-height:69px;object-fit:contain}
-.footer-baseline {display:flex;flex-direction:column;gap:3px;margin:0;color:inherit;font-family:var(--sans);font-size:11px;font-weight:800;line-height:1.34;letter-spacing:0}
+.footer-baseline {display:flex;flex-direction:column;gap:4px;margin:0;color:inherit;font-family:"Saigon Melon",var(--sans);font-size:clamp(13px,1.3vw,17px);font-weight:700;line-height:1.23;letter-spacing:0}
 .footer-baseline span {display:block;white-space:nowrap}
 .site-header .primary-nav {flex-wrap:wrap;justify-content:flex-end}
 .site-header .primary-nav a {white-space:nowrap}
@@ -279,8 +279,8 @@ h1, h2, h3, .huge-title, .section-heading, .pole-card strong, .team-name,
 @media(max-width:1000px){
   .site-header {padding:13px 18px}
   .header-identity .brand--logo {width:96px}
-  .brand-baseline {font-size:11px}
-  .brand-baseline[data-studio-signature] {font-size:16px}
+  .brand-baseline {font-size:14px}
+  .brand-baseline[data-studio-signature] {font-size:20px}
   .site-header .primary-nav {gap:clamp(8px,1.5vw,19px)}
 }
 @media(max-width:700px){
@@ -288,15 +288,15 @@ h1, h2, h3, .huge-title, .section-heading, .pole-card strong, .team-name,
   .header-identity {gap:9px;flex:1;min-width:0}
   .header-identity .brand--logo {width:85px}
   .header-identity .brand--logo img {max-height:64px}
-  .brand-baseline {font-size:10px;line-height:1.28}
-  .brand-baseline span {white-space:normal}
-  .brand-baseline[data-studio-signature] {font-size:14px}
+  .brand-baseline {font-size:clamp(10px,2.8vw,12px);line-height:1.2}
+  .brand-baseline span {white-space:nowrap}
+  .brand-baseline[data-studio-signature] {font-size:17px}
   .site-header .nav-toggle {margin-left:auto}
   .site-header .primary-nav {justify-content:flex-start;flex-wrap:nowrap}
 }
 @media(max-width:380px){
   .header-identity .brand--logo {width:72px}
-  .brand-baseline {font-size:9px}
+  .brand-baseline {font-size:10px}
   .site-footer .footer-identity {gap:8px}
   .site-footer .footer-brand {width:76px}
 }
@@ -308,3 +308,7 @@ ul.team-names {list-style:none;margin:0;padding:0}
 ul.team-names > li.team-name {list-style:none}
 /* Branded footer links should not draw a line through the logo image. */
 .site-footer a.footer-brand {text-decoration:none}
+
+/* Keep the approved two-line baselines intact at narrow widths. */
+.footer-baseline span{white-space:nowrap}
+@media(max-width:380px){.footer-baseline{font-size:12px}}

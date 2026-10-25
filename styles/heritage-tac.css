@@ -297,3 +297,24 @@ body.poster-page .affiches-info {
 }
 body.poster-page .paypal-button {background:var(--blue);border-radius:3px}
 body.poster-page .paypal-button:hover {background:#226cb2}
+
+
+/* TAC typography 2027 — outlined display titles, filled smaller headings.
+   These rules override legacy book/association specificity without changing
+   the timeline, its captions, the LALO flipbooks or any button functionality. */
+body.pole-page--social .association-card > .eyebrow,
+body.pole-page--social .association-card .partners-heading,
+body.book-page .lalo-hero h1,
+body.book-page .lalo-story h2,
+body.poster-page .affiches-hero h1 {
+  font-family:"Saigon Melon Outline","Saigon Melon",var(--sans);
+  font-weight:400;
+  letter-spacing:0;
+}
+body.pole-page--social .project-copy h3,
+body.book-page .lalo-buy h3,
+body.poster-page .affiche-card-copy h3,
+body.poster-page .affiches-info h2 {
+  font-family:"Saigon Melon",var(--sans);
+  font-weight:700;
+}

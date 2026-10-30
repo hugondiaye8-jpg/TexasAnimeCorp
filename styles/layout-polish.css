@@ -317,3 +317,29 @@ body.pole-page--social .site-footer .footer-baseline {
   font-style: normal;
   font-weight: 700;
 }
+
+/* Accueil iPhone : le menu s'ouvre au-dessus du hero, sans prendre de
+   place dans la grille du header ni décaler / redimensionner la vidéo. */
+@media (max-width: 700px) {
+  body.home .site-header {
+    position: sticky;
+  }
+  body.home .site-header .primary-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    flex-basis: auto;
+    margin: 0;
+    padding: 10px 18px 16px;
+    background: #000;
+    box-sizing: border-box;
+    max-height: calc(100svh - 83px);
+    overflow-y: auto;
+    z-index: 91;
+  }
+  body.home .site-header .primary-nav a {
+    color: var(--blue);
+  }
+}

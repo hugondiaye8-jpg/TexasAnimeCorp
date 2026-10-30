@@ -15,15 +15,15 @@
 :root {
   --tac-body-text:#161616;
   --tac-body-muted:#414141;
-  --tac-yellow-heading:#ad8c00; /* nuance jaune lisible sur blanc */
+  --tac-yellow-heading:var(--yellow); /* jaune clair officiel, selon la demande TAC */
 }
 
 body.home,
 body.pole-page {
   --pole-bar:var(--blue);
   --pole-title:var(--blue);
-  --pole-bar-text:#151515;
-  --pole-rule:rgba(0,0,0,.19);
+  --pole-bar-text:#fff;
+  --pole-rule:rgba(255,255,255,.38);
   --tac-dark-blue:var(--tac-body-text);
   --ink:var(--tac-body-text);
   --muted:var(--tac-body-muted);
@@ -40,21 +40,21 @@ body.pole-page--studio {
 body.pole-page--social {
   --pole-bar:var(--yellow);
   --pole-title:var(--tac-yellow-heading);
-  --pole-bar-text:#161616;
-  --pole-rule:rgba(0,0,0,.16);
+  --pole-bar-text:#fff;
+  --pole-rule:rgba(255,255,255,.68);
 }
 body.pole-page--editions {
   --pole-bar:#fff;
   --pole-title:var(--blue);
-  --pole-bar-text:#161616;
-  --pole-rule:rgba(0,0,0,.13);
+  --pole-bar-text:var(--blue);
+  --pole-rule:rgba(64,143,220,.32);
 }
 body.pole-page--team,
 body.home {
   --pole-bar:var(--blue);
   --pole-title:var(--blue);
-  --pole-bar-text:#161616;
-  --pole-rule:rgba(0,0,0,.20);
+  --pole-bar-text:#fff;
+  --pole-rule:rgba(255,255,255,.45);
 }
 
 /* 1 — Barre de navigation : seule grande zone colorée. */
@@ -191,7 +191,7 @@ body.home .overline {
 body.pole-page .pole-hero::before {background:var(--pole-bar);}
 body.pole-page--editions .pole-hero::before {background:var(--blue);}
 body.pole-page--social .pole-hero .huge-title {
-  /* Jaune de la marque, légèrement densifié pour rester visible sur blanc. */
+  /* Jaune clair officiel, conservé même si le contraste sur blanc est faible. */
   color:var(--tac-yellow-heading);
 }
 
@@ -510,4 +510,49 @@ body.home .home-intro .overline,
 body.home .home-poles .overline,
 body.home .home-end .overline {
   color:var(--blue);
+}
+
+
+/* 11 — Nettoyage systématique des micro-libellés décoratifs.
+   La hiérarchie repose sur les vrais titres Saigon (h1/h2/h3) et sur les
+   descriptions, sans doublons du type « Explorer nos activités »,
+   « 01 · Production & développement » ou « Texas Anime Corp · Social ».
+   Les intitulés des vrais liens, les années de la frise, les légendes et
+   les informations indispensables des formulaires sont conservés. */
+body.home .overline,
+body.pole-page .overline,
+body.pole-page--social .association-card > .eyebrow,
+body.pole-page--social .project-copy .subline,
+body.book-page .lalo-hero .eyebrow,
+body.poster-page .affiches-hero .eyebrow {
+  display:none !important;
+}
+/* Sans les micro-libellés, les logos des cartes restent alignés à droite. */
+body.home .pole-card__head {justify-content:flex-end;}
+
+/* 12 — Signature et navigation toujours blanches sur les barres colorées,
+   bleues seulement sur la barre blanche Éditions (y compris LALO/Affiches). */
+body.home .site-header,
+body.pole-page--team .site-header,
+body.pole-page--studio .site-header,
+body.pole-page--social .site-header {
+  color:#fff;
+}
+body.pole-page--editions .site-header,
+body.book-page .site-header,
+body.poster-page .site-header {color:var(--blue);}
+/* Éviter que les fines lettres blanches disparaissent dans le jaune pastel. */
+body.pole-page--social .site-header .brand-baseline,
+body.pole-page--social .site-header .primary-nav a {
+  text-shadow:0 1px 2px rgba(83,69,0,.4);
+}
+/* Les titres Social reviennent au jaune clair officiel sur le fond blanc. */
+body.pole-page--social .pole-hero .huge-title,
+body.pole-page--social .section-heading,
+body.pole-page--social h2,
+body.pole-page--social h3,
+body.pole-page--social .association-card .partners-heading,
+body.pole-page--social .association-card .project-copy h3,
+body.home .pole-card--social strong {
+  color:var(--yellow);
 }

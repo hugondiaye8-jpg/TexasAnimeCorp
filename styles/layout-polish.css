@@ -177,28 +177,54 @@ body.pole-page .tac-pole-rail + .tac-pole-content > section {
   }
 }
 
-/* Ajustements demandés — Social sobre, typographie TAC, cadres Studio. */
-
-/* Social : écriture Saigon Melon dans les rubriques et les contenus.
-   La variante pleine reste lisible pour les paragraphes ; la variante
-   Outline est réservée aux grands titres et aux intertitres. */
-body.pole-page--social,
-body.pole-page--social #content,
-body.pole-page--social #content p,
-body.pole-page--social #content a,
-body.pole-page--social #content span,
-body.pole-page--social #content h3,
-body.pole-page--social .primary-nav a,
-body.pole-page--social .tac-pole-rail a,
-body.pole-page--social .site-footer,
-body.pole-page--social .site-footer a {
+/* Correction Social : Saigon Melon PLEIN uniquement sur les titres qui
+   étaient en Outline. Les paragraphes, labels, menus et liens restent en
+   Aileron, comme avant. */
+body.pole-page--social .pole-hero .huge-title,
+body.pole-page--social .tac-pole-content .section-heading,
+body.pole-page--social .tac-pole-content .association-card .partners-heading {
   font-family: "Saigon Melon", var(--sans);
+  font-weight: 700;
 }
-body.pole-page--social .pole-hero h1,
-body.pole-page--social .tac-pole-content h2,
-body.pole-page--social .association-card .partners-heading {
-  font-family: "Saigon Melon Outline", "Saigon Melon", var(--sans);
-  font-weight: 400;
+body.pole-page--social .tac-pole-rail a {
+  font-family: var(--sans);
+  font-weight: 900;
+}
+
+/* Les cadres Social ont tous un vrai trait noir. Le jaune reste dans
+   l'identité du pôle (barre supérieure, titres et détails), mais pas
+   dans les contours des grands blocs, photos ni navigation latérale. */
+body.pole-page--social .tac-pole-rail a {
+  border: var(--tac-frame);
+  color: #161616;
+  background: #fff;
+}
+body.pole-page--social .tac-pole-rail a:hover,
+body.pole-page--social .tac-pole-rail a:focus-visible {
+  background: #161616;
+  color: #fff;
+}
+body.pole-page--social .tac-pole-content .team-photo,
+body.pole-page--social .tac-pole-content .partners-strip,
+body.pole-page--social .tac-pole-content .association-card,
+body.pole-page--social .tac-pole-content .timeline-item .project-card {
+  border: var(--tac-frame);
+  border-radius: 0;
+}
+body.pole-page--social .tac-pole-content .association-card .partners-section-head,
+body.pole-page--social .tac-pole-content .association-card .partners-heading {
+  border-color: #161616;
+}
+body.pole-page--social .tac-pole-content .association-card .insta-pill {
+  border: 1px solid #161616;
+  color: #161616;
+}
+body.pole-page--social .tac-pole-content .association-card .timeline-line {
+  background: #161616;
+}
+body.pole-page--social .tac-pole-content .association-card .timeline-dot-marker {
+  border-color: #161616;
+  box-shadow: none;
 }
 
 /* Social : un intérieur blanc, sans les fonds jaunes hérités. */
@@ -235,15 +261,10 @@ body.pole-page--social .tac-pole-content .timeline-item .project-card {
   border: var(--tac-frame);
 }
 body.pole-page--social .tac-pole-content .association-card .partners-heading {
-  border-color: var(--yellow);
   background: transparent;
 }
 body.pole-page--social .tac-pole-content .association-card .insta-pill {
   background: #fff;
-  border: 1px solid var(--yellow);
-}
-body.pole-page--social .tac-pole-content .association-card .timeline-line {
-  background: var(--yellow);
 }
 
 /* Studio : véritable cadre noir autour des deux médias :

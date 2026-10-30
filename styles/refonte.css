@@ -670,7 +670,7 @@ body.pole-page--social .site-footer .footer-brand img {
 /* TAC Home and Team: light TAC blue and its legible blue-on-white tone. */
 body.home,
 body.pole-page--team {
-  --tac-dark-blue:#2879B2; /* the same blue hue, deepened only for small text */
+  --tac-dark-blue:#246FA4; /* same TAC blue hue, darkened enough for small accessible text */
   --page-accent:var(--blue);
   color:var(--tac-dark-blue);
 }
@@ -724,6 +724,7 @@ body.pole-page--team .site-footer .footer-brand img {
 body.home .pole-card__logo {
   filter:drop-shadow(0 1px 2px rgba(40,40,40,.24));
 }
+body.home .pole-card--social {color:#3e3a25;}
 
 /* Studio: the only identity color is TAC magenta-violet. */
 body.pole-page--studio {
@@ -791,6 +792,9 @@ body.pole-page--social .pole-hero .lead {
 body.pole-page--social .pole-hero .lead {
   max-width:790px;
 }
+body.pole-page--social .pole-hero::before {background:var(--yellow);}
+body.pole-page--social .primary-nav a[aria-current="page"],
+body.pole-page--social .primary-nav a:hover {border-color:var(--yellow-ink);}
 body.pole-page--social .pole-hero .pill-link {
   background:var(--yellow);
   border-color:var(--yellow);
@@ -800,6 +804,16 @@ body.pole-page--social .site-header .brand--logo img,
 body.pole-page--social .site-footer .footer-brand img {
   filter:drop-shadow(0 0 1px rgba(91,73,0,.7)) drop-shadow(0 1px 2px rgba(91,73,0,.42));
 }
+
+/* Header and footer hairlines also follow the sole identity color. */
+body.pole-page--studio .site-header,
+body.pole-page--studio .site-footer {border-color:rgba(141,12,102,.23);}
+body.pole-page--social .site-header,
+body.pole-page--social .site-footer {border-color:rgba(214,173,19,.40);}
+body.home .site-header,
+body.home .site-footer,
+body.pole-page--team .site-header,
+body.pole-page--team .site-footer {border-color:rgba(64,143,220,.31);}
 
 /* Keep each logo on its original transparent SVG background. */
 body.home .home-hero__mark {

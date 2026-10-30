@@ -275,3 +275,27 @@ body.pole-page--studio .studio-body .media-cover {
   border-radius: 0;
   background: #fff;
 }
+
+/* Social — finition de la table des matières et des deux sous-titres.
+   On ne modifie ni les grands cadres noirs ni le reste de la typographie. */
+body.pole-page--social .tac-pole-rail a {
+  border: 2px solid var(--yellow);
+  background: #fff;
+  color: #161616;
+}
+body.pole-page--social .tac-pole-rail a:hover,
+body.pole-page--social .tac-pole-rail a:focus-visible {
+  background: var(--yellow);
+  color: #161616;
+}
+body.pole-page--social .tac-pole-content .association-card .partners-heading {
+  color: var(--yellow);
+  border: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+  text-shadow: none;
+}
+body.pole-page--social .tac-pole-content .association-card .partners-section-head {
+  border: 0;
+  border-bottom: 0;
+}

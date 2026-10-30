@@ -539,8 +539,8 @@ body.home .home-hero__mark {
   height:auto;
   max-height:52%;
   object-fit:contain;
-  /* Show the genuine transparent SVG as a white mark over the footage. */
-  filter:brightness(0) invert(1) drop-shadow(0 7px 22px rgba(0,0,0,.40));
+  /* Preserve the supplied vector's original blue and transparent canvas. */
+  filter:drop-shadow(0 5px 7px rgba(0,0,0,.72)) drop-shadow(0 0 16px rgba(0,0,0,.32));
   pointer-events:none;
 }
 body.home .home-hero__video .video-caption {
@@ -660,4 +660,150 @@ body.home .pole-card__logo {filter:drop-shadow(0 1px 1px rgba(12,49,92,.45));}
 body.pole-page--social .site-header .brand--logo img,
 body.pole-page--social .site-footer .footer-brand img {
   filter:drop-shadow(0 0 1px rgba(12,49,92,.72)) drop-shadow(0 1px 1px rgba(12,49,92,.48));
+}
+
+
+/* ── Identity palettes: one chromatic family for each pole (October 2026).
+   White remains the canvas. Neutral gray is reserved for readable running text.
+   No dark-navy headings, link colors, captions or badges on these pages. ── */
+
+/* TAC Home and Team: light TAC blue and its legible blue-on-white tone. */
+body.home,
+body.pole-page--team {
+  --tac-dark-blue:#2879B2; /* the same blue hue, deepened only for small text */
+  --page-accent:var(--blue);
+  color:var(--tac-dark-blue);
+}
+body.home .site-header,
+body.home .site-footer,
+body.pole-page--team .site-header,
+body.pole-page--team .site-footer {
+  color:var(--tac-dark-blue);
+}
+body.home .home-intro .section-heading,
+body.home .home-poles .section-heading,
+body.home .home-end .section-heading,
+body.pole-page--team .pole-hero .huge-title,
+body.pole-page--team .section-heading,
+body.pole-page--team .team-name {
+  color:var(--blue);
+}
+body.home .home-intro .home-intro__description,
+body.home .home-end p:not(.overline),
+body.pole-page--team .pole-hero .lead,
+body.pole-page--team .section-note,
+body.pole-page--team .team-name small {
+  color:#393939;
+}
+body.home .home-intro .home-intro__statement,
+body.home .home-intro .overline,
+body.home .home-poles .overline,
+body.home .home-end .overline,
+body.pole-page--team .pole-hero .overline {
+  color:var(--tac-dark-blue);
+}
+body.home .home-intro .home-hero__actions .pill-link:first-child {
+  background:var(--tac-dark-blue);
+  border-color:var(--tac-dark-blue);
+  color:#fff;
+}
+body.home .home-intro .home-hero__actions .pill-link:last-child {
+  border-color:var(--blue);
+  color:var(--tac-dark-blue);
+}
+body.home .home-end .pill-link {
+  border-color:var(--blue);
+  color:var(--tac-dark-blue);
+}
+body.home .site-header .brand--logo img,
+body.home .site-footer .footer-brand img,
+body.pole-page--team .site-header .brand--logo img,
+body.pole-page--team .site-footer .footer-brand img {
+  filter:drop-shadow(0 1px 2px rgba(45,100,145,.32));
+}
+body.home .pole-card__logo {
+  filter:drop-shadow(0 1px 2px rgba(40,40,40,.24));
+}
+
+/* Studio: the only identity color is TAC magenta-violet. */
+body.pole-page--studio {
+  --tac-dark-blue:var(--violet);
+  --page-accent:var(--violet);
+  color:var(--violet);
+}
+body.pole-page--studio .site-header,
+body.pole-page--studio .site-footer,
+body.pole-page--studio .studio-rail,
+body.pole-page--studio .pole-hero .overline,
+body.pole-page--studio .pole-hero .huge-title,
+body.pole-page--studio .studio-signature,
+body.pole-page--studio .studio-body h2,
+body.pole-page--studio .studio-body h3,
+body.pole-page--studio .studio-body .overline {
+  color:var(--violet);
+}
+body.pole-page--studio .pole-hero .lead,
+body.pole-page--studio .studio-body .lead,
+body.pole-page--studio .studio-body .section-note {
+  color:#624054; /* readable, muted violet rather than blue */
+}
+body.pole-page--studio .pole-hero .pill-link {
+  border-color:var(--violet);
+  color:var(--violet);
+}
+body.pole-page--studio .pole-hero .pill-link:hover {
+  background:var(--violet);
+  color:#fff;
+}
+body.pole-page--studio .pole-panel--studio {
+  background:#f9eaf3;
+  color:var(--violet);
+}
+body.pole-page--studio .studio-form {
+  color:#363036;
+  border-color:rgba(141,12,102,.27);
+  box-shadow:0 9px 27px rgba(141,12,102,.05);
+}
+body.pole-page--studio .studio-form .form-note {
+  color:#5f555e;
+}
+body.pole-page--studio .site-header .brand--logo img,
+body.pole-page--studio .site-footer .footer-brand img {
+  filter:drop-shadow(0 1px 2px rgba(141,12,102,.35));
+}
+
+/* Social: yellow panels and rules; a deeper shade OF yellow for readable text.
+   Bright #FDF065 alone is not sufficiently legible as 12px text on white. */
+body.pole-page--social {
+  --tac-dark-blue:#806600;
+  --page-accent:var(--yellow);
+  --yellow-ink:#806600;
+  --yellow-rule:#d6ad13;
+  color:var(--yellow-ink);
+}
+body.pole-page--social .site-header,
+body.pole-page--social .site-footer,
+body.pole-page--social .pole-hero .overline,
+body.pole-page--social .pole-hero .huge-title,
+body.pole-page--social .pole-hero .lead {
+  color:var(--yellow-ink);
+}
+body.pole-page--social .pole-hero .lead {
+  max-width:790px;
+}
+body.pole-page--social .pole-hero .pill-link {
+  background:var(--yellow);
+  border-color:var(--yellow);
+  color:var(--yellow-ink);
+}
+body.pole-page--social .site-header .brand--logo img,
+body.pole-page--social .site-footer .footer-brand img {
+  filter:drop-shadow(0 0 1px rgba(91,73,0,.7)) drop-shadow(0 1px 2px rgba(91,73,0,.42));
+}
+
+/* Keep each logo on its original transparent SVG background. */
+body.home .home-hero__mark {
+  background:transparent;
+  opacity:1;
+  /* Important: no brightness(0), invert(1), grayscale, or white tint. */
 }

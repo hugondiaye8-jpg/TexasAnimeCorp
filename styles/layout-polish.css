@@ -176,3 +176,81 @@ body.pole-page .tac-pole-rail + .tac-pole-content > section {
     padding: 9px 12px;
   }
 }
+
+/* Ajustements demandés — Social sobre, typographie TAC, cadres Studio. */
+
+/* Social : écriture Saigon Melon dans les rubriques et les contenus.
+   La variante pleine reste lisible pour les paragraphes ; la variante
+   Outline est réservée aux grands titres et aux intertitres. */
+body.pole-page--social,
+body.pole-page--social #content,
+body.pole-page--social #content p,
+body.pole-page--social #content a,
+body.pole-page--social #content span,
+body.pole-page--social #content h3,
+body.pole-page--social .primary-nav a,
+body.pole-page--social .tac-pole-rail a,
+body.pole-page--social .site-footer,
+body.pole-page--social .site-footer a {
+  font-family: "Saigon Melon", var(--sans);
+}
+body.pole-page--social .pole-hero h1,
+body.pole-page--social .tac-pole-content h2,
+body.pole-page--social .association-card .partners-heading {
+  font-family: "Saigon Melon Outline", "Saigon Melon", var(--sans);
+  font-weight: 400;
+}
+
+/* Social : un intérieur blanc, sans les fonds jaunes hérités. */
+body.pole-page--social #content,
+body.pole-page--social .tac-pole-content,
+body.pole-page--social .tac-pole-content .association-section,
+body.pole-page--social .tac-pole-content .association-card,
+body.pole-page--social .tac-pole-content .timeline-item .project-card,
+body.pole-page--social .tac-pole-content .partners-strip {
+  background: #fff;
+  background-image: none;
+  box-shadow: none;
+}
+
+/* Tous les textes À L'INTÉRIEUR des grands encadrés sont noirs ;
+   on retire également l'ombrage jaune/blanc hérité du Social. */
+body.pole-page--social .tac-pole-content .association-card,
+body.pole-page--social .tac-pole-content .association-card p,
+body.pole-page--social .tac-pole-content .association-card .eyebrow,
+body.pole-page--social .tac-pole-content .association-card .partners-heading,
+body.pole-page--social .tac-pole-content .association-card .timeline-yr,
+body.pole-page--social .tac-pole-content .association-card .project-copy,
+body.pole-page--social .tac-pole-content .association-card .project-copy h3,
+body.pole-page--social .tac-pole-content .association-card .project-copy .subline,
+body.pole-page--social .tac-pole-content .association-card .project-copy p,
+body.pole-page--social .tac-pole-content .association-card a:not(.partner-logo-tile),
+body.pole-page--social .tac-pole-content .association-card .insta-pill,
+body.pole-page--social .pole-hero .lead {
+  color: #161616;
+  text-shadow: none;
+}
+body.pole-page--social .tac-pole-content .association-card,
+body.pole-page--social .tac-pole-content .timeline-item .project-card {
+  border: var(--tac-frame);
+}
+body.pole-page--social .tac-pole-content .association-card .partners-heading {
+  border-color: var(--yellow);
+  background: transparent;
+}
+body.pole-page--social .tac-pole-content .association-card .insta-pill {
+  background: #fff;
+  border: 1px solid var(--yellow);
+}
+body.pole-page--social .tac-pole-content .association-card .timeline-line {
+  background: var(--yellow);
+}
+
+/* Studio : véritable cadre noir autour des deux médias :
+   vidéo Lovetown et photographie de l'équipe TAC (Our Space). */
+body.pole-page--studio .studio-body .media-cover {
+  box-sizing: border-box;
+  border: var(--tac-frame);
+  border-radius: 0;
+  background: #fff;
+}

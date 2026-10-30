@@ -529,20 +529,7 @@ body.home .home-hero__video::after {
   background:linear-gradient(180deg,rgba(0,0,0,.46) 0%,rgba(0,0,0,.43) 44%,rgba(0,0,0,.70) 100%);
   pointer-events:none;
 }
-body.home .home-hero__mark {
-  position:absolute;
-  left:50%;
-  top:50%;
-  z-index:2;
-  transform:translate(-50%,-50%);
-  width:min(66vw,640px);
-  height:auto;
-  max-height:52%;
-  object-fit:contain;
-  /* Preserve the supplied vector's original blue and transparent canvas. */
-  filter:drop-shadow(0 5px 7px rgba(0,0,0,.72)) drop-shadow(0 0 16px rgba(0,0,0,.32));
-  pointer-events:none;
-}
+
 body.home .home-hero__video .video-caption {
   left:clamp(18px,5vw,76px);
   bottom:clamp(25px,4vw,52px);
@@ -633,7 +620,6 @@ body.home .pole-card__logo {filter:drop-shadow(0 1px 1px rgba(12,49,92,.45));}
     aspect-ratio:auto;
   }
   body.home .home-hero__video video {object-position:53% center;}
-  body.home .home-hero__mark {width:min(82vw,440px);max-height:42%;}
   body.home .home-hero__video .video-caption {bottom:76px;}
   body.home .home-hero__discover {left:18px;right:auto;bottom:22px;}
   body.home .home-intro .home-intro__statement {font-size:clamp(25px,6vw,36px);}
@@ -815,12 +801,7 @@ body.home .site-footer,
 body.pole-page--team .site-header,
 body.pole-page--team .site-footer {border-color:rgba(64,143,220,.31);}
 
-/* Keep each logo on its original transparent SVG background. */
-body.home .home-hero__mark {
-  background:transparent;
-  opacity:1;
-  /* Important: no brightness(0), invert(1), grayscale, or white tint. */
-}
+
 
 
 /* Interactive and muted states stay in the active pole's own palette. */
@@ -1035,4 +1016,15 @@ body.pole-page--social :focus-visible {outline-color:#fff;}
 body.pole-page--social .site-header .brand--logo img,
 body.pole-page--social .site-footer .footer-brand img {
   filter:drop-shadow(0 1px 2px rgba(74,61,0,.38));
+}
+
+
+/* Preserve each original logo's colors against the matching solid background.
+   Only a subtle WHITE outline shadow; never add a rectangular logo backing. */
+body.pole-page--studio .site-header .brand--logo img,
+body.pole-page--studio .site-footer .footer-brand img,
+body.pole-page--social .site-header .brand--logo img,
+body.pole-page--social .site-footer .footer-brand img {
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.75))
+         drop-shadow(0 1px 2px rgba(0,0,0,.2));
 }

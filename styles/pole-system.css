@@ -925,3 +925,102 @@ body.pole-page--social .association-card .insta-pill {
     padding-left:15px;
   }
 }
+
+
+/* Studio — Cadres complets, même épaisseur que Social.
+   Une règle verticale seule n'est PAS un encadrement : les blocs éditoriaux
+   utilisent tous quatre côtés, 2px, angles droits, en violet TAC. */
+body.pole-page--studio {
+  --studio-frame:2px solid var(--violet);
+}
+
+/* Hero et introductions des formulaires : remplacer la bordure gauche
+   solitaire par un vrai rectangle autour du paragraphe. */
+body.pole-page--studio .pole-hero .lead,
+body.pole-page--studio .studio-body #submit > .lead,
+body.pole-page--studio .studio-body #contact > .lead {
+  display:block;
+  box-sizing:border-box;
+  width:100%;
+  max-width:790px;
+  border:var(--studio-frame);
+  border-radius:0;
+  padding:clamp(20px,2.7vw,32px);
+  margin-inline:0;
+  background:#fff;
+}
+
+/* Work et Our Space : des rectangles plus affirmés autour des textes,
+   sans rayures de séparation entre les sections. */
+body.pole-page--studio .studio-body #work .two-column > div,
+body.pole-page--studio .studio-body #our-space .two-column > div {
+  box-sizing:border-box;
+  min-width:0;
+  border:var(--studio-frame);
+  border-radius:0;
+  padding:clamp(20px,2.7vw,32px);
+  background:#fff;
+}
+
+/* Les formulaires et éventuels panneaux gardent la même épaisseur
+   que les cartes de Social ; éviter les cadres trop pâles de 1px. */
+body.pole-page--studio .studio-body .studio-form,
+body.pole-page--studio .studio-body .pole-panel {
+  box-sizing:border-box;
+  border:var(--studio-frame);
+  border-radius:0;
+  background:#fff;
+}
+
+/* Les quatre liens du menu Studio sont chacun un petit rectangle
+   complet, plutôt que de simples lignes ou de nouveaux séparateurs. */
+body.pole-page--studio .studio-rail {
+  border:0;
+  padding-left:0;
+}
+body.pole-page--studio .studio-rail a {
+  display:block;
+  box-sizing:border-box;
+  padding:11px 14px;
+  border:var(--studio-frame);
+  border-radius:0;
+  background:#fff;
+  color:var(--violet);
+  text-decoration:none;
+}
+body.pole-page--studio .studio-rail a:hover,
+body.pole-page--studio .studio-rail a:focus-visible {
+  background:var(--violet);
+  color:#fff;
+  text-decoration:none;
+}
+
+/* Aucune ligne isolée qui ressemble à un cadre inachevé. */
+body.pole-page--studio .studio-body .subtle-rule {
+  display:none;
+  border:0;
+}
+body.pole-page--studio .studio-body #contact {
+  border-top:0;
+}
+
+@media(max-width:900px) {
+  body.pole-page--studio .studio-rail {
+    border:0;
+    padding:0;
+  }
+  body.pole-page--studio .studio-rail a {
+    flex:0 1 auto;
+    white-space:nowrap;
+  }
+}
+@media(max-width:700px) {
+  body.pole-page--studio .pole-hero .lead,
+  body.pole-page--studio .studio-body #submit > .lead,
+  body.pole-page--studio .studio-body #contact > .lead {
+    padding:20px;
+  }
+  body.pole-page--studio .studio-rail a {
+    padding:9px 12px;
+  }
+}

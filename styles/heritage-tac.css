@@ -329,3 +329,55 @@ body.pole-page--social .association-card {
   border-color:rgba(12,49,92,.18);
   box-shadow:0 8px 26px rgba(12,49,92,.05);
 }
+
+
+/* Social — exclusive yellow identity on the white page.
+   All dark-navy/bright-blue archive decorations become shades of TAC yellow;
+   neutral charcoal is used only for long paragraphs and accessibility. */
+body.pole-page--social .association-card {
+  color:var(--yellow-ink);
+  border-color:rgba(214,173,19,.45);
+  box-shadow:0 8px 28px rgba(90,72,12,.07);
+}
+body.pole-page--social .association-card > .eyebrow {
+  color:var(--yellow-ink);
+  background:var(--yellow);
+}
+body.pole-page--social .association-card .partners-heading {
+  color:var(--yellow-ink);
+  border-bottom-color:var(--yellow-rule);
+}
+body.pole-page--social .partners-strip,
+body.pole-page--social .team-photo,
+body.pole-page--social .interview-player {
+  border-color:rgba(214,173,19,.55);
+}
+body.pole-page--social .timeline-line {background:var(--yellow-rule);}
+body.pole-page--social .timeline-dot-marker {
+  background:var(--yellow);
+  border-color:var(--yellow-rule);
+  box-shadow:0 0 0 4px rgba(253,240,101,.38);
+}
+body.pole-page--social .timeline-yr {
+  color:var(--yellow-ink);
+}
+body.pole-page--social .timeline-item .project-card {
+  background:#fff;
+  border-color:rgba(214,173,19,.42);
+  box-shadow:0 8px 25px rgba(90,72,12,.06);
+}
+body.pole-page--social .project-copy h3,
+body.pole-page--social .project-copy .subline {
+  color:var(--yellow-ink);
+}
+body.pole-page--social .project-copy p:last-child {
+  color:#47443a; /* neutral text, not navy */
+}
+body.pole-page--social .insta-pill {
+  background:#fff;
+  color:var(--yellow-ink);
+  border-color:rgba(214,173,19,.5);
+}
+body.pole-page--social .association-card .partners-section-head {
+  border-color:rgba(214,173,19,.5);
+}

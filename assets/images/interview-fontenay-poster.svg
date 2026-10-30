@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Logo de la ville de Fontenay-sous-Bois sur fond blanc">
+  <rect width="1600" height="900" fill="#fff"/>
+  <g transform="translate(480 337) scale(2)">
+    <path fill="#51cf32" d="M52 11 C42 9 34 16 34 26 L34 42 L20 32 C11 30 5 36 5 44 C5 54 19 64 26 69 C16 65 8 69 6 77 C3 86 8 91 14 95 L40 118 L40 49 L60 30 L60 23 C60 16 57 12 52 11Z"/>
+    <path fill="#39a6f1" d="M82 34 C76 31 73 33 69 36 L49 53 L49 77 L82 50 C89 45 88 37 82 34Z"/>
+    <path fill="#39a6f1" d="M83 70 C78 66 74 68 70 71 L50 89 L49 122 L54 121 C56 106 63 103 83 84 C89 79 88 74 83 70Z"/>
+  </g>
+  <g fill="#050505" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="91" letter-spacing="-3">
+    <text x="665" y="440">Fontenay-</text>
+    <text x="665" y="540">sous-Bois</text>
+  </g>
+</svg>

@@ -376,3 +376,280 @@ ul.team-names > li.team-name {list-style:none}
 @media(max-width:700px){
   .pole-card__logo {width:94px;height:65px;}
 }
+
+
+/* ─── TAC editorial pages & immersive homepage (Oct 2026) ──────────────
+   White is the shared canvas; each identity supplies a secondary accent.
+   The existing typography, forms, timeline, books and links stay intact. */
+
+/* Shared navigation: white background with a clear per-page accent. */
+body.pole-page { --page-accent:var(--blue); background:var(--paper);color:var(--tac-dark-blue); }
+body.pole-page--studio { --page-accent:var(--violet); }
+body.pole-page--social { --page-accent:var(--yellow); }
+body.pole-page--editions { --page-accent:var(--blue); }
+body.pole-page--team { --page-accent:var(--blue); }
+body.pole-page .site-header,
+body.home .site-header {
+  background:rgba(245,247,246,.97);
+  color:var(--tac-dark-blue);
+  border-color:rgba(12,49,92,.16);
+}
+body.pole-page .site-header { position:sticky; }
+body.pole-page .site-header::after {
+  content:"";
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:100%;
+  height:3px;
+  background:var(--page-accent);
+  pointer-events:none;
+}
+body.pole-page .primary-nav a[aria-current="page"],
+body.pole-page .primary-nav a:hover,
+body.home .primary-nav a:hover {border-color:var(--page-accent,var(--blue));}
+body.pole-page .site-footer,
+body.home .site-footer {
+  background:var(--paper);
+  color:var(--tac-dark-blue);
+  border-top:1px solid rgba(12,49,92,.16);
+}
+body.pole-page--studio .site-footer {background:#fbf1f8;}
+body.pole-page--social .site-footer {background:#fffde6;}
+body.pole-page--team .site-footer,
+body.home .site-footer {background:#e9f4ff;}
+body.pole-page--editions .site-footer {background:#f1f7ff;}
+
+/* Shared full-width editorial title sections, with restrained color coding. */
+body.pole-page .pole-hero {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  min-height:clamp(430px,62svh,700px);
+  padding-block:clamp(95px,11vw,168px) clamp(65px,7vw,104px);
+}
+body.pole-page .pole-hero::before {
+  content:"";
+  display:block;
+  position:absolute;
+  top:clamp(45px,6.5vw,94px);
+  left:clamp(18px,5vw,76px);
+  width:clamp(62px,7vw,106px);
+  height:6px;
+  background:var(--page-accent);
+  border-radius:2px;
+}
+body.pole-page .pole-hero .overline {color:var(--tac-dark-blue);}
+body.pole-page .pole-hero .huge-title {
+  color:var(--tac-dark-blue);
+  max-width:100%;
+}
+body.pole-page .pole-hero .lead {color:var(--tac-dark-blue);margin-top:0;}
+body.pole-page .pole-hero .pill-link {margin-top:16px;}
+
+/* Studio: white editorial page with violet details and existing sections. */
+body.pole-page--studio .studio-signature {
+  color:var(--violet);
+}
+body.pole-page--studio .pole-hero .pill-link {
+  color:var(--violet);
+  border-color:var(--violet);
+}
+body.pole-page--studio .studio-rail {
+  color:var(--tac-dark-blue);
+  border-color:rgba(141,12,102,.25);
+}
+body.pole-page--studio .studio-rail a:hover,
+body.pole-page--studio .studio-body .overline {color:var(--violet);}
+body.pole-page--studio .studio-form {
+  background:#fff;
+  border:1px solid rgba(141,12,102,.26);
+  box-shadow:0 10px 30px rgba(12,49,92,.04);
+}
+body.pole-page--studio .studio-body {
+  padding-bottom:clamp(35px,5vw,78px);
+}
+body.pole-page--studio .subtle-rule {color:var(--violet);}
+
+/* Social: the archive remains intact, introduced with its own white hero. */
+body.pole-page--social .pole-hero {
+  min-height:clamp(370px,53svh,590px);
+}
+body.pole-page--social .pole-hero .pill-link {
+  color:var(--tac-dark-blue);
+  background:var(--yellow);
+  border-color:var(--yellow);
+}
+body.pole-page--social .pole-hero .pill-link:hover {
+  background:#fff4a3;
+}
+
+/* Team uses the same white page structure, with blue accents. */
+body.pole-page--team .team-names {border-color:rgba(64,143,220,.42);}
+body.pole-page--team .team-name {border-color:rgba(64,143,220,.42);}
+
+/* Homepage: fullscreen, edge-to-edge Lovetown video as an immersive hero. */
+body.home {--page-accent:var(--blue);background:var(--paper);color:var(--tac-dark-blue);}
+body.home .home-hero {
+  position:relative;
+  display:block;
+  min-height:0;
+  padding:0;
+  width:100%;
+  max-width:none;
+  overflow:hidden;
+}
+body.home .home-hero__video {
+  position:relative;
+  width:100%;
+  height:calc(100svh - 96px);
+  min-height:440px;
+  max-height:none;
+  aspect-ratio:auto;
+  overflow:hidden;
+  border:0;
+  background:#080f19;
+  isolation:isolate;
+}
+body.home .home-hero__video video {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+body.home .home-hero__video::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,.46) 0%,rgba(0,0,0,.43) 44%,rgba(0,0,0,.70) 100%);
+  pointer-events:none;
+}
+body.home .home-hero__mark {
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:2;
+  transform:translate(-50%,-50%);
+  width:min(66vw,640px);
+  height:auto;
+  max-height:52%;
+  object-fit:contain;
+  /* Show the genuine transparent SVG as a white mark over the footage. */
+  filter:brightness(0) invert(1) drop-shadow(0 7px 22px rgba(0,0,0,.40));
+  pointer-events:none;
+}
+body.home .home-hero__video .video-caption {
+  left:clamp(18px,5vw,76px);
+  bottom:clamp(25px,4vw,52px);
+  color:#fff;
+  font-size:11px;
+  z-index:3;
+}
+body.home .home-hero__discover {
+  position:absolute;
+  right:clamp(18px,5vw,76px);
+  bottom:clamp(24px,4vw,51px);
+  z-index:3;
+  display:inline-flex;
+  gap:12px;
+  align-items:center;
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.8);
+  padding-bottom:8px;
+}
+body.home .home-hero__discover:hover {border-color:#fff;}
+
+/* Intro and remaining homepage content live on an airy blue-and-white canvas. */
+body.home .home-intro {
+  max-width:none;
+  margin:0;
+  border:0;
+  background:#e6f2ff;
+  color:var(--tac-dark-blue);
+}
+body.home .home-intro__inner {max-width:1450px;}
+body.home .home-intro .section-heading {margin:0 0 26px;}
+body.home .home-intro .home-intro__statement {
+  font-size:clamp(25px,3.4vw,50px);
+  line-height:1.22;
+  letter-spacing:-.025em;
+  max-width:1050px;
+  margin:0 0 30px;
+}
+body.home .home-intro .home-intro__description {
+  font-size:clamp(16px,1.7vw,22px);
+  line-height:1.5;
+  letter-spacing:0;
+  max-width:690px;
+  margin:0;
+}
+body.home .home-intro .home-hero__actions {margin-top:34px;}
+body.home .home-intro .home-hero__actions .pill-link:first-child {
+  background:var(--tac-dark-blue);
+  border-color:var(--tac-dark-blue);
+  color:#fff;
+}
+body.home .home-intro .home-hero__actions .pill-link:last-child {
+  background:transparent;
+  border-color:var(--tac-dark-blue);
+  color:var(--tac-dark-blue);
+}
+body.home .home-poles {background:var(--paper);color:var(--tac-dark-blue);}
+body.home .home-end {
+  background:#e6f2ff;
+  color:var(--tac-dark-blue);
+  border-color:rgba(12,49,92,.16);
+}
+body.home .pole-card__logo {filter:drop-shadow(0 1px 1px rgba(12,49,92,.45));}
+
+/* Responsive: retain full-bleed hero and keep floating controls readable. */
+@media(max-width:900px) {
+  body.home .home-hero__video {
+    width:100%;
+    height:calc(100svh - 96px);
+    min-height:440px;
+    max-height:none;
+    aspect-ratio:auto;
+  }
+  body.pole-page--studio .studio-rail {
+    border-color:rgba(141,12,102,.3);
+  }
+}
+@media(max-width:700px) {
+  body.home .home-hero {padding:0;min-height:0;}
+  body.home .home-hero__video {
+    height:calc(100svh - 83px);
+    min-height:430px;
+    max-height:none;
+    aspect-ratio:auto;
+  }
+  body.home .home-hero__video video {object-position:53% center;}
+  body.home .home-hero__mark {width:min(82vw,440px);max-height:42%;}
+  body.home .home-hero__video .video-caption {bottom:76px;}
+  body.home .home-hero__discover {left:18px;right:auto;bottom:22px;}
+  body.home .home-intro .home-intro__statement {font-size:clamp(25px,6vw,36px);}
+  body.home .home-intro .home-intro__description {font-size:17px;}
+  body.pole-page .pole-hero {
+    min-height:0;
+    padding-block:clamp(100px,18vw,140px) clamp(62px,11vw,100px);
+  }
+  body.pole-page .pole-hero::before {
+    top:44px;
+    left:18px;
+    width:66px;
+    height:5px;
+  }
+  body.pole-page--social .pole-hero {min-height:0;}
+}
+@media(prefers-reduced-motion:reduce) {
+  body.home .home-hero__video video {visibility:hidden;}
+}

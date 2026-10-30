@@ -818,50 +818,58 @@ body.pole-page--studio :focus-visible {outline-color:var(--violet);}
 body.pole-page--social :focus-visible {outline-color:var(--yellow-ink);}
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TAC — video cutout + solid-colour poles (requested 30 Oct 2026).
-   The video is seen THROUGH the transparent shape of the logo;
-   the brand's image is NOT drawn on top of the video.
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* TAC HOME: video ONLY within the logo silhouette; surrounding area BLACK. */
+body.home .home-hero__video {
+  display:grid;
+  place-items:center;
+  background:#000;
+}
 body.home .home-hero__video::after {content:none;}
-body.home .home-hero__cutout {
+body.home .home-hero__logo-screen {
+  position:relative;
+  z-index:1;
+  width:min(88vw,1120px,calc(140svh - 210px));
+  aspect-ratio:500.87 / 318.29;
+  flex:none;
+  overflow:hidden;
+  background:transparent;
+  isolation:isolate;
+}
+/* No-mask fallback: draw the genuine transparent SVG rather than a video rectangle. */
+body.home .home-hero__logo-screen video {visibility:hidden;}
+body.home .home-hero__logo-fallback {
   position:absolute;
   inset:0;
-  z-index:2;
-  background:rgba(0,0,0,.76);
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
   pointer-events:none;
 }
-/* Two alpha masks: fully visible black overlay XOR the genuine SVG silhouette.
-   The excluded logo-shaped area lets the unfiltered footage show through.
-   -webkit-mask-composite: xor covers WebKit; mask-composite: exclude covers
-   modern Firefox/Chromium. Older engines retain the plain black veil. */
-@supports ((-webkit-mask-composite:xor) or (mask-composite:exclude)) {
-  body.home .home-hero__cutout {
-    -webkit-mask-image:
-      linear-gradient(#fff 0 0),
-      url("../assets/images/logos/tac-brand-vector.svg");
-    mask-image:
-      linear-gradient(#fff 0 0),
-      url("../assets/images/logos/tac-brand-vector.svg");
-    -webkit-mask-repeat:no-repeat,no-repeat;
-    mask-repeat:no-repeat,no-repeat;
-    -webkit-mask-size:100% 100%,min(45vw,460px) auto;
-    mask-size:100% 100%,min(45vw,460px) auto;
-    -webkit-mask-position:center,center;
-    mask-position:center,center;
-    -webkit-mask-composite:xor;
-    mask-composite:exclude;
+@supports ((-webkit-mask-image:url("../assets/images/logos/tac-brand-vector.svg")) or (mask-image:url("../assets/images/logos/tac-brand-vector.svg"))) {
+  body.home .home-hero__logo-screen {
+    -webkit-mask-image:url("../assets/images/logos/tac-brand-vector.svg");
+    mask-image:url("../assets/images/logos/tac-brand-vector.svg");
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+    -webkit-mask-position:center;
+    mask-position:center;
+    -webkit-mask-size:100% 100%;
+    mask-size:100% 100%;
+    mask-mode:alpha;
   }
+  body.home .home-hero__logo-screen video {visibility:visible;}
+  body.home .home-hero__logo-fallback {display:none;}
 }
 @media(max-width:700px) {
-  @supports ((-webkit-mask-composite:xor) or (mask-composite:exclude)) {
-    body.home .home-hero__cutout {
-      -webkit-mask-size:100% 100%,min(76vw,330px) auto;
-      mask-size:100% 100%,min(76vw,330px) auto;
-    }
+  body.home .home-hero__logo-screen {
+    width:min(92vw,670px,calc(140svh - 140px));
   }
 }
-/* The lower-left and lower-right video labels stay on the top layer. */
+@media(prefers-reduced-motion:reduce) {
+  body.home .home-hero__logo-screen {background:var(--blue);}
+  body.home .home-hero__logo-screen video {visibility:hidden!important;}
+}
 body.home .home-hero__video .video-caption,
 body.home .home-hero__discover {z-index:3;}
 

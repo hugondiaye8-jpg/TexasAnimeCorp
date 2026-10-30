@@ -1,0 +1,178 @@
+/*
+ * TAC — harmonisation éditoriale des pôles (Studio comme référence).
+ * On garde les identités et contenus existants ; seuls les cadres, rails
+ * latéraux et le cadrage mobile de la vidéo d'accueil sont unifiés.
+ */
+
+:root { --tac-frame: 2px solid #161616; }
+
+body.pole-page--studio {
+  --tac-rail-accent: var(--violet);
+  --tac-rail-ink: var(--violet);
+  --tac-rail-hover-ink: #fff;
+}
+body.pole-page--editions {
+  --tac-rail-accent: var(--blue);
+  --tac-rail-ink: var(--blue);
+  --tac-rail-hover-ink: #fff;
+}
+body.pole-page--social {
+  --tac-rail-accent: var(--yellow);
+  --tac-rail-ink: #795500;
+  --tac-rail-hover-ink: #161616;
+}
+
+/* Une même grille pour les trois pôles ; les menus restent indépendants des titres. */
+body.pole-page .tac-pole-layout {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 50px);
+  align-items: start;
+}
+body.pole-page .tac-pole-content { min-width: 0; }
+body.pole-page .tac-pole-rail {
+  position: sticky;
+  top: 115px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 0 0;
+  border: 0;
+}
+body.pole-page .tac-pole-rail a,
+body.pole-page--studio .studio-rail a {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 41px;
+  padding: 11px 14px;
+  border: 2px solid var(--tac-rail-accent);
+  border-radius: 0;
+  background: #fff;
+  color: var(--tac-rail-ink);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+body.pole-page .tac-pole-rail a:hover,
+body.pole-page .tac-pole-rail a:focus-visible,
+body.pole-page--studio .studio-rail a:hover,
+body.pole-page--studio .studio-rail a:focus-visible {
+  background: var(--tac-rail-accent);
+  color: var(--tac-rail-hover-ink);
+  text-decoration: none;
+}
+
+/* Les grands blocs utilisent des contours noirs, jamais les menus de gauche.
+   Titres et petites étiquettes conservent la couleur propre à leur pôle. */
+body.pole-page--studio .pole-hero .lead,
+body.pole-page--studio .studio-body #submit > .lead,
+body.pole-page--studio .studio-body #contact > .lead,
+body.pole-page--studio .studio-body #work .two-column > div,
+body.pole-page--studio .studio-body #our-space .two-column > div,
+body.pole-page--studio .studio-body .studio-form,
+body.pole-page--studio .studio-body .pole-panel {
+  border: var(--tac-frame);
+  border-radius: 0;
+}
+body.pole-page--editions .pole-hero .lead,
+body.pole-page--social .pole-hero .lead {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 790px;
+  margin-inline: 0;
+  padding: clamp(20px, 2.7vw, 32px);
+  border: var(--tac-frame);
+  border-radius: 0;
+  background: #fff;
+}
+body.pole-page--editions .tac-pole-content .product-card,
+body.pole-page--editions .tac-pole-content .pole-panel,
+body.pole-page--editions .tac-pole-content .interview-player,
+body.pole-page--social .tac-pole-content .association-card,
+body.pole-page--social .tac-pole-content .timeline-item .project-card {
+  border: var(--tac-frame);
+  border-radius: 0;
+}
+
+/* Alignement des sections secondaires sur l'espace utilisé dans Studio. */
+body.pole-page--editions .tac-pole-content > section {
+  padding-block: clamp(46px, 6vw, 85px);
+}
+body.pole-page--social .tac-pole-content .association-section {
+  padding: clamp(46px, 6vw, 85px) 0;
+}
+body.pole-page--social .tac-pole-content .association-section > .container {
+  width: 100%;
+  max-width: none;
+}
+body.pole-page--editions .tac-pole-content > section:first-child,
+body.pole-page--social .tac-pole-content > section:first-child {
+  padding-top: clamp(46px, 6vw, 85px);
+}
+body.pole-page--social .tac-pole-content #association-title {
+  margin-bottom: clamp(24px, 3vw, 42px);
+}
+body.pole-page .tac-pole-content [id],
+body.pole-page .tac-pole-rail + .tac-pole-content > section {
+  scroll-margin-top: 125px;
+}
+
+/* Vidéo Casino : sur un écran vertical, montrer la composition entière.
+   Le plein-écran en object-fit:cover en coupait la majeure partie. */
+@media (max-width: 700px) {
+  body.home .home-hero__video {
+    height: clamp(320px, 64svh, 560px);
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+    background: #000;
+  }
+  body.home .home-hero__video > .home-hero__background-video {
+    object-fit: contain;
+    object-position: center center;
+  }
+  body.home .home-hero__discover {
+    bottom: 18px;
+    left: 18px;
+    right: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  body.pole-page .tac-pole-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  body.pole-page .tac-pole-rail {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: stretch;
+    gap: 10px;
+    padding: 0;
+    border: 0;
+  }
+  body.pole-page .tac-pole-rail a,
+  body.pole-page--studio .studio-rail a {
+    flex: 0 1 auto;
+    white-space: normal;
+    min-height: 38px;
+  }
+}
+@media (max-width: 700px) {
+  body.pole-page--editions .pole-hero .lead,
+  body.pole-page--social .pole-hero .lead {
+    padding: 20px;
+  }
+  body.pole-page .tac-pole-rail a,
+  body.pole-page--studio .studio-rail a {
+    padding: 9px 12px;
+  }
+}

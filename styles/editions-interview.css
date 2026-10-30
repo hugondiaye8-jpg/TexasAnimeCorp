@@ -97,3 +97,31 @@
 @media(max-width:640px) {
   .editions-interview .interview-play-btn {right: 14px;bottom: 14px;}
 }
+
+/* Avant le premier clic : uniquement le poster fixe et un bouton discret.
+   Pas de titre social superposé ni de barre de lecture native. */
+.editions-interview .interview-player:not(.has-started) .interview-header-overlay {
+  display: none;
+}
+.editions-interview .interview-play-btn {
+  width: 46px;
+  height: 46px;
+  right: 16px;
+  bottom: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.8);
+  background: rgba(17,17,17,.56);
+  box-shadow: 0 2px 12px rgba(0,0,0,.13);
+}
+.editions-interview .interview-play-btn:hover {
+  background: rgba(17,17,17,.8);
+}
+@media(max-width:640px) {
+  .editions-interview .interview-play-btn {
+    width: 42px;
+    height: 42px;
+    right: 12px;
+    bottom: 12px;
+    padding: 11px;
+  }
+}

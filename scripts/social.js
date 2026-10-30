@@ -11,6 +11,9 @@ if (interviewPlayer) {
 
   if (playBtn && interviewVideo) {
     playBtn.addEventListener('click', () => {
+      // Native controls appear only after the visitor opts to play.
+      interviewPlayer.classList.add('has-started');
+      interviewVideo.controls = true;
       interviewVideo.play();
     });
 

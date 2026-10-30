@@ -556,3 +556,23 @@ body.pole-page--social .association-card .project-copy h3,
 body.home .pole-card--social strong {
   color:var(--yellow);
 }
+
+
+/* Studio uses the same two-line signature as every other TAC pole. */
+body.pole-page--studio .studio-signature {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  font-family:"Saigon Melon",var(--sans);
+  font-size:clamp(24px,3.1vw,38px);
+  font-weight:700;
+  line-height:1.2;
+  color:var(--violet);
+}
+body.pole-page--studio .studio-signature span {display:block;}
+@media(max-width:700px) {
+  body.pole-page--studio .studio-signature {
+    font-size:clamp(21px,5.3vw,29px);
+  }
+}

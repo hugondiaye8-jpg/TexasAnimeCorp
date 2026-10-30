@@ -299,3 +299,13 @@ body.pole-page--social .tac-pole-content .association-card .partners-section-hea
   border: 0;
   border-bottom: 0;
 }
+
+/* Uniquement Social : baselines pleines pour mieux lire le jaune.
+   Les couleurs, tailles et autres typographies restent inchangées. */
+body.pole-page--social .site-header .brand-baseline,
+body.pole-page--social .pole-hero .pole-hero__signature,
+body.pole-page--social .site-footer .footer-baseline {
+  font-family: "Saigon Melon", var(--sans);
+  font-style: normal;
+  font-weight: 700;
+}

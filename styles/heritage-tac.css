@@ -318,3 +318,14 @@ body.poster-page .affiches-info h2 {
   font-family:"Saigon Melon",var(--sans);
   font-weight:700;
 }
+
+
+/* Social's original projects remain untouched: only its section canvas changes
+   to a white-to-pale-yellow transition below the new editorial introduction. */
+body.pole-page--social .association-section {
+  background:linear-gradient(180deg,#fffde8 0%,#f5f7f6 300px,#f5f7f6 100%);
+}
+body.pole-page--social .association-card {
+  border-color:rgba(12,49,92,.18);
+  box-shadow:0 8px 26px rgba(12,49,92,.05);
+}

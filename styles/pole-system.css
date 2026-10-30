@@ -576,3 +576,35 @@ body.pole-page--studio .studio-signature span {display:block;}
     font-size:clamp(21px,5.3vw,29px);
   }
 }
+
+
+/* Social — dates and project titles in black; ALL framing strokes in the
+   same original TAC yellow #FDF065 as the large Social headings. */
+body.pole-page--social .association-card .timeline-yr,
+body.pole-page--social .timeline-node .timeline-yr,
+body.pole-page--social .association-card .project-copy h3,
+body.pole-page--social .timeline-item .project-copy h3 {
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.pole-page--social .association-card,
+body.pole-page--social .timeline-item .project-card,
+body.pole-page--social .team-photo,
+body.pole-page--social .interview-player,
+body.pole-page--social .partners-strip,
+body.pole-page--social .insta-pill,
+body.pole-page--social .association-card .insta-pill {
+  border-color:var(--yellow);
+}
+body.pole-page--social .timeline-line {
+  background:var(--yellow);
+}
+body.pole-page--social .timeline-dot-marker {
+  background:var(--yellow);
+  border-color:var(--yellow);
+  box-shadow:0 0 0 4px rgba(253,240,101,.28);
+}
+body.pole-page--social .association-card .partners-heading,
+body.pole-page--social .association-card .partners-section-head {
+  border-color:var(--yellow);
+}

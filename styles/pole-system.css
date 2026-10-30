@@ -494,3 +494,20 @@ body.pole-page .site-footer .footer-brand img {filter:none;}
   }
   body.home .pole-card {background:#fff;}
 }
+
+
+/* 10 — Priorité aux dernières règles historiques très spécifiques. */
+body.pole-page--studio .studio-body .overline {
+  color:var(--violet);
+  text-shadow:none;
+}
+body.pole-page--social .association-card .project-copy .subline,
+body.pole-page--social .association-card .timeline-yr {
+  color:var(--pole-title);
+  text-shadow:none;
+}
+body.home .home-intro .overline,
+body.home .home-poles .overline,
+body.home .home-end .overline {
+  color:var(--blue);
+}

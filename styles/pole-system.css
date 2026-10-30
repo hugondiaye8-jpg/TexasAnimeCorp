@@ -608,3 +608,78 @@ body.pole-page--social .association-card .partners-heading,
 body.pole-page--social .association-card .partners-section-head {
   border-color:var(--yellow);
 }
+
+
+/* 13 — Accueil noir et signature overline universelle.
+   L'accueil conserve son logo TAC bleu sur une barre purement noire ;
+   les liens et les deux lignes de baseline reprennent le bleu du pôle.
+   Les autres pôles gardent les couleurs de barre déjà validées. */
+body.home {
+  --pole-bar:#000;
+  --pole-bar-text:var(--blue);
+  --pole-rule:rgba(64,143,220,.55);
+}
+body.home .site-header {
+  background:#000;
+  color:var(--blue);
+  border-bottom:1px solid rgba(64,143,220,.45);
+}
+body.home .site-header .brand-baseline,
+body.home .site-header .primary-nav a,
+body.home .site-header .nav-toggle {
+  color:var(--blue);
+  text-shadow:none;
+}
+body.home .site-header .primary-nav a:hover,
+body.home .site-header .primary-nav a[aria-current="page"] {
+  border-color:var(--blue);
+}
+
+/* Une même signature à deux lignes dans tous les headers et footers :
+   Aileron / style overline, au lieu de Saigon Melon plein. */
+body.home .site-header .brand-baseline,
+body.pole-page .site-header .brand-baseline,
+body.home .site-footer .footer-baseline,
+body.pole-page .site-footer .footer-baseline {
+  font-family:var(--sans);
+  font-size:clamp(11px,1vw,13px);
+  font-weight:850;
+  line-height:1.5;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  gap:4px;
+  max-width:none;
+}
+body.home .site-header .brand-baseline span,
+body.pole-page .site-header .brand-baseline span,
+body.home .site-footer .footer-baseline span,
+body.pole-page .site-footer .footer-baseline span {
+  display:block;
+  white-space:nowrap;
+}
+
+/* Le slogan répété dans l'introduction Studio suit la même typographie. */
+body.pole-page--studio .studio-signature {
+  font-family:var(--sans);
+  font-size:clamp(11px,1.1vw,14px);
+  font-weight:850;
+  line-height:1.5;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  gap:4px;
+  color:var(--violet);
+}
+@media(max-width:700px) {
+  body.home .site-header .brand-baseline,
+  body.pole-page .site-header .brand-baseline,
+  body.home .site-footer .footer-baseline,
+  body.pole-page .site-footer .footer-baseline {
+    font-size:10px;
+    line-height:1.4;
+    letter-spacing:.08em;
+  }
+  body.pole-page--studio .studio-signature {
+    font-size:11px;
+    letter-spacing:.11em;
+  }
+}

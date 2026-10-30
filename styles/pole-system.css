@@ -197,7 +197,7 @@ body.pole-page--social .pole-hero .huge-title {
 
 /* 4 — Accueil : vidéo et découpe du logo conservées ; sections blanches. */
 body.home .home-hero {background:#fff;}
-body.home .home-hero__video {background:#060606;}
+body.home .home-hero__video {background:#000;}
 /* Les textes posés directement sur la vidéo restent nécessairement blancs. */
 body.home .home-hero__video .video-caption,
 body.home .home-hero__discover {

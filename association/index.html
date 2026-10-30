@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="../styles/refonte.css">
 <link rel="stylesheet" href="../styles/heritage-tac.css">
 <link rel="stylesheet" href="../styles/pole-system.css">
+<link rel="stylesheet" href="../styles/layout-polish.css">
 </head>
 <body class="pole-page pole-page--social pole-page">
 <a class="skip-link" href="#content">Aller au contenu</a>
@@ -44,7 +45,11 @@
 <p class="lead">Depuis 2023, notre association organise des ateliers de dessin, d’illustration et de création artistique auprès des enfants et des jeunes. Implantés à Fontenay-sous-Bois, nous travaillons avec des institutions, des associations et des partenaires culturels pour faire découvrir ces disciplines et les rendre accessibles au plus grand nombre.</p>
 <a class="pill-link" href="#association">Découvrir nos actions <span aria-hidden="true">↘</span></a>
 </section>
-    <section class="section association-section" id="association">
+  <div class="layout tac-pole-layout">
+    <aside class="tac-pole-rail" aria-label="Rubriques Social"><a href="#association">Nos actions</a><a href="#partners">Partenaires</a><a href="#timeline">Projets</a></aside>
+    <div class="tac-pole-content">
+    <section class="section association-section" id="association" aria-labelledby="association-title">
+      <h2 class="section-heading" id="association-title">Nos actions</h2>
       <div class="container">
         <div class="section-card association-card">
           <span class="eyebrow">Association</span>
@@ -53,7 +58,7 @@
           </div>
 
           <!-- Partner / collaborator logo strip -->
-          <div class="section-head partners-section-head">
+          <div id="partners" class="section-head partners-section-head">
             <span class="partners-heading">Nos partenaires</span>
           </div>
           <div class="partners-strip" role="region" aria-label="Partenaires et collaborateurs">
@@ -88,7 +93,7 @@
             <span class="partners-heading">Frise chronologique</span>
           </div>
 
-          <div class="timeline-track">
+          <div id="timeline" class="timeline-track">
             <div class="timeline-line"></div>
 
             <div class="timeline-item">
@@ -315,7 +320,8 @@
         </div>
       </div>
     </section>
-
+    </div>
+  </div>
 
 </main>
 <footer class="site-footer"><div class="footer-identity">

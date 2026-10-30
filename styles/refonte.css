@@ -821,3 +821,17 @@ body.home .home-hero__mark {
   opacity:1;
   /* Important: no brightness(0), invert(1), grayscale, or white tint. */
 }
+
+
+/* Interactive and muted states stay in the active pole's own palette. */
+body.pole-page--studio .studio-form input:focus-visible,
+body.pole-page--studio .studio-form select:focus-visible,
+body.pole-page--studio .studio-form textarea:focus-visible {
+  outline-color:var(--violet);
+}
+body.pole-page--studio .muted {color:#79516d;}
+body.pole-page--studio .pill-link {border-color:var(--violet);}
+body.home :focus-visible,
+body.pole-page--team :focus-visible {outline-color:var(--blue);}
+body.pole-page--studio :focus-visible {outline-color:var(--violet);}
+body.pole-page--social :focus-visible {outline-color:var(--yellow-ink);}

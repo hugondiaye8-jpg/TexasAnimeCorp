@@ -1,0 +1,496 @@
+/*
+ * Texas Anime Corp — système visuel unifié (octobre 2026).
+ *
+ * UN SEUL PRINCIPE POUR TOUTES LES PAGES
+ * - barre supérieure : couleur du pôle
+ * - page / sections / cartes : blanc
+ * - titres Saigon : couleur du pôle
+ * - texte courant : presque noir
+ *
+ * Cette feuille se charge APRÈS les styles historiques pour prendre le
+ * relais sans toucher aux contenus, images, formulaires ni flipbooks.
+ * Exception voulue : la vidéo immersive en haut de l'accueil.
+ */
+
+:root {
+  --tac-body-text:#161616;
+  --tac-body-muted:#414141;
+  --tac-yellow-heading:#ad8c00; /* nuance jaune lisible sur blanc */
+}
+
+body.home,
+body.pole-page {
+  --pole-bar:var(--blue);
+  --pole-title:var(--blue);
+  --pole-bar-text:#151515;
+  --pole-rule:rgba(0,0,0,.19);
+  --tac-dark-blue:var(--tac-body-text);
+  --ink:var(--tac-body-text);
+  --muted:var(--tac-body-muted);
+  background:#fff;
+  color:var(--tac-body-text);
+}
+
+body.pole-page--studio {
+  --pole-bar:var(--violet);
+  --pole-title:var(--violet);
+  --pole-bar-text:#fff;
+  --pole-rule:rgba(255,255,255,.35);
+}
+body.pole-page--social {
+  --pole-bar:var(--yellow);
+  --pole-title:var(--tac-yellow-heading);
+  --pole-bar-text:#161616;
+  --pole-rule:rgba(0,0,0,.16);
+}
+body.pole-page--editions {
+  --pole-bar:#fff;
+  --pole-title:var(--blue);
+  --pole-bar-text:#161616;
+  --pole-rule:rgba(0,0,0,.13);
+}
+body.pole-page--team,
+body.home {
+  --pole-bar:var(--blue);
+  --pole-title:var(--blue);
+  --pole-bar-text:#161616;
+  --pole-rule:rgba(0,0,0,.20);
+}
+
+/* 1 — Barre de navigation : seule grande zone colorée. */
+body.home .site-header,
+body.pole-page .site-header,
+body.book-page .site-header,
+body.poster-page .site-header {
+  background:var(--pole-bar);
+  color:var(--pole-bar-text);
+  border-bottom:1px solid var(--pole-rule);
+  box-shadow:none;
+}
+body.home .site-header::after,
+body.pole-page .site-header::after {content:none;}
+
+body.home .site-header .brand-baseline,
+body.pole-page .site-header .brand-baseline,
+body.home .site-header .primary-nav a,
+body.pole-page .site-header .primary-nav a,
+body.home .site-header .nav-toggle,
+body.pole-page .site-header .nav-toggle {
+  color:var(--pole-bar-text);
+  text-shadow:none;
+}
+body.home .site-header .primary-nav a:hover,
+body.home .site-header .primary-nav a[aria-current="page"],
+body.pole-page .site-header .primary-nav a:hover,
+body.pole-page .site-header .primary-nav a[aria-current="page"] {
+  border-color:var(--pole-bar-text);
+}
+body.home .site-header .brand--logo img,
+body.pole-page--team .site-header .brand--logo img {
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.8));
+}
+body.pole-page--studio .site-header .brand--logo img {
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.92));
+}
+body.pole-page--social .site-header .brand--logo img {
+  filter:drop-shadow(0 0 2px rgba(0,0,0,.42));
+}
+
+/* 2 — Corps blanc et texte noir, pour tous les pôles. */
+body.home #content,
+body.pole-page #content {
+  background:#fff;
+  color:var(--tac-body-text);
+}
+body.home .home-intro,
+body.home .home-poles,
+body.home .home-end,
+body.pole-page--studio .studio-body,
+body.pole-page--social .association-section,
+body.pole-page--social .association-card,
+body.pole-page--social .timeline-item .project-card,
+body.pole-page--team section,
+body.pole-page--editions section {
+  background:#fff;
+  background-image:none;
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.home .home-intro,
+body.home .home-end {
+  border-color:rgba(0,0,0,.12);
+}
+body.home .home-intro p,
+body.home .home-poles p,
+body.home .home-end p,
+body.pole-page .pole-hero .lead,
+body.pole-page--studio .studio-body p,
+body.pole-page--studio .studio-body .lead,
+body.pole-page--studio .studio-body .muted,
+body.pole-page--studio .studio-body .section-note,
+body.pole-page--team .pole-hero p,
+body.pole-page--team .section-note,
+body.pole-page--team .team-name small,
+body.pole-page--editions .lead,
+body.pole-page--editions .product-card p {
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.home .home-intro .home-intro__statement,
+body.home .home-intro .home-intro__description,
+body.home .home-end p:not(.overline) {
+  color:var(--tac-body-text);
+}
+
+/* 3 — Titres dans la couleur du pôle, avec la fonte déjà validée.
+   Saigon Outline pour les grands titres, Saigon plein pour les petits. */
+body.home h1,
+body.home h2,
+body.home .section-heading,
+body.home .huge-title,
+body.pole-page h1,
+body.pole-page h2,
+body.pole-page .huge-title,
+body.pole-page .section-heading,
+body.pole-page--team .team-name {
+  color:var(--pole-title);
+  font-family:"Saigon Melon Outline","Saigon Melon",var(--sans);
+  font-weight:400;
+  letter-spacing:0;
+  text-shadow:none;
+}
+body.home h3,
+body.home .pole-card strong,
+body.pole-page h3,
+body.pole-page--studio .studio-signature,
+body.pole-page--social .project-copy h3,
+body.pole-page--editions .product-card h3 {
+  color:var(--pole-title);
+  font-family:"Saigon Melon",var(--sans);
+  font-weight:700;
+  letter-spacing:0;
+  text-shadow:none;
+}
+body.home .home-intro .section-heading,
+body.home .home-poles .section-heading,
+body.home .home-end .section-heading,
+body.pole-page .pole-hero .huge-title,
+body.pole-page--studio .studio-body h2,
+body.pole-page--studio .studio-body h3,
+body.pole-page--team .section-heading,
+body.pole-page--team .team-name {
+  color:var(--pole-title);
+}
+body.pole-page .pole-hero .overline,
+body.pole-page--studio .studio-body .overline,
+body.pole-page--team .overline,
+body.home .overline {
+  color:var(--pole-title);
+  text-shadow:none;
+}
+body.pole-page .pole-hero::before {background:var(--pole-bar);}
+body.pole-page--editions .pole-hero::before {background:var(--blue);}
+body.pole-page--social .pole-hero .huge-title {
+  /* Jaune de la marque, légèrement densifié pour rester visible sur blanc. */
+  color:var(--tac-yellow-heading);
+}
+
+/* 4 — Accueil : vidéo et découpe du logo conservées ; sections blanches. */
+body.home .home-hero {background:#fff;}
+body.home .home-hero__video {background:#060606;}
+/* Les textes posés directement sur la vidéo restent nécessairement blancs. */
+body.home .home-hero__video .video-caption,
+body.home .home-hero__discover {
+  color:#fff;
+  text-shadow:0 1px 5px rgba(0,0,0,.7);
+}
+body.home .home-intro,
+body.home .home-end,
+body.home .home-poles {background:#fff;}
+body.home .home-intro .home-hero__actions .pill-link:first-child,
+body.home .home-end .pill-link {
+  background:var(--blue);
+  border:1px solid var(--blue);
+  color:#fff;
+}
+body.home .home-intro .home-hero__actions .pill-link:last-child {
+  background:#fff;
+  border:1px solid var(--blue);
+  color:var(--blue);
+}
+body.home .pole-card,
+body.home .pole-card--studio,
+body.home .pole-card--editions,
+body.home .pole-card--social {
+  --card-accent:var(--blue);
+  background:#fff;
+  color:var(--tac-body-text);
+  border:2px solid var(--card-accent);
+  box-shadow:none;
+}
+body.home .pole-card--studio {--card-accent:var(--violet);}
+body.home .pole-card--social {--card-accent:var(--tac-yellow-heading);}
+body.home .pole-card--editions {--card-accent:var(--blue);}
+body.home .pole-card .overline,
+body.home .pole-card strong,
+body.home .pole-card .pole-card__end {
+  color:var(--card-accent);
+}
+body.home .pole-card p {color:var(--tac-body-text);}
+body.home .pole-card__logo {background:transparent;border:0;}
+
+/* 5 — Studio : blanc, corps noir, accents violets y compris formulaire. */
+body.pole-page--studio,
+body.pole-page--studio .studio-rail,
+body.pole-page--studio .studio-body,
+body.pole-page--studio .studio-body p,
+body.pole-page--studio .studio-body .lead,
+body.pole-page--studio .studio-body .section-note,
+body.pole-page--studio .studio-body .muted {
+  background-color:transparent;
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.pole-page--studio {background:#fff;}
+body.pole-page--studio .studio-signature,
+body.pole-page--studio .studio-rail a,
+body.pole-page--studio .studio-rail a:hover,
+body.pole-page--studio .studio-body h2,
+body.pole-page--studio .studio-body h3 {
+  color:var(--violet);
+}
+body.pole-page--studio .studio-rail {
+  border-color:rgba(141,12,102,.32);
+}
+body.pole-page--studio .subtle-rule {
+  color:var(--violet);
+  border-color:var(--violet);
+}
+body.pole-page--studio .pole-hero .pill-link,
+body.pole-page--studio .pill-link {
+  background:#fff;
+  border:1px solid var(--violet);
+  color:var(--violet);
+}
+body.pole-page--studio .pole-hero .pill-link:hover,
+body.pole-page--studio .pill-link:hover {
+  background:var(--violet);
+  color:#fff;
+}
+body.pole-page--studio .studio-body .pole-panel,
+body.pole-page--studio .studio-body .pole-panel--studio {
+  background:#fff;
+  color:var(--tac-body-text);
+  border:1px solid rgba(141,12,102,.32);
+}
+body.pole-page--studio .studio-form {
+  background:#fff;
+  color:var(--tac-body-text);
+  border:1px solid rgba(141,12,102,.4);
+  box-shadow:none;
+}
+body.pole-page--studio .studio-form label,
+body.pole-page--studio .studio-form .form-note,
+body.pole-page--studio .studio-form .form-required,
+body.pole-page--studio .studio-form .form-consent,
+body.pole-page--studio .studio-form .form-feedback,
+body.pole-page--studio .studio-form .form-feedback[data-state="success"],
+body.pole-page--studio .studio-form .form-feedback[data-state="error"] {
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.pole-page--studio .studio-form input:not([type="checkbox"]),
+body.pole-page--studio .studio-form select,
+body.pole-page--studio .studio-form textarea {
+  background:#fff;
+  color:var(--tac-body-text);
+  border:1px solid #8e8e8e;
+}
+body.pole-page--studio .studio-form option {
+  background:#fff;
+  color:var(--tac-body-text);
+}
+body.pole-page--studio .studio-form input::placeholder,
+body.pole-page--studio .studio-form textarea::placeholder {color:#626262;}
+body.pole-page--studio .studio-form button[type="submit"] {
+  background:var(--violet);
+  color:#fff;
+  border:1px solid var(--violet);
+}
+body.pole-page--studio .studio-form input:focus-visible,
+body.pole-page--studio .studio-form select:focus-visible,
+body.pole-page--studio .studio-form textarea:focus-visible {outline-color:var(--violet);}
+
+/* 6 — Social : fond blanc pour l'archive et les projets, texte noir,
+   titres jaune-or pour la lisibilité (jamais blanc sur jaune). */
+body.pole-page--social,
+body.pole-page--social .association-section,
+body.pole-page--social .association-card,
+body.pole-page--social .timeline-item .project-card {
+  background:#fff;
+  background-image:none;
+  color:var(--tac-body-text);
+  box-shadow:none;
+}
+body.pole-page--social .association-card,
+body.pole-page--social .timeline-item .project-card {
+  border:1px solid rgba(173,140,0,.36);
+}
+body.pole-page--social .association-card,
+body.pole-page--social .association-card p,
+body.pole-page--social .association-card .project-copy,
+body.pole-page--social .association-card .project-copy p,
+body.pole-page--social .association-card .project-copy p:last-child,
+body.pole-page--social .association-card a:not(.partner-logo-tile) {
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.pole-page--social .association-card > .eyebrow,
+body.pole-page--social .association-card .partners-heading {
+  display:inline-block;
+  background:transparent;
+  border:0;
+  padding:0 0 10px;
+  border-radius:0;
+  box-shadow:none;
+  color:var(--pole-title);
+  font-family:"Saigon Melon Outline","Saigon Melon",var(--sans);
+  font-weight:400;
+  text-shadow:none;
+}
+body.pole-page--social .association-card .partners-heading {
+  border-bottom:2px solid var(--yellow);
+}
+body.pole-page--social .association-card .partners-section-head {
+  border-color:rgba(173,140,0,.45);
+}
+body.pole-page--social .association-card .project-copy h3,
+body.pole-page--social .project-copy h3,
+body.pole-page--social .project-copy .subline,
+body.pole-page--social .timeline-yr {
+  color:var(--pole-title);
+  text-shadow:none;
+}
+body.pole-page--social .project-copy p:last-child {
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.pole-page--social .timeline-line {background:var(--yellow);}
+body.pole-page--social .timeline-dot-marker {
+  background:var(--yellow);
+  border:3px solid var(--tac-yellow-heading);
+  box-shadow:0 0 0 4px rgba(253,240,101,.23);
+}
+body.pole-page--social .partners-strip,
+body.pole-page--social .team-photo,
+body.pole-page--social .interview-player {
+  border-color:rgba(173,140,0,.45);
+}
+body.pole-page--social .partners-strip,
+body.pole-page--social .partners-strip .partner-logo-tile {
+  background:#fff;
+}
+body.pole-page--social .insta-pill,
+body.pole-page--social .association-card .insta-pill {
+  background:#fff;
+  border:1px solid var(--yellow);
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.pole-page--social .interview-overlay-title {
+  color:#fff; /* sur la vidéo seulement */
+  border-left-color:var(--yellow);
+  text-shadow:0 1px 5px #111;
+}
+body.pole-page--social .pole-hero .pill-link {
+  background:var(--yellow);
+  border:1px solid var(--yellow);
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.pole-page--social .pole-hero .pill-link:hover {background:#fff8bd;}
+
+/* 7 — Team et Éditions : même fond blanc, textes noirs, titres bleus. */
+body.pole-page--team .team-names,
+body.pole-page--team .team-name {
+  border-color:rgba(64,143,220,.36);
+}
+body.pole-page--team .team-name small {
+  color:var(--tac-body-text);
+  font-family:var(--sans);
+  font-weight:650;
+}
+body.pole-page--editions .product-card,
+body.pole-page--editions .product-card p,
+body.book-page .lalo-story,
+body.book-page .lalo-buy,
+body.poster-page .affiche-card,
+body.poster-page .affiches-info {
+  background:#fff;
+  color:var(--tac-body-text);
+}
+body.pole-page--editions .product-card {
+  border:1px solid rgba(64,143,220,.32);
+}
+body.book-page,
+body.poster-page {
+  background:#fff;
+  background-image:none;
+  color:var(--tac-body-text);
+}
+body.book-page .lalo-hero h1,
+body.book-page .lalo-story h2,
+body.book-page .lalo-buy h3,
+body.poster-page .affiches-hero h1,
+body.poster-page .affiches-info h2,
+body.poster-page .affiche-card-copy h3 {
+  color:var(--blue);
+  text-shadow:none;
+}
+body.book-page .lalo-story p,
+body.book-page .lalo-buy p,
+body.book-page .lalo-page-info,
+body.poster-page .affiche-card p,
+body.poster-page .affiches-info p {
+  color:var(--tac-body-text);
+}
+body.book-page .paypal-note {color:#414141;}
+
+/* 8 — Footer neutre : la couleur reste dans les titres, pas en bande basse. */
+body.home .site-footer,
+body.pole-page .site-footer,
+body.book-page .site-footer,
+body.poster-page .site-footer {
+  background:#fff;
+  color:var(--tac-body-text);
+  border-top:1px solid rgba(0,0,0,.16);
+}
+body.home .site-footer .footer-baseline,
+body.pole-page .site-footer .footer-baseline,
+body.home .site-footer a,
+body.pole-page .site-footer a,
+body.home .site-footer > span,
+body.pole-page .site-footer > span {
+  color:var(--tac-body-text);
+  text-shadow:none;
+}
+body.home .site-footer .site-footer__links a:hover,
+body.pole-page .site-footer .site-footer__links a:hover {
+  color:var(--pole-title);
+}
+body.home .site-footer .footer-brand img,
+body.pole-page .site-footer .footer-brand img {filter:none;}
+
+/* 9 — Responsive : les mêmes règles restent valables sur mobile. */
+@media(max-width:700px) {
+  body.home .site-header .primary-nav.is-open,
+  body.pole-page .site-header .primary-nav.is-open {
+    background:var(--pole-bar);
+    color:var(--pole-bar-text);
+  }
+  body.home .site-header .primary-nav a,
+  body.pole-page .site-header .primary-nav a {
+    border-color:var(--pole-rule);
+  }
+  body.home .pole-card {background:#fff;}
+}

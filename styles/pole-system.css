@@ -848,3 +848,80 @@ body.pole-page--team .team-name {
     font-size:clamp(21px,5.3vw,30px);
   }
 }
+
+
+/* TAC — Derniers ajustements de mise en page (Casino).
+   Éditions: no oversized section dividers.
+   Studio: small and precise frames around text, not thick rules across the page.
+   Social: preserve yellow small markers and Instagram square accents. */
+
+/* Éditions: remove the two long BLACK horizontal separators between sections. */
+body.pole-page--editions #boutique,
+body.pole-page--editions #interview-lalo {
+  border-top:0;
+}
+
+/* Studio: remove the heavy added section rules, side stripe and media outlines. */
+body.pole-page--studio .studio-body .subtle-rule {
+  display:none;
+  border:0;
+}
+body.pole-page--studio .studio-body #contact {
+  border-top:0;
+  padding-top:clamp(46px,5vw,70px);
+}
+body.pole-page--studio .studio-rail {
+  border:0;
+  border-left:0;
+  border-bottom:0;
+  padding-left:0;
+}
+body.pole-page--studio .studio-body .media-cover {
+  border:0;
+}
+
+/* Studio: a discreet 1px violet outline around editorial text areas. */
+body.pole-page--studio .pole-hero .lead,
+body.pole-page--studio .studio-body #submit > .lead,
+body.pole-page--studio .studio-body #contact > .lead {
+  border-left:1px solid rgba(141,12,102,.48);
+  padding-left:clamp(16px,2.4vw,24px);
+}
+body.pole-page--studio .studio-body #work .two-column > div,
+body.pole-page--studio .studio-body #our-space .two-column > div {
+  border:1px solid rgba(141,12,102,.28);
+  border-radius:4px;
+  padding:clamp(20px,2.6vw,30px);
+}
+body.pole-page--studio .studio-body .studio-form,
+body.pole-page--studio .studio-body .pole-panel {
+  border:1px solid rgba(141,12,102,.36);
+  border-radius:4px;
+}
+body.pole-page--studio .studio-body #our-space {
+  padding-top:clamp(34px,5vw,64px);
+}
+
+/* Social: the frame stays black, but the small dots / squares stay TAC yellow. */
+body.pole-page--social .timeline-dot-marker {
+  background:var(--yellow);
+  border-color:var(--yellow);
+}
+body.pole-page--social .timeline-line {background:var(--yellow);}
+body.pole-page--social .association-card .insta-pill {
+  border-color:var(--yellow);
+}
+@media(max-width:900px) {
+  body.pole-page--studio .studio-rail {
+    border-left:0;
+    border-bottom:0;
+    padding-left:0;
+  }
+}
+@media(max-width:700px) {
+  body.pole-page--studio .pole-hero .lead,
+  body.pole-page--studio .studio-body #submit > .lead,
+  body.pole-page--studio .studio-body #contact > .lead {
+    padding-left:15px;
+  }
+}

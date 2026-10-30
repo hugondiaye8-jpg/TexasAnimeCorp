@@ -653,3 +653,11 @@ body.home .pole-card__logo {filter:drop-shadow(0 1px 1px rgba(12,49,92,.45));}
 @media(prefers-reduced-motion:reduce) {
   body.home .home-hero__video video {visibility:hidden;}
 }
+
+
+/* Editorial page anchor and yellow SVG contrast refinements. */
+#home-about,#association {scroll-margin-top:clamp(95px,12vw,145px);}
+body.pole-page--social .site-header .brand--logo img,
+body.pole-page--social .site-footer .footer-brand img {
+  filter:drop-shadow(0 0 1px rgba(12,49,92,.72)) drop-shadow(0 1px 1px rgba(12,49,92,.48));
+}

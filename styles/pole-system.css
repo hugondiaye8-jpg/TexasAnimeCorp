@@ -610,20 +610,22 @@ body.pole-page--social .association-card .partners-section-head {
 }
 
 
-/* 13 — Accueil noir et signature overline universelle.
-   L'accueil conserve son logo TAC bleu sur une barre purement noire ;
-   les liens et les deux lignes de baseline reprennent le bleu du pôle.
-   Les autres pôles gardent les couleurs de barre déjà validées. */
+/* 13 — Signature TAC en Saigon Melon Outline (police vectorielle officielle).
+   Le logo et le texte du menu de l'accueil restent bleus, sa barre reste
+   noire, mais SANS la ligne de séparation bleue. */
 body.home {
   --pole-bar:#000;
   --pole-bar-text:var(--blue);
-  --pole-rule:rgba(64,143,220,.55);
+  --pole-rule:transparent;
 }
 body.home .site-header {
   background:#000;
   color:var(--blue);
-  border-bottom:1px solid rgba(64,143,220,.45);
+  border:0;
+  border-bottom:0;
+  box-shadow:none;
 }
+body.home .site-header::after {content:none;display:none;}
 body.home .site-header .brand-baseline,
 body.home .site-header .primary-nav a,
 body.home .site-header .nav-toggle {
@@ -635,20 +637,25 @@ body.home .site-header .primary-nav a[aria-current="page"] {
   border-color:var(--blue);
 }
 
-/* Une même signature à deux lignes dans tous les headers et footers :
-   Aileron / style overline, au lieu de Saigon Melon plein. */
+/* Same Saigon Melon Outline on both lines, in every header and footer.
+   This uses the WOFF2 already bundled from TAC's official OTF. */
 body.home .site-header .brand-baseline,
 body.pole-page .site-header .brand-baseline,
 body.home .site-footer .footer-baseline,
 body.pole-page .site-footer .footer-baseline {
-  font-family:var(--sans);
-  font-size:clamp(11px,1vw,13px);
-  font-weight:850;
-  line-height:1.5;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+  font-family:"Saigon Melon Outline","Saigon Melon",var(--sans);
+  font-style:normal;
+  font-size:clamp(17px,1.55vw,23px);
+  font-weight:400;
+  line-height:1.2;
+  letter-spacing:0;
+  text-transform:none;
   gap:4px;
   max-width:none;
+}
+body.home .site-footer .footer-baseline,
+body.pole-page .site-footer .footer-baseline {
+  font-size:clamp(16px,1.25vw,20px);
 }
 body.home .site-header .brand-baseline span,
 body.pole-page .site-header .brand-baseline span,
@@ -658,14 +665,15 @@ body.pole-page .site-footer .footer-baseline span {
   white-space:nowrap;
 }
 
-/* Le slogan répété dans l'introduction Studio suit la même typographie. */
+/* Studio repeats the universal baseline in its hero: same outline face. */
 body.pole-page--studio .studio-signature {
-  font-family:var(--sans);
-  font-size:clamp(11px,1.1vw,14px);
-  font-weight:850;
-  line-height:1.5;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+  font-family:"Saigon Melon Outline","Saigon Melon",var(--sans);
+  font-style:normal;
+  font-size:clamp(25px,3vw,40px);
+  font-weight:400;
+  line-height:1.2;
+  letter-spacing:0;
+  text-transform:none;
   gap:4px;
   color:var(--violet);
 }
@@ -674,12 +682,11 @@ body.pole-page--studio .studio-signature {
   body.pole-page .site-header .brand-baseline,
   body.home .site-footer .footer-baseline,
   body.pole-page .site-footer .footer-baseline {
-    font-size:10px;
-    line-height:1.4;
-    letter-spacing:.08em;
+    font-size:clamp(12px,3.5vw,16px);
+    line-height:1.2;
+    letter-spacing:0;
   }
   body.pole-page--studio .studio-signature {
-    font-size:11px;
-    letter-spacing:.11em;
+    font-size:clamp(21px,5.3vw,30px);
   }
 }

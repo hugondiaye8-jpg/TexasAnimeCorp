@@ -127,8 +127,16 @@ body.pole-page .tac-pole-rail + .tac-pole-content > section {
 /* Vidéo Casino : sur un écran vertical, montrer la composition entière.
    Le plein-écran en object-fit:cover en coupait la majeure partie. */
 @media (max-width: 700px) {
+  /* Premier écran noir sur iPhone : le hero remplit le viewport sous
+     l'en-tête mobile (min-height:83px), même si la vidéo ne remplit
+     pas horizontalement son cadre en object-fit:contain. */
+  body.home,
+  body.home #content,
+  body.home .home-hero {
+    background-color: #000;
+  }
   body.home .home-hero__video {
-    height: clamp(320px, 64svh, 560px);
+    height: calc(100svh - 83px);
     min-height: 0;
     max-height: none;
     aspect-ratio: auto;

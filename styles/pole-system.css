@@ -717,3 +717,134 @@ body.pole-page--studio .site-header {
     padding-bottom:clamp(58px,12vw,88px);
   }
 }
+
+
+/* TAC 2026 — Unified internal pole heroes and black structural rules.
+   Internal pages follow Studio's editorial layout; the homepage is exempt. */
+
+/* The introductory title replaces the decorative dash on all four poles.
+   No duplicated heading, no top accent rule or extra divider below the header. */
+body.pole-page--studio .pole-hero::before,
+body.pole-page--editions .pole-hero::before,
+body.pole-page--social .pole-hero::before,
+body.pole-page--team .pole-hero::before {
+  content:none;
+  display:none;
+}
+body.pole-page--studio .pole-hero,
+body.pole-page--editions .pole-hero,
+body.pole-page--social .pole-hero,
+body.pole-page--team .pole-hero {
+  min-height:0;
+  justify-content:flex-start;
+  padding-top:clamp(58px,6.5vw,94px);
+  padding-bottom:clamp(70px,8vw,115px);
+}
+body.pole-page--studio .pole-hero .huge-title,
+body.pole-page--editions .pole-hero .huge-title,
+body.pole-page--social .pole-hero .huge-title,
+body.pole-page--team .pole-hero .huge-title {
+  margin:0 0 24px;
+  text-transform:none;
+}
+body.pole-page--studio .site-header,
+body.pole-page--editions .site-header,
+body.pole-page--social .site-header,
+body.pole-page--team .site-header {
+  border-bottom:0;
+}
+
+/* The signature follows the h1 on every internal pole, as on Studio.
+   Reuse Saigon Melon Outline; color follows the pole's identity. */
+body.pole-page .pole-hero .pole-hero__signature {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  margin:0 0 27px;
+  font-family:"Saigon Melon Outline","Saigon Melon",var(--sans);
+  font-style:normal;
+  font-size:clamp(25px,3vw,40px);
+  font-weight:400;
+  line-height:1.2;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--pole-title);
+}
+body.pole-page .pole-hero .pole-hero__signature span {display:block;}
+
+/* Studio: more substantial BLACK lines between sections and around work,
+   the side navigation and contact forms. Violet remains in the titles/buttons. */
+body.pole-page--studio .studio-body .subtle-rule {
+  opacity:1;
+  border:0;
+  border-top:2px solid #161616;
+}
+body.pole-page--studio .studio-rail {
+  border-color:#161616;
+  border-left:2px solid #161616;
+  padding-left:16px;
+}
+body.pole-page--studio .studio-body .media-cover {
+  border:2px solid #161616;
+}
+body.pole-page--studio .studio-body .studio-form,
+body.pole-page--studio .studio-body .pole-panel {
+  border:2px solid #161616;
+}
+body.pole-page--studio .studio-body #contact {
+  border-top:2px solid #161616;
+  padding-top:clamp(48px,6vw,80px);
+}
+
+/* Éditions: replace pale-blue structural strokes by solid black lines. */
+body.pole-page--editions #boutique,
+body.pole-page--editions #interview-lalo {
+  border-top:2px solid #161616;
+}
+body.pole-page--editions .product-card,
+body.pole-page--editions .pole-panel,
+body.pole-page--editions .interview-player {
+  border:2px solid #161616;
+}
+body.pole-page--editions .pill-link {
+  border-color:#161616;
+}
+
+/* Social: keep the YELLOW timeline markers and spine, but frame the large
+   association container and project cards in black rather than yellow. */
+body.pole-page--social .association-section .association-card,
+body.pole-page--social .association-section .timeline-item .project-card {
+  border:2px solid #161616;
+}
+body.pole-page--social .timeline-dot-marker {
+  background:var(--yellow);
+  border-color:var(--yellow);
+}
+body.pole-page--social .timeline-line {background:var(--yellow);}
+
+/* Team: the editorial listing gains the same clean black rules. */
+body.pole-page--team .team-names,
+body.pole-page--team .team-name {
+  border-color:#161616;
+}
+
+@media(max-width:900px) {
+  body.pole-page--studio .studio-rail {
+    border-left:0;
+    padding-left:0;
+    border-bottom:2px solid #161616;
+  }
+}
+@media(max-width:700px) {
+  body.pole-page--studio .pole-hero,
+  body.pole-page--editions .pole-hero,
+  body.pole-page--social .pole-hero,
+  body.pole-page--team .pole-hero {
+    padding-top:clamp(50px,12vw,76px);
+    padding-bottom:clamp(58px,12vw,88px);
+  }
+  body.pole-page .pole-hero .pole-hero__signature {
+    font-size:clamp(21px,5.3vw,30px);
+  }
+}

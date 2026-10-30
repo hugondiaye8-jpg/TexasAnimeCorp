@@ -529,20 +529,7 @@ body.home .home-hero__video::after {
   background:linear-gradient(180deg,rgba(0,0,0,.46) 0%,rgba(0,0,0,.43) 44%,rgba(0,0,0,.70) 100%);
   pointer-events:none;
 }
-body.home .home-hero__mark {
-  position:absolute;
-  left:50%;
-  top:50%;
-  z-index:2;
-  transform:translate(-50%,-50%);
-  width:min(66vw,640px);
-  height:auto;
-  max-height:52%;
-  object-fit:contain;
-  /* Preserve the supplied vector's original blue and transparent canvas. */
-  filter:drop-shadow(0 5px 7px rgba(0,0,0,.72)) drop-shadow(0 0 16px rgba(0,0,0,.32));
-  pointer-events:none;
-}
+
 body.home .home-hero__video .video-caption {
   left:clamp(18px,5vw,76px);
   bottom:clamp(25px,4vw,52px);
@@ -633,7 +620,6 @@ body.home .pole-card__logo {filter:drop-shadow(0 1px 1px rgba(12,49,92,.45));}
     aspect-ratio:auto;
   }
   body.home .home-hero__video video {object-position:53% center;}
-  body.home .home-hero__mark {width:min(82vw,440px);max-height:42%;}
   body.home .home-hero__video .video-caption {bottom:76px;}
   body.home .home-hero__discover {left:18px;right:auto;bottom:22px;}
   body.home .home-intro .home-intro__statement {font-size:clamp(25px,6vw,36px);}
@@ -815,12 +801,7 @@ body.home .site-footer,
 body.pole-page--team .site-header,
 body.pole-page--team .site-footer {border-color:rgba(64,143,220,.31);}
 
-/* Keep each logo on its original transparent SVG background. */
-body.home .home-hero__mark {
-  background:transparent;
-  opacity:1;
-  /* Important: no brightness(0), invert(1), grayscale, or white tint. */
-}
+
 
 
 /* Interactive and muted states stay in the active pole's own palette. */
@@ -835,3 +816,215 @@ body.home :focus-visible,
 body.pole-page--team :focus-visible {outline-color:var(--blue);}
 body.pole-page--studio :focus-visible {outline-color:var(--violet);}
 body.pole-page--social :focus-visible {outline-color:var(--yellow-ink);}
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TAC — video cutout + solid-colour poles (requested 30 Oct 2026).
+   The video is seen THROUGH the transparent shape of the logo;
+   the brand's image is NOT drawn on top of the video.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+body.home .home-hero__video::after {content:none;}
+body.home .home-hero__cutout {
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:rgba(0,0,0,.76);
+  pointer-events:none;
+}
+/* Two alpha masks: fully visible black overlay XOR the genuine SVG silhouette.
+   The excluded logo-shaped area lets the unfiltered footage show through.
+   -webkit-mask-composite: xor covers WebKit; mask-composite: exclude covers
+   modern Firefox/Chromium. Older engines retain the plain black veil. */
+@supports ((-webkit-mask-composite:xor) or (mask-composite:exclude)) {
+  body.home .home-hero__cutout {
+    -webkit-mask-image:
+      linear-gradient(#fff 0 0),
+      url("../assets/images/logos/tac-brand-vector.svg");
+    mask-image:
+      linear-gradient(#fff 0 0),
+      url("../assets/images/logos/tac-brand-vector.svg");
+    -webkit-mask-repeat:no-repeat,no-repeat;
+    mask-repeat:no-repeat,no-repeat;
+    -webkit-mask-size:100% 100%,min(45vw,460px) auto;
+    mask-size:100% 100%,min(45vw,460px) auto;
+    -webkit-mask-position:center,center;
+    mask-position:center,center;
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+  }
+}
+@media(max-width:700px) {
+  @supports ((-webkit-mask-composite:xor) or (mask-composite:exclude)) {
+    body.home .home-hero__cutout {
+      -webkit-mask-size:100% 100%,min(76vw,330px) auto;
+      mask-size:100% 100%,min(76vw,330px) auto;
+    }
+  }
+}
+/* The lower-left and lower-right video labels stay on the top layer. */
+body.home .home-hero__video .video-caption,
+body.home .home-hero__discover {z-index:3;}
+
+/* STUDIO: exactly one solid violet background with white text throughout.
+   Form controls get translucent violet fields so their text is still white. */
+body.pole-page--studio {
+  --page-accent:#fff;
+  background:var(--violet);
+  color:#fff;
+}
+body.pole-page--studio .site-header,
+body.pole-page--studio .site-footer {
+  background:var(--violet);
+  color:#fff;
+  border-color:rgba(255,255,255,.36);
+}
+body.pole-page--studio .site-header::after,
+body.pole-page--studio .pole-hero::before {background:#fff;}
+body.pole-page--studio .site-header .primary-nav a,
+body.pole-page--studio .site-header .brand-baseline,
+body.pole-page--studio .site-footer .footer-baseline,
+body.pole-page--studio .site-footer .site-footer__links a,
+body.pole-page--studio .site-footer > span,
+body.pole-page--studio .pole-hero .overline,
+body.pole-page--studio .pole-hero .huge-title,
+body.pole-page--studio .pole-hero .lead,
+body.pole-page--studio .studio-signature,
+body.pole-page--studio .studio-rail,
+body.pole-page--studio .studio-rail a,
+body.pole-page--studio .studio-body,
+body.pole-page--studio .studio-body h2,
+body.pole-page--studio .studio-body h3,
+body.pole-page--studio .studio-body p,
+body.pole-page--studio .studio-body .lead,
+body.pole-page--studio .studio-body .overline,
+body.pole-page--studio .studio-body .section-note,
+body.pole-page--studio .studio-body .muted {
+  color:#fff;
+}
+body.pole-page--studio .site-header .primary-nav a[aria-current="page"],
+body.pole-page--studio .site-header .primary-nav a:hover {
+  border-color:#fff;
+}
+body.pole-page--studio .pole-hero .pill-link,
+body.pole-page--studio .pill-link {
+  border-color:#fff;
+  background:transparent;
+  color:#fff;
+}
+body.pole-page--studio .pole-hero .pill-link:hover,
+body.pole-page--studio .pill-link:hover {
+  background:#fff;
+  color:var(--violet);
+}
+body.pole-page--studio .studio-rail,
+body.pole-page--studio .subtle-rule {
+  border-color:rgba(255,255,255,.55);
+  color:#fff;
+}
+body.pole-page--studio .studio-body .pole-panel,
+body.pole-page--studio .studio-body .pole-panel--studio {
+  background:var(--violet);
+  color:#fff;
+  border-color:rgba(255,255,255,.55);
+}
+body.pole-page--studio .studio-form {
+  background:var(--violet);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:none;
+}
+body.pole-page--studio .studio-form label,
+body.pole-page--studio .studio-form .form-note,
+body.pole-page--studio .studio-form .form-required,
+body.pole-page--studio .studio-form .form-consent,
+body.pole-page--studio .studio-form .form-feedback,
+body.pole-page--studio .studio-form .form-feedback[data-state="success"],
+body.pole-page--studio .studio-form .form-feedback[data-state="error"] {
+  color:#fff;
+}
+body.pole-page--studio .studio-form input:not([type="checkbox"]),
+body.pole-page--studio .studio-form select,
+body.pole-page--studio .studio-form textarea {
+  background:rgba(0,0,0,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.8);
+}
+body.pole-page--studio .studio-form option {
+  background:var(--violet);
+  color:#fff;
+}
+body.pole-page--studio .studio-form input::placeholder,
+body.pole-page--studio .studio-form textarea::placeholder {
+  color:rgba(255,255,255,.78);
+}
+body.pole-page--studio .studio-form input:focus-visible,
+body.pole-page--studio .studio-form select:focus-visible,
+body.pole-page--studio .studio-form textarea:focus-visible,
+body.pole-page--studio :focus-visible {
+  outline-color:#fff;
+}
+body.pole-page--studio .studio-form input[type="checkbox"] {accent-color:#fff;}
+body.pole-page--studio .studio-form button[type="submit"] {
+  background:#fff;
+  color:var(--violet);
+  border:1px solid #fff;
+}
+body.pole-page--studio .site-header .brand--logo img,
+body.pole-page--studio .site-footer .footer-brand img {
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.28));
+}
+
+/* SOCIAL: yellow from top to bottom, with WHITE lettering — not navy
+   and not the brown-gold text used in the intermediate variation. */
+body.pole-page--social {
+  --page-accent:#fff;
+  background:var(--yellow);
+  color:#fff;
+}
+body.pole-page--social .site-header,
+body.pole-page--social .site-footer {
+  background:var(--yellow);
+  color:#fff;
+  border-color:rgba(255,255,255,.75);
+}
+body.pole-page--social .site-header::after,
+body.pole-page--social .pole-hero::before {background:#fff;}
+body.pole-page--social .site-header .primary-nav a,
+body.pole-page--social .site-header .brand-baseline,
+body.pole-page--social .site-footer .footer-baseline,
+body.pole-page--social .site-footer .site-footer__links a,
+body.pole-page--social .site-footer > span,
+body.pole-page--social .pole-hero .overline,
+body.pole-page--social .pole-hero .huge-title,
+body.pole-page--social .pole-hero .lead {
+  color:#fff;
+  text-shadow:0 1px 2px rgba(74,61,0,.48);
+}
+body.pole-page--social .site-header .primary-nav a[aria-current="page"],
+body.pole-page--social .site-header .primary-nav a:hover {border-color:#fff;}
+body.pole-page--social .pole-hero .pill-link,
+body.pole-page--social .pill-link {
+  background:transparent;
+  color:#fff;
+  border:1px solid #fff;
+  text-shadow:0 1px 2px rgba(74,61,0,.42);
+}
+body.pole-page--social .pole-hero .pill-link:hover {
+  background:rgba(255,255,255,.15);
+}
+body.pole-page--social :focus-visible {outline-color:#fff;}
+body.pole-page--social .site-header .brand--logo img,
+body.pole-page--social .site-footer .footer-brand img {
+  filter:drop-shadow(0 1px 2px rgba(74,61,0,.38));
+}
+
+
+/* Preserve each original logo's colors against the matching solid background.
+   Only a subtle WHITE outline shadow; never add a rectangular logo backing. */
+body.pole-page--studio .site-header .brand--logo img,
+body.pole-page--studio .site-footer .footer-brand img,
+body.pole-page--social .site-header .brand--logo img,
+body.pole-page--social .site-footer .footer-brand img {
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.75))
+         drop-shadow(0 1px 2px rgba(0,0,0,.2));
+}

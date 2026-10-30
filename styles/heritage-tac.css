@@ -381,3 +381,84 @@ body.pole-page--social .insta-pill {
 body.pole-page--social .association-card .partners-section-head {
   border-color:rgba(214,173,19,.5);
 }
+
+
+/* TAC SOCIAL — restore original SOLID yellow with white lettering.
+   Preserve photos and partner logo tile backgrounds for logo legibility. */
+body.pole-page--social .association-section,
+body.pole-page--social .association-card,
+body.pole-page--social .timeline-item .project-card {
+  background:var(--yellow);
+  background-image:none;
+  box-shadow:none;
+}
+body.pole-page--social .association-card,
+body.pole-page--social .timeline-item .project-card {
+  border-color:rgba(255,255,255,.75);
+}
+body.pole-page--social .association-card,
+body.pole-page--social .association-card p,
+body.pole-page--social .association-card .eyebrow,
+body.pole-page--social .association-card .partners-heading,
+body.pole-page--social .association-card .timeline-yr,
+body.pole-page--social .association-card .project-copy,
+body.pole-page--social .association-card .project-copy h3,
+body.pole-page--social .association-card .project-copy .subline,
+body.pole-page--social .association-card .project-copy p,
+body.pole-page--social .association-card .project-copy p:last-child,
+body.pole-page--social .association-card a:not(.partner-logo-tile),
+body.pole-page--social .association-card .insta-pill {
+  color:#fff;
+  text-shadow:0 1px 2px rgba(76,64,0,.5);
+}
+body.pole-page--social .association-card > .eyebrow {
+  background:transparent;
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:4px;
+  box-shadow:none;
+}
+body.pole-page--social .association-card .partners-heading {
+  border-bottom-color:#fff;
+  background:transparent;
+}
+body.pole-page--social .association-card .partners-section-head {
+  border-color:rgba(255,255,255,.7);
+}
+body.pole-page--social .partners-strip {
+  background:transparent;
+  border-color:rgba(255,255,255,.65);
+}
+body.pole-page--social .partners-strip .partner-logo-tile {
+  background:#fff; /* the partner marks themselves need a clean white canvas */
+}
+body.pole-page--social .team-photo,
+body.pole-page--social .interview-player {
+  border-color:rgba(255,255,255,.8);
+}
+body.pole-page--social .timeline-line {background:#fff;}
+body.pole-page--social .timeline-dot-marker {
+  background:var(--yellow);
+  border:3px solid #fff;
+  box-shadow:0 0 0 4px rgba(255,255,255,.24);
+}
+body.pole-page--social .timeline-yr {
+  color:#fff;
+  text-shadow:0 1px 2px rgba(76,64,0,.6);
+}
+body.pole-page--social .project-copy .subline {
+  color:#fff;
+  text-shadow:0 1px 2px rgba(76,64,0,.5);
+}
+body.pole-page--social .insta-pill {
+  background:var(--yellow);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 2px 8px rgba(76,64,0,.14);
+}
+body.pole-page--social .insta-pill:hover {
+  background:rgba(253,240,101,.85);
+}
+body.pole-page--social .interview-overlay-title {
+  color:#fff;
+  border-left-color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.8);
+}

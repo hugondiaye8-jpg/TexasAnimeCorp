@@ -81,3 +81,19 @@
 @media(prefers-reduced-motion:reduce){
   .editions-interview .interview-play-btn{transition:none}
 }
+
+/* Laisser entièrement visible le logo Fontenay de la miniature.
+   Le bouton reste disponible, mais ne masque plus le nom de la ville. */
+.editions-interview .interview-play-btn {
+  top: auto;
+  left: auto;
+  right: 22px;
+  bottom: 22px;
+  transform: none;
+}
+.editions-interview .interview-play-btn:hover {
+  transform: scale(1.06);
+}
+@media(max-width:640px) {
+  .editions-interview .interview-play-btn {right: 14px;bottom: 14px;}
+}

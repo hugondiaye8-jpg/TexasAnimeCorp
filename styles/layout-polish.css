@@ -343,3 +343,101 @@ body.pole-page--social .site-footer .footer-baseline {
     color: var(--blue);
   }
 }
+
+/* Éditions — conserver le vrai sommaire vertical à gauche sur iPhone.
+   La colonne droite devient fluide, avec les livres empilés.
+   Ne change pas la disposition de Studio, Social ni celle de bureau. */
+@media (max-width: 700px) {
+  body.pole-page--editions .tac-pole-layout {
+    display: grid;
+    grid-template-columns: clamp(76px, 23vw, 102px) minmax(0, 1fr);
+    gap: clamp(8px, 2.5vw, 14px);
+    align-items: start;
+    padding-inline: clamp(10px, 3vw, 18px);
+  }
+
+  body.pole-page--editions .tac-pole-layout > .tac-pole-rail {
+    position: sticky;
+    top: 94px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 9px;
+    min-width: 0;
+    padding: 10px 0 0;
+    margin: 0;
+    border: 0;
+  }
+  body.pole-page--editions .tac-pole-layout > .tac-pole-rail a {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    min-height: 38px;
+    padding: 9px 6px;
+    font-size: clamp(9px, 2.4vw, 11px);
+    letter-spacing: .025em;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  body.pole-page--editions .tac-pole-content,
+  body.pole-page--editions .tac-pole-content > section,
+  body.pole-page--editions .tac-pole-content .three-column,
+  body.pole-page--editions .tac-pole-content .interview-block,
+  body.pole-page--editions .tac-pole-content .reel-container {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  body.pole-page--editions .tac-pole-content > section {
+    padding-block: clamp(24px, 6vw, 42px);
+  }
+  body.pole-page--editions .tac-pole-content .three-column {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+  body.pole-page--editions .tac-pole-content .product-card {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 9px 13px;
+  }
+  body.pole-page--editions .tac-pole-content .product-cover {
+    height: clamp(140px, 42vw, 200px);
+    width: 100%;
+    padding: 5px;
+    object-fit: contain;
+  }
+  body.pole-page--editions .tac-pole-content .product-card h3 {
+    font-size: clamp(14px, 3.7vw, 17px);
+    line-height: 1.2;
+    margin: 10px 0 6px;
+  }
+  body.pole-page--editions .tac-pole-content .product-card p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  body.pole-page--editions .tac-pole-content .section-heading {
+    font-size: clamp(25px, 6.5vw, 38px);
+    overflow-wrap: anywhere;
+  }
+  body.pole-page--editions .tac-pole-content .lead {
+    font-size: clamp(14px, 3.7vw, 17px);
+    line-height: 1.5;
+  }
+  body.pole-page--editions .tac-pole-content .section-note {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  body.pole-page--editions .tac-pole-content .pole-panel {
+    padding: 15px;
+  }
+  body.pole-page--editions .tac-pole-content .pill-link {
+    font-size: 11px;
+    padding: 10px 12px;
+    white-space: normal;
+    max-width: 100%;
+  }
+}
